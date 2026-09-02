@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Guides Gratuits — Open World Agency</title>
+<meta name="description" content="Guides gratuits sur les voies d'immigration méconnues : PICA, SINP, Espagne rurale, Erasmus+, Mastercard Foundation et plus."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Barlow+Condensed:wght@500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--navy:#0b2245;--navy-mid:#0f3060;--navy-light:#1a4a8a;--cyan:#0ea5e9;--cyan-dark:#0284c7;--gold:#f59e0b;--gold-dark:#d97706;--white:#ffffff;--off:#f8faff;--light:#e8f2ff;--lighter:#f0f6ff;--text:#0d1f3c;--text-mid:#2d5080;--text-muted:#5a7aa8;--border:rgba(14,165,233,0.15);--shadow:0 4px 24px rgba(11,34,69,0.09);--shadow-lg:0 12px 48px rgba(11,34,69,0.14);--font-d:'Cormorant Garamond',serif;--font-u:'Barlow Condensed',sans-serif;--font-b:'DM Sans',sans-serif;--nav-h:68px;--r:14px;--ease:cubic-bezier(.4,0,.2,1)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{background:var(--white);color:var(--text);font-family:var(--font-b);font-size:16px;line-height:1.65;overflow-x:hidden;cursor:none}
+#prog{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--cyan),var(--gold));z-index:9999;transition:width .1s linear;box-shadow:0 0 10px rgba(14,165,233,.5)}
+#cur{position:fixed;width:28px;height:28px;border:2px solid var(--cyan);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width .2s,height .2s,opacity .2s,border-color .2s}
+#cur-d{position:fixed;width:5px;height:5px;background:var(--cyan);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%)}
+body:has(a:hover) #cur,body:has(button:hover) #cur{width:46px;height:46px;opacity:.5;border-color:var(--gold)}
+#loader{position:fixed;inset:0;background:var(--navy);z-index:100000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;transition:opacity .7s var(--ease),visibility .7s}
+#loader.out{opacity:0;visibility:hidden}
+.l-logo{animation:lpulse 1.4s ease-in-out infinite}
+@keyframes lpulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+.l-bar-wrap{width:160px;height:2px;background:rgba(255,255,255,.1);border-radius:4px;overflow:hidden}
+.l-bar{height:100%;background:linear-gradient(90deg,var(--cyan),var(--gold));animation:lbar 2.1s ease forwards}
+@keyframes lbar{0%{width:0%}65%{width:72%}100%{width:100%}}
+.l-txt{font-family:var(--font-u);font-size:11px;letter-spacing:.3em;color:rgba(255,255,255,.35);text-transform:uppercase}
+/* NAV */
+#nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 52px;background:rgba(255,255,255,.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);transition:box-shadow .3s}
+#nav.up{box-shadow:var(--shadow-lg)}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-t{line-height:1.05}
+.lt1{font-family:var(--font-u);font-size:17px;font-weight:800;letter-spacing:.13em;color:var(--navy)}
+.lt2{font-family:var(--font-u);font-size:9px;font-weight:700;letter-spacing:.4em;color:var(--cyan)}
+.nav-links{display:flex;align-items:center;gap:4px;list-style:none}
+.nav-links>li{position:relative}
+.nav-links a{font-family:var(--font-u);font-size:13px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--text-mid);text-decoration:none;padding:7px 13px;border-radius:8px;transition:color .22s,background .22s;display:block}
+.nav-links a:hover,.nav-links a.on{color:var(--navy);background:var(--light)}
+.nav-links a.on::after{content:'';position:absolute;bottom:-2px;left:13px;right:13px;height:2px;background:var(--cyan);border-radius:2px}
+.nav-dd{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(6px);min-width:270px;background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:8px;opacity:0;visibility:hidden;transition:all .22s var(--ease);box-shadow:var(--shadow-lg)}
+.nav-links li:hover .nav-dd{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+.nav-dd a{font-size:13px;padding:9px 13px;color:var(--text-mid);border-radius:8px;display:flex;align-items:center;gap:8px}
+.nav-dd a:hover{color:var(--navy);background:var(--light)}
+.nav-dd a::after{display:none!important}
+.nav-wa{display:inline-flex;align-items:center;gap:7px;background:#25d366;color:#fff;font-family:var(--font-u);font-size:13px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;padding:9px 18px;border-radius:50px;text-decoration:none;transition:all .25s;box-shadow:0 3px 16px rgba(37,211,102,.3);margin-right:6px}
+.nav-wa:hover{background:#20be5b;transform:translateY(-1px)}
+.nav-cta{display:inline-flex;align-items:center;gap:7px;background:var(--navy);color:var(--white);font-family:var(--font-u);font-size:13px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;padding:9px 20px;border-radius:50px;text-decoration:none;transition:all .25s;box-shadow:0 3px 16px rgba(11,34,69,.25)}
+.nav-cta:hover{background:var(--navy-mid);transform:translateY(-1px)}
+#brg{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none}
+#brg span{display:block;width:22px;height:2px;background:var(--navy);border-radius:2px;transition:all .3s}
+#brg.on span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+#brg.on span:nth-child(2){opacity:0}
+#brg.on span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+#mob{position:fixed;inset:0;background:rgba(11,34,69,.97);backdrop-filter:blur(28px);z-index:998;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;opacity:0;visibility:hidden;transition:all .38s var(--ease)}
+#mob.on{opacity:1;visibility:visible}
+#mob a{font-family:var(--font-u);font-size:26px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);text-decoration:none;padding:10px 32px;border-radius:10px;transition:all .2s}
+#mob a:hover{color:var(--cyan);background:rgba(14,165,233,.08)}
+/* WA FLOAT */
+#wa-float{position:fixed;bottom:28px;right:28px;z-index:5000;width:56px;height:56px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.5);text-decoration:none;transition:transform .3s}
+#wa-float:hover{transform:scale(1.1)}
+/* PAGE HERO */
+.page-hero{padding-top:var(--nav-h);background:linear-gradient(150deg,var(--navy) 0%,#1060b0 55%,#1a7acc 100%);min-height:38vh;display:flex;align-items:center;position:relative;overflow:hidden}
+.ph-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:48px 48px}
+.ph-inner{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:60px 48px}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-family:var(--font-u);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:16px}
+.breadcrumb a{color:rgba(255,255,255,.45);text-decoration:none;transition:color .2s}
+.breadcrumb a:hover,.breadcrumb .cur{color:rgba(255,255,255,.85)}
+.ph-title{font-family:var(--font-d);font-size:clamp(34px,4.5vw,62px);font-weight:600;color:var(--white);line-height:1.08;margin-bottom:12px}
+.ph-title em{font-style:italic;color:var(--gold)}
+.ph-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:560px;line-height:1.7}
+/* LAYOUT */
+.si{max-width:1200px;margin:0 auto;padding:0 48px}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .62s var(--ease),transform .62s var(--ease)}
+.rv.in{opacity:1;transform:translateY(0)}
+.rl{opacity:0;transform:translateX(-26px);transition:opacity .62s var(--ease),transform .62s var(--ease)}
+.rl.in{opacity:1;transform:translateX(0)}
+.rr{opacity:0;transform:translateX(26px);transition:opacity .62s var(--ease),transform .62s var(--ease)}
+.rr.in{opacity:1;transform:translateX(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}.d5{transition-delay:.5s}
+/* FILTERS + SEARCH */
+#filter-bar{background:var(--off);border-bottom:1px solid var(--border);padding:18px 0;position:sticky;top:var(--nav-h);z-index:100}
+.filter-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:10px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.filter-inner::-webkit-scrollbar{display:none}
+.search-wrap{position:relative;flex-shrink:0;width:220px}
+.search-wrap input{width:100%;padding:10px 16px 10px 40px;border:1px solid var(--border);border-radius:50px;font-family:var(--font-b);font-size:13px;color:var(--text);background:var(--white);outline:none;transition:border-color .2s,box-shadow .2s;white-space:nowrap}
+.search-wrap input:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(14,165,233,.12)}
+.search-wrap svg{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--text-muted)}
+.filter-sep{width:1px;height:24px;background:var(--border);flex-shrink:0}
+.filter-label{font-family:var(--font-u);font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);white-space:nowrap}
+.ftag{font-family:var(--font-u);font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:7px 14px;border-radius:50px;border:1px solid var(--border);background:var(--white);color:var(--text-mid);cursor:pointer;transition:all .2s;white-space:nowrap;flex-shrink:0}
+.ftag:hover{border-color:var(--cyan);color:var(--navy)}
+.ftag.on{background:var(--navy);color:var(--white);border-color:var(--navy)}
+/* LEAD MAGNET */
+/* ARTICLES GRID */
+#articles{padding:60px 0 100px}
+.articles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.article-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;transition:transform .3s var(--ease),box-shadow .3s,border-color .3s;display:flex;flex-direction:column}
+.article-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-color:rgba(14,165,233,.25)}
+.ac-thumb{height:180px;display:flex;align-items:flex-end;justify-content:flex-start;font-size:0;position:relative;flex-shrink:0;overflow:hidden;border-radius:0}
+.ac-thumb img.thumb-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .4s ease}
+.article-card:hover .ac-thumb img.thumb-bg{transform:scale(1.06)}
+.ac-thumb .thumb-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(7,26,62,.55) 0%,transparent 60%)}
+.ac-thumb .thumb-flag{position:absolute;top:12px;left:12px;font-size:32px;line-height:1;filter:drop-shadow(0 2px 4px rgba(0,0,0,.4))}
+.ac-thumb .thumb-badge{position:absolute;bottom:12px;left:12px;font-family:var(--font-u);font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:rgba(11,34,69,.75);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.2);border-radius:50px;padding:4px 12px}
+.ac-body{padding:22px 20px;flex:1;display:flex;flex-direction:column}
+.ac-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.ac-tag{font-family:var(--font-u);font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:50px}
+.tag-canada{background:#e8f4ff;color:var(--cyan-dark)}
+.tag-europe{background:#e8ffee;color:#1a9640}
+.tag-etudes{background:#fff3cd;color:#9a6700}
+.tag-travail{background:#f0e8ff;color:#6b21a8}
+.tag-peuco{background:#fff0e8;color:#c05a00}
+.tag-france{background:#ffe8f0;color:#b01a5a}
+.ac-title{font-family:var(--font-u);font-size:17px;font-weight:800;color:var(--navy);margin-bottom:8px;line-height:1.25;letter-spacing:.02em}
+.ac-chapeau{font-size:13.5px;color:var(--text-muted);line-height:1.6;margin-bottom:14px;flex:1}
+.ac-chapeau strong{color:var(--cyan-dark);font-weight:600}
+.ac-meta{display:flex;align-items:center;justify-content:space-between;padding-top:14px;border-top:1px solid var(--border)}
+.ac-read{font-family:var(--font-u);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted)}
+.ac-cta{display:inline-flex;align-items:center;gap:5px;font-family:var(--font-u);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan);text-decoration:none;transition:gap .2s}
+.ac-cta:hover{gap:9px}
+/* ARTICLE EXPANDED */
+.article-full{display:none;background:var(--off);border-top:2px solid var(--cyan);padding:28px 24px;margin-top:-1px}
+.article-card.expanded .article-full{display:block}
+.article-card.expanded{border-color:var(--cyan);box-shadow:0 0 0 2px rgba(14,165,233,.2),var(--shadow-lg)}
+.af-subtitle{font-family:var(--font-u);font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);margin-bottom:14px}
+.af-body p{font-size:14px;color:var(--text-mid);line-height:1.75;margin-bottom:12px}
+.af-body h4{font-family:var(--font-u);font-size:14px;font-weight:800;color:var(--navy);margin:16px 0 8px;letter-spacing:.04em}
+.af-body ul{list-style:none;margin-bottom:12px}
+.af-body ul li{font-size:14px;color:var(--text-mid);padding:4px 0 4px 16px;position:relative}
+.af-body ul li::before{content:'→';position:absolute;left:0;color:var(--cyan);font-size:13px}
+.af-cta-box{background:linear-gradient(135deg,var(--navy),#1060b0);border-radius:12px;padding:20px 22px;margin-top:20px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.af-cta-box p{font-size:14px;color:rgba(255,255,255,.75);font-style:italic}
+.af-cta-box a{display:inline-flex;align-items:center;gap:7px;background:#25d366;color:#fff;font-family:var(--font-u);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:10px 20px;border-radius:50px;text-decoration:none;white-space:nowrap;transition:all .25s}
+.af-cta-box a:hover{background:#20be5b;transform:translateY(-1px)}
+/* FOOTER */
+footer{background:#060f22;border-top:1px solid rgba(14,165,233,.1)}
+.ft-inner{max-width:1200px;margin:0 auto;padding:60px 48px 32px}
+.ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:48px;margin-bottom:48px}
+.ft-brand p{font-size:13.5px;color:rgba(255,255,255,.35);line-height:1.7;margin-top:14px;max-width:240px}
+.socials{display:flex;gap:9px;margin-top:20px}
+.soc{width:36px;height:36px;border:1px solid rgba(255,255,255,.1);border-radius:9px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.4);text-decoration:none;transition:all .3s}
+.soc:hover{border-color:var(--cyan);color:var(--cyan)}
+.fc h5{font-family:var(--font-u);font-size:11px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:18px}
+.fc ul{list-style:none}
+.fc ul li{margin-bottom:9px}
+.fc ul li a{font-size:13.5px;color:rgba(255,255,255,.38);text-decoration:none;transition:color .2s;display:flex;align-items:center;gap:6px}
+.fc ul li a::before{content:'→';font-size:11px;color:var(--cyan);opacity:.6}
+.fc ul li a:hover{color:rgba(255,255,255,.8)}
+.fc-ci{display:flex;align-items:center;gap:9px;font-size:13px;color:rgba(255,255,255,.38);margin-bottom:10px}
+.fc-ci svg{color:var(--cyan);flex-shrink:0}
+.fc-ci a{color:rgba(255,255,255,.38);text-decoration:none;transition:color .2s}
+.fc-ci a:hover{color:var(--cyan)}
+.ft-legal{font-size:11px;color:rgba(255,255,255,.2);line-height:1.6;margin-top:14px;max-width:280px}
+.ft-bar{border-top:1px solid rgba(255,255,255,.06);padding-top:22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.ft-bar p,.ft-bar a{font-size:12px;color:rgba(255,255,255,.28);text-decoration:none}
+.ft-bar a:hover{color:var(--cyan)}
+.ft-tagline{font-family:var(--font-u);font-size:12px;letter-spacing:.06em;color:rgba(255,255,255,.22)}
+.stars-banner{display:flex;align-items:center;gap:8px;margin-top:12px}
+.stars-banner span.stars{color:var(--gold);font-size:16px;letter-spacing:2px}
+.stars-banner span.txt{font-size:12px;color:rgba(255,255,255,.38)}
+@media(max-width:1100px){#nav{padding:0 24px}.nav-links{display:none}#brg{display:flex}.articles-grid{grid-template-columns:repeat(2,1fr)}.ft-grid{grid-template-columns:1fr 1fr}.filter-inner{padding:0 24px}.si{padding:0 24px}.ph-inner{padding:40px 24px}}
+@media(max-width:768px){.filter-inner{gap:8px;padding:0 16px}.ftag{font-size:11px;padding:6px 12px}}
+@media(max-width:640px){.articles-grid{grid-template-columns:1fr}.ft-grid{grid-template-columns:1fr}.ft-bar{flex-direction:column;text-align:center}.si{padding:0 16px}.search-wrap{max-width:100%}}
+/* ══════ LIVRES — SLIDER 1-À-LA-FOIS ══════ */
+#livres{padding:70px 0}
+.lv-head{text-align:center;margin-bottom:30px}
+.lv-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--light);border:1px solid var(--border);border-radius:50px;padding:7px 18px;font-family:var(--font-u);font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan-dark);margin-bottom:18px}
+.lv-title{font-family:var(--font-d);font-size:clamp(28px,3.6vw,40px);font-weight:600;color:var(--navy);line-height:1.15;margin-bottom:10px}
+.lv-title em{font-style:italic;color:var(--cyan-dark)}
+.lv-sub{font-size:14.5px;color:var(--text-muted);max-width:460px;margin:0 auto;line-height:1.7}
+.lv-box{position:relative;border-radius:20px;overflow:hidden;box-shadow:var(--shadow-lg)}
+.lv-slides{display:flex;transition:transform .55s cubic-bezier(.65,0,.35,1)}
+.lv-slide{flex:0 0 100%;width:100%;padding:clamp(28px,5vw,52px);display:grid;grid-template-columns:1fr minmax(220px,250px);gap:40px;align-items:center;position:relative;overflow:hidden}
+.lv-slide::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 85% 20%,rgba(255,255,255,.1) 0%,transparent 55%)}
+.lv-s1{background:linear-gradient(135deg,var(--navy) 0%,#1060b0 100%)}
+.lv-s2{background:linear-gradient(135deg,#1a1035 0%,#6a1f8a 100%)}
+.lv-s3{background:linear-gradient(135deg,#0b3d2e 0%,#12925f 100%)}
+.lv-slide-text{position:relative;z-index:1;display:flex;flex-direction:column}
+.lv-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);border-radius:50px;padding:6px 16px;font-family:var(--font-u);font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#fff;margin-bottom:16px;width:fit-content}
+.lv-slide-title{font-family:var(--font-d);font-size:clamp(24px,3.2vw,36px);font-weight:700;color:#fff;margin-bottom:12px;line-height:1.15}
+.lv-slide-desc{font-size:14.5px;color:rgba(255,255,255,.62);line-height:1.7;max-width:480px}
+.lv-slide-cta{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
+.lv-slide-icon{font-size:46px;filter:drop-shadow(0 6px 16px rgba(0,0,0,.25))}
+.lv-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#25d366;color:#fff;font-family:var(--font-u);font-size:12.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:14px 22px;border-radius:50px;text-decoration:none;white-space:nowrap;transition:all .25s;box-shadow:0 4px 18px rgba(37,211,102,.3)}
+.lv-btn:hover{background:#20be5b;transform:translateY(-2px);box-shadow:0 8px 26px rgba(37,211,102,.4)}
+.lv-btn-note{font-family:var(--font-u);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.lv-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;backdrop-filter:blur(6px)}
+.lv-arrow:hover{background:rgba(255,255,255,.22)}
+.lv-arrow.prev{left:16px}.lv-arrow.next{right:16px}
+.lv-dots{display:flex;justify-content:center;gap:9px;margin-top:22px}
+.lv-dot{width:8px;height:8px;padding:0;border-radius:50%;background:var(--border);border:none;cursor:pointer;transition:all .35s var(--ease)}
+.lv-dot.on{background:var(--cyan);width:26px;border-radius:5px}
+@media(max-width:768px){#livres{padding:50px 0}.lv-slide{grid-template-columns:1fr;text-align:center;padding:32px 24px}.lv-slide-text{align-items:center}.lv-slide-desc{max-width:100%}.lv-arrow{width:32px;height:32px}.lv-arrow.prev{left:8px}.lv-arrow.next{right:8px}}
+</style>
+</head>
+<body>
+<div id="loader"><div class="l-logo"><img src="logo.png" alt="Open World Agency" style="width:90px;height:90px;object-fit:contain;border-radius:16px;"/></div><div class="l-bar-wrap"><div class="l-bar"></div></div><p class="l-txt">Open World Agency</p></div>
+<div id="prog"></div><div id="cur"></div><div id="cur-d"></div>
+
+<nav id="nav">
+  <a href="index.html" class="logo">
+    <img src="logo.png" alt="Open World Agency" style="width:42px;height:42px;object-fit:contain;border-radius:8px;flex-shrink:0;"/>
+    <div class="logo-t"><div class="lt1">OPEN WORLD</div><div class="lt2">AGENCY</div></div></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="guides.html" class="on">Guides Gratuits</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="programmes.html">Programmes</a></li><li><a href="#livres">Livres</a></li><li><a href="contact.html">Contact</a></li>
+    <li><a href="https://wa.me/237640115385?text=Je%20viens%20du%20site" class="nav-wa" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9.87 9.87 0 00-.57-.01c-.198 0-.52.074-.792.372C3.5 7.417 2.7 8.136 2.7 9.6c0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12 0C5.373 0 0 5.373 0 12c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654A11.882 11.882 0 0012 23.893c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.413 3.48 11.815 11.815 0 0012 0z"/></svg>WhatsApp</a></li>
+    <li><a href="contact.html" class="nav-cta">Consultation Gratuite</a></li>
+  </ul>
+  <button id="brg" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+</nav>
+<div id="mob"><a href="index.html">Accueil</a><a href="guides.html">Guides Gratuits</a><a href="services.html">Services</a><a href="programmes.html">Programmes</a><a href="#livres">Livres</a><a href="contact.html">Contact</a><a href="https://wa.me/237640115385?text=Je%20viens%20du%20site" style="color:#4ade80;margin-top:8px" target="_blank">WhatsApp</a><a href="contact.html" style="color:var(--cyan)">Consultation Gratuite</a></div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="ph-grid"></div>
+  <div class="ph-inner">
+    <div class="breadcrumb rv"><a href="index.html">Accueil</a><span>›</span><span class="cur">Guides Gratuits</span></div>
+    <h1 class="ph-title rv d1">La bibliothèque de<br><em>l'immigration éclairée</em></h1>
+    <p class="ph-sub rv d2">Des guides concrets sur les voies que les autres agences ne vous montrent pas. Lisez, comprenez, puis décidez.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     LIVRES — SLIDER 1-À-LA-FOIS
+══════════════════════════════════════ -->
+<section id="livres">
+  <div class="si">
+    <div class="lv-head">
+      <span class="lv-eyebrow rv">Collection Open World Agency</span>
+      <h2 class="lv-title rv d1">Nos <em>3 Livres</em> Essentiels</h2>
+      <p class="lv-sub rv d2">Des guides complets envoyés directement sur WhatsApp.</p>
+    </div>
+
+    <div class="lv-box rv d3">
+      <button class="lv-arrow prev" id="lv-prev" aria-label="Livre précédent"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button class="lv-arrow next" id="lv-next" aria-label="Livre suivant"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="lv-slides" id="livres-track">
+      <div class="lv-slide lv-s1">
+        <div class="lv-slide-text">
+          <span class="lv-badge">Livre 1 / 3</span>
+          <h3 class="lv-slide-title">Immigrer même sans diplôme</h3>
+          <p class="lv-slide-desc">Les programmes accessibles sans qualification universitaire et les métiers en pénurie qui recrutent à l'international.</p>
+        </div>
+        <div class="lv-slide-cta">
+          <span class="lv-slide-icon">📘</span>
+          <a href="https://wa.me/237640115385?text=Bonjour%2C%20je%20veux%20le%20livre%20%C2%AB%20Immigrer%20m%C3%AAme%20sans%20dipl%C3%B4me%20%C2%BB." target="_blank" class="lv-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9.87 9.87 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12 0C5.373 0 0 5.373 0 12c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654A11.882 11.882 0 0012 23.893c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.413 3.48 11.815 11.815 0 0012 0z"/></svg> Je veux ce livre</a>
+          <span class="lv-btn-note">Envoi instantané sur WhatsApp</span>
+        </div>
+      </div>
+      <div class="lv-slide lv-s2">
+        <div class="lv-slide-text">
+          <span class="lv-badge">Livre 2 / 3</span>
+          <h3 class="lv-slide-title">Étudier à l'étranger même sans argent</h3>
+          <p class="lv-slide-desc">Les bourses entièrement financées, les universités qui couvrent 100% des frais, et comment monter un dossier solide.</p>
+        </div>
+        <div class="lv-slide-cta">
+          <span class="lv-slide-icon">📗</span>
+          <a href="https://wa.me/237640115385?text=Bonjour%2C%20je%20veux%20le%20livre%20%C2%AB%20%C3%89tudier%20%C3%A0%20l%27%C3%A9tranger%20m%C3%AAme%20sans%20argent%20%C2%BB." target="_blank" class="lv-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9.87 9.87 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12 0C5.373 0 0 5.373 0 12c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654A11.882 11.882 0 0012 23.893c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.413 3.48 11.815 11.815 0 0012 0z"/></svg> Je veux ce livre</a>
+          <span class="lv-btn-note">Envoi instantané sur WhatsApp</span>
+        </div>
+      </div>
+      <div class="lv-slide lv-s3">
+        <div class="lv-slide-text">
+          <span class="lv-badge">Livre 3 / 3</span>
+          <h3 class="lv-slide-title">Les voies cachées de l'immigration</h3>
+          <p class="lv-slide-desc">Repeuplement rural, formations payées, mobilités méconnues — les programmes que très peu d'agences vous révèlent.</p>
+        </div>
+        <div class="lv-slide-cta">
+          <span class="lv-slide-icon">📕</span>
+          <a href="https://wa.me/237640115385?text=Bonjour%2C%20je%20veux%20le%20livre%20%C2%AB%20Les%20voies%20cach%C3%A9es%20de%20l%27immigration%20%C2%BB." target="_blank" class="lv-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9.87 9.87 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12 0C5.373 0 0 5.373 0 12c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654A11.882 11.882 0 0012 23.893c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.413 3.48 11.815 11.815 0 0012 0z"/></svg> Je veux ce livre</a>
+          <span class="lv-btn-note">Envoi instantané sur WhatsApp</span>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <div class="lv-dots" id="livres-dots"></div>
+  </div>
+</section>
+
+<!-- FILTER BAR -->
+<div id="filter-bar">
+  <div class="filter-inner">
+    <div class="search-wrap">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="7" cy="7" r="5"/><path d="M12 12l2.5 2.5" stroke-linecap="round"/></svg>
+      <input type="text" id="search-input" placeholder="Chercher un programme, un pays…"/>
+    </div>
+    <div class="filter-sep"></div>
+    <span class="filter-label">Filtrer :</span>
+    <button class="ftag on" data-filter="all">Tout</button>
+    <button class="ftag" data-filter="canada">Canada</button>
+    <button class="ftag" data-filter="europe">Europe</button>
+    <button class="ftag" data-filter="etudes">Études</button>
+    <button class="ftag" data-filter="travail">Travail</button>
+    <button class="ftag" data-filter="peuco">Peu connu</button>
+    <button class="ftag" data-filter="france">France</button>
+    <button class="ftag" data-filter="usa">🇺🇸 USA</button>
+  </div>
+</div>
+
+<!-- ARTICLES -->
+<section id="articles">
+  <div class="si">
+    <div class="articles-grid" id="articles-grid">
+
+      <!-- Article 1 -->
+      <div class="article-card rv" data-cats="canada peuco travail">
+        <div class="ac-thumb" data-article="pica"><img class="thumb-bg" src="https://images.unsplash.com/photo-1517935706615-2717063c2225?w=600&q=80" alt="Canada Atlantique" loading="lazy"/><div class="thumb-overlay"></div><span class="thumb-flag">🇨🇦</span><span class="thumb-badge">Canada Atlantique</span></div>
+        <div class="ac-body">
+          <div class="ac-tags"><span class="ac-tag tag-canada">Canada</span><span class="ac-tag tag-peuco">Peu connu</span></div>
+          <h3 class="ac-title">PICA 2026 : La résidence permanente canadienne sans passer par l'Express Entry</h3>
+          <p class="ac-chapeau">IELTS 5 suffit. Pas de points Entrée Express. <strong>Les provinces atlantiques vous veulent vraiment.</strong> Voici comment en profiter.</p>
+          <div class="ac-meta">
+            <span class="ac-read">⏱ 6 min de lecture</span>
+            <a href="#" class="ac-cta" onclick="toggleArticle(this)">Lire le guide <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </div>
+        </div>
+        <div class="article-full">
+          <div class="af-subtitle">Guide complet — PICA 2026</div>
+          <div class="af-body">
+            <p>Le Programme des Immigrants Candidats de l'Atlantique (PICA) est l'une des voies les plus accessibles vers la résidence permanente canadienne. Contrairement à l'Express Entry, <strong>il ne fonctionne pas par tirage au sort</strong> et ne nécessite pas un score CRS élevé.</p>
+            <h4>Qui peut postuler ?</h4>
+            <ul>
+              <li>Avoir une offre d'emploi d'un employeur atlantique désigné</li>
+              <li>IELTS 5 ou TEF équivalent (bien en dessous du seuil EE)</li>
+              <li>Formation post-secondaire d'au moins 1 an</li>
+              <li>Expérience de travail dans le métier proposé</li>
+            </ul>
+            <h4>Les 4 provinces participantes</h4>
+            <ul><li>Nouveau-Brunswick</li><li>Nouvelle-Écosse</li><li>Île-du-Prince-Édouard</li><li>Terre-Neuve-et-Labrador</li></ul>
+            <h4>Délais réels</h4>
+            <p>De l'offre d'emploi à la résidence permanente : <strong>9 à 14 mois</strong> en moyenne. Nos dossiers PICA ont un taux de succès de 94%.</p>
+          </div>
+          <div class="af-cta-box">
+            <p>Vous êtes infirmier(e), technicien(ne), soudeur, boucher, cuisinier ? Je vérifie votre éligibilité PICA en 24h.</p>
+            <a href="https://wa.me/237640115385?text=Je%20veux%20v%C3%A9rifier%20mon%20%C3%A9ligibilit%C3%A9%20PICA" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9.87 9.87 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12 0C5.373 0 0 5.373 0 12c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654A11.882 11.882 0 0012 23.893c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.413 3.48 11.815 11.815 0 0012 0z"/></svg>Suis-je éligible ? WhatsApp</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Article 2 -->
+      <div class="article-card rv d1" data-cats="canada peuco travail">
+        <div class="ac-thumb" data-article="mob-franco"><img class="thumb-bg" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80" alt="Mobilité Francophone" loading="lazy"/><div class="thumb-overlay"></div><span class="thumb-flag">🇨🇦</span><span class="thumb-badge">Mobilité Francophone</span></div>
+        <div class="ac-body">
+          <div class="ac-tags"><span class="ac-tag tag-canada">Canada</span><span class="ac-tag tag-peuco">Peu connu</span></div>
+          <h3 class="ac-title">Mobilité Francophone 2026 : Métiers, Conditions, Délais — L'arme secrète des francophones</h3>
+          <p class="ac-chapeau">IELTS 5 suffit. <strong>Pas de points Entrée Express.</strong> Conçu spécialement pour les francophones hors Québec. Peu d'agences en parlent.</p>
+          <div class="ac-meta"><span class="ac-read">⏱ 7 min</span><a href="#" class="ac-cta" onclick="toggleArticle(this)">Lire le guide <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+        </div>
+        <div class="article-full">
+          <div class="af-subtitle">Guide complet — Mobilité Francophone</div>
+          <div class="af-body">
+            <p>La voie d'immigration Mobilité Francophone permet aux ressortissants francophones d'obtenir un permis de travail canadien sans passer par la case LMIA (étude d'impact sur le marché du travail). Un avantage massif.</p>
+            <h4>Les métiers ciblés</h4>
+            <ul><li>Infirmiers et aides-soignants</li><li>Soudeurs et tôliers</li><li>Bouchers et cuisiniers</li><li>Chauffeurs poids lourds</li><li>Techniciens en bâtiment</li></ul>
+            <h4>Conditions</h4>
+            <ul><li>Français langue maternelle ou niveau B2+</li><li>IELTS 5 en anglais suffit (pas 6 ou 7)</li><li>Offre d'emploi dans une province hors Québec</li><li>Diplôme post-secondaire reconnu</li></ul>
+          </div>
+          <div class="af-cta-box"><p>Vous êtes soudeur, boucher, infirmier francophone ? → Vérifiez votre éligibilité maintenant.</p><a href="https://wa.me/237640115385?text=Je%20suis%20francophone%20et%20veux%20le%20Canada" target="_blank"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9.87 9.87 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12 0C5.373 0 0 5.373 0 12c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654A11.882 11.882 0 0012 23.893c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.413 3.48 11.815 11.815 0 0012 0z"/></svg>Je suis éligible ? WhatsApp</a></div>
+        </div>
+      </div>
+
+      <!-- Article 3 -->
+      <div class="article-card rv d2" data-cats="europe peuco travail">
+        <div class="ac-thumb" data-article="espagne"><img class="thumb-bg" src="https://images.unsplash.com/photo-1557456170-0cf4f4d0d362?w=600&q=80" alt="Espagne Rurale" loading="lazy"/><div class="thumb-overlay"></div><span class="thumb-flag">🇪🇸</span><span class="thumb-badge">Espagne Rurale</span></div>
+        <div class="ac-body">
+          <div class="ac-tags"><span class="ac-tag tag-europe">Europe</span><span class="ac-tag tag-peuco">Peu connu</span></div>
+          <h3 class="ac-title">Espagne Rurale 2026 : Comment toucher jusqu'à 30 000 € pour s'installer dans un village</h3>
+          <p class="ac-chapeau">Pas une légende urbaine. <strong>C'est un programme officiel</strong> des régions espagnoles pour lutter contre le dépeuplement rural. Voici comment en bénéficier.</p>
+          <div class="ac-meta"><span class="ac-read">⏱ 5 min</span><a href="#" class="ac-cta" onclick="toggleArticle(this)">Lire le guide <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+        </div>
+        <div class="article-full">
+          <div class="af-subtitle">Guide complet — Repeuplement Rural Espagne</div>
+          <div class="af-body">
+            <p>Les régions d'Aragon, de Castille-et-León et d'Estrémadure perdent des habitants depuis des décennies. Pour inverser la tendance, elles ont créé des programmes de subvention pour attirer des familles et des entrepreneurs.</p>
+            <h4>Ce que vous pouvez recevoir</h4>
+            <ul><li>Subvention directe : jusqu'à 30 000 €</li><li>Terrain constructible gratuit ou à prix symbolique</li><li>Aide à la création d'entreprise locale</li><li>Logement mis à disposition pendant 6 mois</li></ul>
+            <h4>Conditions générales</h4>
+            <ul><li>S'engager à vivre dans la commune au moins 5 ans</li><li>Exercer une activité économique locale</li><li>Être en situation régulière en Espagne (visa requis)</li></ul>
+            <h4>La voie légale pour y arriver</h4>
+            <p>On commence par le visa de travail ou entrepreneur espagnol, puis on sollicite la commune. Notre agence vous guide sur les deux étapes.</p>
+          </div>
+          <div class="af-cta-box"><p>Vous voulez en savoir plus sur l'Espagne rurale et comment y accéder légalement ?</p><a href="https://wa.me/237640115385?text=Je%20veux%20des%20infos%20sur%20l%27Espagne%20rurale" target="_blank"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9.87 9.87 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12 0C5.373 0 0 5.373 0 12c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654A11.882 11.882 0 0012 23.893c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.413 3.48 11.815 11.815 0 0012 0z"/></svg>Je veux en savoir plus</a></div>
+        </div>
+      </div>
+
+      <!-- Article 4 -->
+      <div class="article-card rv d1" data-cats="europe peuco travail">
+        <div class="ac-thumb" data-article="italie"><img class="thumb-bg" src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=600&q=80" alt="Italie Rurale" loading="lazy"/><div class="thumb-overlay"></div><span class="thumb-flag">🇮🇹</span><span class="thumb-badge">Italie Rurale</span></div>
+        <div class="ac-body">
+          <div class="ac-tags"><span class="ac-tag tag-europe">Europe</span><span class="ac-tag tag-peuco">Peu connu</span></div>
+          <h3 class="ac-title">Italie : Maison à 1 € + 30 000 € sur 3 ans — Le guide complet pour y accéder</h3>
+          <p class="ac-chapeau">Sicile, Sardaigne, Calabre. <strong>Des communes versent un salaire pour que vous viviez chez eux.</strong> Voici la réalité derrière le mythe.</p>
+          <div class="ac-meta"><span class="ac-read">⏱ 6 min</span><a href="#" class="ac-cta" onclick="toggleArticle(this)">Lire le guide <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+        </div>
+        <div class="article-full">
+          <div class="af-subtitle">Guide complet — Repeuplement Rural Italie</div>
+          <div class="af-body">
+            <p>Ce programme existe officiellement depuis 2019 et concerne des centaines de communes italiennes. Les maisons à 1 € sont réelles, mais elles s'accompagnent d'obligations de rénovation. Les subventions mensuelles, elles, sont directement virées sur votre compte.</p>
+            <h4>Comment ça marche réellement</h4>
+            <ul><li>Achat d'une maison abandonnée à 1 € symbolique</li><li>Obligation de rénover sous 3 ans (budget 20 000–40 000 €)</li><li>En parallèle : certaines communes versent 700–1 000 €/mois pendant 3 ans</li><li>Total sur 3 ans : jusqu'à 36 000 € d'aide directe</li></ul>
+            <h4>Les communes qui paient le plus</h4>
+            <ul><li>Presicce-Acquarica (Pouilles) : 30 000 € sur 3 ans</li><li>Teora (Campanie) : jusqu'à 28 000 €</li><li>Cinquefrondi (Calabre) : accompagnement emploi inclus</li></ul>
+          </div>
+          <div class="af-cta-box"><p>La partie complexe : avoir le bon statut légal en Italie pour postuler. On s'occupe de tout.</p><a href="https://wa.me/237640115385?text=Je%20veux%20des%20infos%20sur%20l%27Italie%20rurale" target="_blank"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9.87 9.87 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12 0C5.373 0 0 5.373 0 12c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654A11.882 11.882 0 0012 23.893c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.413 3.48 11.815 11.815 0 0012 0z"/></svg>Je veux accéder à ce programme</a></div>
+        </div>
+      </div>
+
+      <!-- Article 5 -->
+      <div class="article-card rv d2" data-cats="etudes peuco">
+        <div class="ac-thumb" data-article="mastercard"><img class="thumb-bg" src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&q=80" alt="Bourse Mastercard" loading="lazy"/><div class="thumb-overlay"></div><span class="thumb-flag">🎓</span><span class="thumb-badge">Bourse Mastercard</span></div>
+        <div class="ac-body">
+          <div class="ac-tags"><span class="ac-tag tag-etudes">Études</span><span class="ac-tag tag-peuco">Peu connu</span></div>
+          <h3 class="ac-title">Mastercard Foundation : Les 10 erreurs qui éliminent votre dossier avant même la lecture</h3>
+          <p class="ac-chapeau"><strong>Vol, logement, frais, allocation</strong> — tout payé. Mais 90% des dossiers sont rejetés pour des erreurs évitables. Voici lesquelles.</p>
+          <div class="ac-meta"><span class="ac-read">⏱ 8 min</span><a href="#" class="ac-cta" onclick="toggleArticle(this)">Lire le guide <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+        </div>
+        <div class="article-full">
+          <div class="af-subtitle">Guide complet — Bourse Mastercard Foundation</div>
+          <div class="af-body">
+            <p>La bourse Mastercard Foundation est l'une des plus généreuses au monde pour les talents africains. Mais les comités de sélection reçoivent des milliers de candidatures et éliminent sans pitié ceux qui ne respectent pas les critères.</p>
+            <h4>Les 10 erreurs éliminatoires</h4>
+            <ul>
+              <li>Ne pas démontrer clairement le "besoin financier" — ils veulent des preuves, pas des mots</li>
+              <li>Letter of motivation générique copiée-collée</li>
+              <li>GPA inférieur à 3.0 non compensé par un contexte exceptionnel</li>
+              <li>Ne pas candidater à l'université ET à la bourse en parallèle</li>
+              <li>Ignorer le critère de "retour en Afrique" dans certains programmes</li>
+              <li>Lettres de recommandation vagues sans exemples concrets</li>
+              <li>Postuler sans vérifier que son pays est éligible cette année</li>
+              <li>Dossier soumis le dernier jour (quota parfois atteint avant)</li>
+              <li>Oublier la section "impact communautaire" — c'est éliminatoire</li>
+              <li>Sous-estimer l'entretien : c'est là que 40% des présélectionnés sont écartés</li>
+            </ul>
+          </div>
+          <div class="af-cta-box"><p>On prépare votre dossier Mastercard Foundation de A à Z. Lettre de motivation, recommandations, simulation d'entretien.</p><a href="https://wa.me/237640115385?text=Je%20veux%20postuler%20%C3%A0%20Mastercard%20Foundation" target="_blank"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9.87 9.87 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12 0C5.373 0 0 5.373 0 12c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654A11.882 11.882 0 0012 23.893c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.413 3.48 11.815 11.815 0 0012 0z"/></svg>Préparer mon dossier → WhatsApp</a></div>
+        </div>
+      </div>
+
+      <!-- Article 6 -->
+      <div class="article-card rv d3" data-cats="europe travail peuco">
+        <div class="ac-thumb" data-article="allemagne"><img class="thumb-bg" src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=600&q=80" alt="Allemagne" loading="lazy"/><div class="thumb-overlay"></div><span class="thumb-flag">🇩🇪</span><span class="thumb-badge">Allemagne</span></div>
+        <div class="ac-body">
+          <div class="ac-tags"><span class="ac-tag tag-europe">Europe</span><span class="ac-tag tag-travail">Travail</span></div>
+          <h3 class="ac-title">Visa Chancenkarte Allemagne 2026 : 6 mois légaux pour trouver du travail sur place</h3>
+          <p class="ac-chapeau"><strong>Pas besoin d'offre d'emploi préalable.</strong> Vous cherchez sur place. L'Allemagne manque de 400 000 travailleurs qualifiés. Ce visa a été créé pour vous.</p>
+          <div class="ac-meta"><span class="ac-read">⏱ 5 min</span><a href="#" class="ac-cta" onclick="toggleArticle(this)">Lire le guide <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+        </div>
+        <div class="article-full">
+          <div class="af-subtitle">Guide complet — Chancenkarte Allemagne</div>
+          <div class="af-body">
+            <p>La Chancenkarte (carte des opportunités) est entrée en vigueur en 2024. Elle permet à des ressortissants étrangers qualifiés de venir en Allemagne <strong>sans offre d'emploi</strong>, uniquement sur la base d'un système de points.</p>
+            <h4>Système de points (6 requis sur 10)</h4>
+            <ul><li>Diplôme reconnu équivalent allemand : 3 pts</li><li>5 ans d'expérience professionnelle : 2 pts</li><li>Notions d'allemand (A1) : 1 pt</li><li>Moins de 35 ans : 1 pt</li><li>Expérience professionnelle en Allemagne/UE : 1 pt</li><li>Conjoint qualifié : 1 pt</li></ul>
+            <h4>Ce que vous pouvez faire pendant 6 mois</h4>
+            <ul><li>Travailler à mi-temps (20h/semaine max)</li><li>Chercher activement un emploi qualifié</li><li>Une fois l'emploi trouvé : conversion automatique en permis de travail</li></ul>
+          </div>
+          <div class="af-cta-box"><p>Calculez vos points Chancenkarte et vérifiez si votre diplôme est reconnu en Allemagne.</p><a href="https://wa.me/237640115385?text=Je%20veux%20%C3%A9valuer%20ma%20Chancenkarte" target="_blank"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9.87 9.87 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12 0C5.373 0 0 5.373 0 12c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654A11.882 11.882 0 0012 23.893c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.413 3.48 11.815 11.815 0 0012 0z"/></svg>Calculer mes points → WhatsApp</a></div>
+        </div>
+      </div>
+
+
+      <!-- Article 7 — SINP -->
+      <div class="article-card rv d1" data-cats="canada peuco travail">
+        <div class="ac-thumb" data-article="sinp"><img class="thumb-bg" src="https://images.unsplash.com/photo-1531388459663-f6ec1b8f4e4a?w=600&q=80" alt="SINP Saskatchewan" loading="lazy"/><div class="thumb-overlay"></div><span class="thumb-flag">🇨🇦</span><span class="thumb-badge">SINP Saskatchewan</span></div>
+        <div class="ac-body">
+          <div class="ac-tags"><span class="ac-tag tag-canada">Canada</span><span class="ac-tag tag-peuco">Peu connu</span></div>
+          <h3 class="ac-title">SINP Saskatchewan 2026 : Résidence permanente via le système de points provincial</h3>
+          <p class="ac-chapeau">Moins compétitif que l'Express Entry. <strong>Score minimum 60 points.</strong> 3 volets distincts selon votre profil : travailleur, étudiant, entrepreneur.</p>
+          <div class="ac-meta"><span class="ac-read">⏱ 7 min</span><a href="#" class="ac-cta" onclick="toggleArticle(this)">Lire le guide <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+        </div>
+        <div class="article-full">
+          <div class="af-subtitle">Guide complet — SINP Saskatchewan</div>
+          <div class="af-body">
+            <p>Le Saskatchewan Immigrant Nominee Program (SINP) est l'un des programmes provinciaux les plus accessibles du Canada. Il fonctionne sur un système de points EOI (Expression of Interest) — pas de tirage au sort aléatoire.</p>
+            <h4>3 volets disponibles</h4>
+            <ul>
+              <li><strong>Travailleur qualifié :</strong> offre d'emploi en Saskatchewan ou occupation en demande</li>
+              <li><strong>Étudiant international :</strong> diplômé d'un établissement de la province</li>
+              <li><strong>Entrepreneur :</strong> investissement minimum 300 000 $ CAD</li>
+            </ul>
+            <h4>Système de points EOI (60 pts minimum)</h4>
+            <ul>
+              <li>Éducation : jusqu'à 23 points</li>
+              <li>Expérience professionnelle : jusqu'à 20 points</li>
+              <li>Offre d'emploi en SK : 30 points bonus</li>
+              <li>Lien avec la Saskatchewan : jusqu'à 20 points</li>
+              <li>Âge (20–35 ans) : points supplémentaires</li>
+            </ul>
+            <h4>Conditions linguistiques</h4>
+            <ul>
+              <li>CLB 4 minimum en anglais ou français — bien en dessous de l'Express Entry</li>
+              <li>Tests acceptés : IELTS, CELPIP, TEF Canada</li>
+            </ul>
+            <h4>Délais réels</h4>
+            <p>De la nomination provinciale à la résidence permanente : <strong>10 à 16 mois</strong> en moyenne. Le SINP est nettement moins saturé que l'Express Entry fédéral.</p>
+          </div>
+          <div class="af-cta-box">
+            <p>Calculez vos points SINP et vérifiez votre éligibilité en 24h — gratuitement.</p>
+            <a href="https://wa.me/237640115385?text=Je%20veux%20%C3%A9valuer%20mon%20%C3%A9ligibilit%C3%A9%20SINP" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9.87 9.87 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12 0C5.373 0 0 5.373 0 12c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654A11.882 11.882 0 0012 23.893c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.413 3.48 11.815 11.815 0 0012 0z"/></svg>Calculer mes points → WhatsApp</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Article 8 — Erasmus+ -->
+      <div class="article-card rv d2" data-cats="etudes europe peuco">
+        <div class="ac-thumb" data-article="erasmus"><img class="thumb-bg" src="https://images.unsplash.com/photo-1541513161836-74b09767af14?w=600&q=80" alt="Erasmus+ Europe" loading="lazy"/><div class="thumb-overlay"></div><span class="thumb-flag">🇪🇺</span><span class="thumb-badge">Erasmus+ Europe</span></div>
+        <div class="ac-body">
+          <div class="ac-tags"><span class="ac-tag tag-etudes">Études</span><span class="ac-tag tag-europe">Europe</span></div>
+          <h3 class="ac-title">Bourses Erasmus+ 2026 : Master en Europe 100% financé — le calendrier complet des deadlines</h3>
+          <p class="ac-chapeau"><strong>1 000 €/mois d'allocation</strong> + frais de scolarité + vol. 30 pays participants. Les deadlines varient — ne ratez pas la vôtre.</p>
+          <div class="ac-meta"><span class="ac-read">⏱ 8 min</span><a href="#" class="ac-cta" onclick="toggleArticle(this)">Lire le guide <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+        </div>
+        <div class="article-full">
+          <div class="af-subtitle">Guide complet — Bourses Erasmus+</div>
+          <div class="af-body">
+            <p>Le programme Erasmus Mundus Joint Masters (EMJM) finance intégralement des Masters conjoints entre 2 ou 3 universités européennes. C'est le programme de bourse le plus généreux d'Europe pour les étudiants africains.</p>
+            <h4>Ce que couvre la bourse Erasmus Mundus</h4>
+            <ul>
+              <li>Frais de scolarité : jusqu'à 9 000 €/an</li>
+              <li>Allocation mensuelle : <strong>1 000 €/mois</strong></li>
+              <li>Forfait voyage selon votre pays d'origine : 2 000–3 000 €</li>
+              <li>Frais d'installation : 1 000 € (1ère année)</li>
+              <li>Assurance santé et accident pendant toute la durée</li>
+            </ul>
+            <h4>Calendrier des deadlines 2026</h4>
+            <ul>
+              <li><strong>Janvier :</strong> candidatures pour Masters débutant en septembre</li>
+              <li><strong>Mars :</strong> certains programmes Erasmus Mundus spécifiques</li>
+              <li><strong>Octobre–Novembre :</strong> programmes commençant en février</li>
+              <li>Chaque programme a sa propre deadline — vérifiez le portail EMJM officiel</li>
+            </ul>
+            <h4>Pays d'accueil les plus demandés</h4>
+            <ul>
+              <li>🇫🇷 France — nombreux programmes francophones accessibles</li>
+              <li>🇩🇪 Allemagne — excellence en ingénierie et sciences</li>
+              <li>🇳🇱 Pays-Bas — programmes 100% en anglais</li>
+              <li>🇧🇪 Belgique — sciences politiques, droit international</li>
+              <li>🇪🇸 Espagne — arts, architecture, tourisme</li>
+            </ul>
+            <h4>Critères d'éligibilité</h4>
+            <ul>
+              <li>Licence validée avec mention (GPA 3.0+ recommandé)</li>
+              <li>Niveau anglais B2+ ou C1 (IELTS 6.5+)</li>
+              <li>Motivation communautaire démontrée</li>
+              <li>Pas de nationalité européenne (réservé aux non-UE)</li>
+            </ul>
+          </div>
+          <div class="af-cta-box">
+            <p>On prépare votre candidature Erasmus Mundus complète : sélection du programme, lettre de motivation, constitution du dossier.</p>
+            <a href="https://wa.me/237640115385?text=Je%20veux%20postuler%20%C3%A0%20Erasmus%20Mundus" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9.87 9.87 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12 0C5.373 0 0 5.373 0 12c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654A11.882 11.882 0 0012 23.893c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.413 3.48 11.815 11.815 0 0012 0z"/></svg>Préparer ma candidature → WhatsApp</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Article 9 — RNIP -->
+      <div class="article-card rv d3" data-cats="canada peuco travail">
+        <div class="ac-thumb" data-article="rnip"><img class="thumb-bg" src="https://images.unsplash.com/photo-1444076784383-69ff7bae1b0a?w=600&q=80" alt="RNIP Rural Canada" loading="lazy"/><div class="thumb-overlay"></div><span class="thumb-flag">🇨🇦</span><span class="thumb-badge">RNIP Rural Canada</span></div>
+        <div class="ac-body">
+          <div class="ac-tags"><span class="ac-tag tag-canada">Canada</span><span class="ac-tag tag-peuco">Méconnu</span></div>
+          <h3 class="ac-title">RNIP : Les communautés rurales canadiennes vous recommandent personnellement pour la RP</h3>
+          <p class="ac-chapeau">Pas de tirage au sort. <strong>Une communauté vous choisit et vous recommande.</strong> Moins de 12 candidats par poste en moyenne. Résidence permanente directe.</p>
+          <div class="ac-meta"><span class="ac-read">⏱ 6 min</span><a href="#" class="ac-cta" onclick="toggleArticle(this)">Lire le guide <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+        </div>
+        <div class="article-full">
+          <div class="af-subtitle">Guide complet — RNIP (Rural and Northern Immigration Pilot)</div>
+          <div class="af-body">
+            <p>Le Programme Rural et du Nord pour l'Immigration (RNIP) est l'un des programmes canadiens les plus humains : une communauté vous évalue, vous recommande personnellement, et vous accompagne dans votre installation. Aucun score CRS requis.</p>
+            <h4>Communautés participantes</h4>
+            <ul>
+              <li>North Bay, Sudbury, Timmins, Sault Ste. Marie (Ontario)</li>
+              <li>Thunder Bay, Dryden, Elliot Lake (Ontario)</li>
+              <li>Brandon, Altona/Rhineland, Steinbach (Manitoba)</li>
+              <li>Moose Jaw, North Battleford (Saskatchewan)</li>
+              <li>Vernon, West Kootenay (Colombie-Britannique)</li>
+            </ul>
+            <h4>Processus en 5 étapes</h4>
+            <ul>
+              <li>1. Trouver une offre d'emploi dans une communauté participante</li>
+              <li>2. Vérifier les critères de recommandation de cette communauté</li>
+              <li>3. Soumettre son profil à la communauté via son portail dédié</li>
+              <li>4. Obtenir la recommandation communautaire</li>
+              <li>5. Déposer la demande de résidence permanente à IRCC</li>
+            </ul>
+            <h4>Avantages réels</h4>
+            <ul>
+              <li>Pas de score CRS minimum — ouvert à tous les profils qualifiés</li>
+              <li>CLB 4 suffit (bien en dessous des autres programmes)</li>
+              <li>Accompagnement communautaire à l'intégration inclus</li>
+              <li>Résidence permanente directe en 6–12 mois</li>
+            </ul>
+          </div>
+          <div class="af-cta-box">
+            <p>On identifie la communauté RNIP qui correspond à votre métier et on monte votre dossier complet.</p>
+            <a href="https://wa.me/237640115385?text=Je%20veux%20des%20infos%20sur%20le%20RNIP%20Canada" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9.87 9.87 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12 0C5.373 0 0 5.373 0 12c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654A11.882 11.882 0 0012 23.893c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.413 3.48 11.815 11.815 0 0012 0z"/></svg>Je veux postuler au RNIP → WhatsApp</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Article 10 — EB-5 USA -->
+      <div class="article-card rv d1" data-cats="usa peuco travail">
+        <div class="ac-thumb" data-article="eb5"><img class="thumb-bg" src="https://images.unsplash.com/photo-1485739208526-d62ba27b5af9?w=600&q=80" alt="EB-5 USA" loading="lazy"/><div class="thumb-overlay"></div><span class="thumb-flag">🇺🇸</span><span class="thumb-badge">EB-5 USA</span></div>
+        <div class="ac-body">
+          <div class="ac-tags"><span class="ac-tag" style="background:#ffe8e8;color:#b01a1a">USA</span><span class="ac-tag tag-peuco">Investissement</span></div>
+          <h3 class="ac-title">Visa EB-5 États-Unis : La Green Card par l'investissement — ce que personne ne vous explique clairement</h3>
+          <p class="ac-chapeau">Investissement minimum <strong>800 000 $ dans une zone ciblée.</strong> Green Card pour toute la famille. Pas besoin de parler anglais ni d'avoir une offre d'emploi.</p>
+          <div class="ac-meta"><span class="ac-read">⏱ 9 min</span><a href="#" class="ac-cta" onclick="toggleArticle(this)">Lire le guide <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+        </div>
+        <div class="article-full">
+          <div class="af-subtitle">Guide complet — Visa EB-5 (Immigrant Investor Program)</div>
+          <div class="af-body">
+            <p>Le programme EB-5 est la voie d'accès à la Green Card américaine par l'investissement. Il est souvent associé aux ultra-riches, mais les zones rurales et à fort chômage offrent un seuil abaissé à 800 000 $.</p>
+            <h4>Deux voies d'investissement</h4>
+            <ul>
+              <li><strong>Investissement direct :</strong> 1 050 000 $ dans une entreprise américaine créant 10 emplois</li>
+              <li><strong>Regional Center (zones ciblées) :</strong> 800 000 $ via un fonds agréé par USCIS — la voie la plus utilisée</li>
+            </ul>
+            <h4>Ce que vous obtenez</h4>
+            <ul>
+              <li>Green Card conditionnelle pour vous et votre famille immédiate</li>
+              <li>Green Card permanente après 2 ans (retrait des conditions)</li>
+              <li>Citoyenneté américaine possible après 5 ans</li>
+              <li>Aucune condition de langue, diplôme ou âge</li>
+            </ul>
+            <h4>Profil type des candidats africains</h4>
+            <ul>
+              <li>Entrepreneurs avec capital disponible à l'étranger</li>
+              <li>Héritiers souhaitant sécuriser leur patrimoine</li>
+              <li>Investisseurs en immobilier cherchant diversification géographique</li>
+            </ul>
+            <h4>Points d'attention</h4>
+            <ul>
+              <li>Délais USCIS : 2 à 4 ans selon la nationalité</li>
+              <li>L'investissement doit rester "à risque" — pas de garantie de retour</li>
+              <li>Vérifier la réputation du Regional Center avant d'investir</li>
+            </ul>
+          </div>
+          <div class="af-cta-box">
+            <p>Vous avez un capital à investir et souhaitez explorer le EB-5 ? On vous met en contact avec des conseillers spécialisés.</p>
+            <a href="https://wa.me/237640115385?text=Je%20veux%20des%20infos%20sur%20le%20visa%20EB-5%20USA" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9.87 9.87 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12 0C5.373 0 0 5.373 0 12c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654A11.882 11.882 0 0012 23.893c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.413 3.48 11.815 11.815 0 0012 0z"/></svg>Explorer le EB-5 → WhatsApp</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Article 11 — Portugal D7 -->
+      <div class="article-card rv d2" data-cats="europe peuco">
+        <div class="ac-thumb" data-article="d7"><img class="thumb-bg" src="https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=600&q=80" alt="Portugal D7" loading="lazy"/><div class="thumb-overlay"></div><span class="thumb-flag">🇵🇹</span><span class="thumb-badge">Portugal D7</span></div>
+        <div class="ac-body">
+          <div class="ac-tags"><span class="ac-tag tag-europe">Europe</span><span class="ac-tag tag-peuco">Peu connu</span></div>
+          <h3 class="ac-title">Visa D7 Portugal : Vivre en Europe avec un revenu passif ou une retraite — sans travailler pour un employeur</h3>
+          <p class="ac-chapeau">760 €/mois de revenu prouvé suffit. <strong>Retraités, rentiers, freelances.</strong> Accès Schengen + voie vers la citoyenneté UE en 5 ans.</p>
+          <div class="ac-meta"><span class="ac-read">⏱ 5 min</span><a href="#" class="ac-cta" onclick="toggleArticle(this)">Lire le guide <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+        </div>
+        <div class="article-full">
+          <div class="af-subtitle">Guide complet — Visa D7 Portugal (Revenu Passif)</div>
+          <div class="af-body">
+            <p>Le visa D7 est souvent confondu avec le D8 (nomade digital). Différence clé : le D7 est pour les personnes qui ont un <strong>revenu stable non lié à un emploi actif</strong> — retraite, loyers, dividendes, rentes, ou revenus freelance réguliers.</p>
+            <h4>Qui peut postuler</h4>
+            <ul>
+              <li>Retraités avec pension versée régulièrement</li>
+              <li>Propriétaires percevant des loyers</li>
+              <li>Détenteurs de dividendes ou placements financiers</li>
+              <li>Freelances avec revenus récurrents de clients internationaux</li>
+            </ul>
+            <h4>Revenu minimum requis (2026)</h4>
+            <ul>
+              <li>Titulaire principal : 760 €/mois (salaire minimum portugais)</li>
+              <li>Conjoint supplémentaire : +380 €/mois</li>
+              <li>Enfant supplémentaire : +228 €/mois</li>
+              <li>Prouver 12 mois de revenus stables via relevés bancaires</li>
+            </ul>
+            <h4>Parcours vers la citoyenneté</h4>
+            <ul>
+              <li>Titre de séjour D7 : 2 ans renouvelables</li>
+              <li>Résidence permanente après 5 ans de résidence légale</li>
+              <li>Citoyenneté portugaise (passeport UE) après 5 ans</li>
+              <li>Exigence : niveau A2 en portugais pour la naturalisation</li>
+            </ul>
+          </div>
+          <div class="af-cta-box">
+            <p>Vous avez des revenus réguliers et souhaitez vous installer légalement en Europe ? Le D7 est peut-être fait pour vous.</p>
+            <a href="https://wa.me/237640115385?text=Je%20veux%20des%20infos%20sur%20le%20visa%20D7%20Portugal" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9.87 9.87 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12 0C5.373 0 0 5.373 0 12c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654A11.882 11.882 0 0012 23.893c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.413 3.48 11.815 11.815 0 0012 0z"/></svg>Vérifier mon éligibilité D7 → WhatsApp</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Article 12 — PVT Canada/Australie -->
+      <div class="article-card rv d3" data-cats="canada europe peuco travail">
+        <div class="ac-thumb" data-article="pvt"><img class="thumb-bg" src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=600&q=80" alt="Vacances-Travail" loading="lazy"/><div class="thumb-overlay"></div><span class="thumb-flag">✈️</span><span class="thumb-badge">Vacances-Travail</span></div>
+        <div class="ac-body">
+          <div class="ac-tags"><span class="ac-tag tag-canada">Canada</span><span class="ac-tag tag-peuco">Tremplin</span></div>
+          <h3 class="ac-title">Programme Vacances-Travail (PVT) : Vivre 1 an au Canada ou en Europe légalement pour tester avant de s'installer</h3>
+          <p class="ac-chapeau"><strong>Simple, rapide, économique.</strong> Travaillez pour n'importe quel employeur. Parfait tremplin vers la résidence permanente — peu le savent.</p>
+          <div class="ac-meta"><span class="ac-read">⏱ 5 min</span><a href="#" class="ac-cta" onclick="toggleArticle(this)">Lire le guide <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+        </div>
+        <div class="article-full">
+          <div class="af-subtitle">Guide complet — Programme Vacances-Travail (PVT/WHV)</div>
+          <div class="af-body">
+            <p>Le PVT est l'un des visas les plus sous-estimés. Il vous permet de <strong>vivre et travailler librement</strong> dans un pays étranger pendant 1 à 2 ans — sans offre d'emploi préalable, sans diplôme spécifique requis.</p>
+            <h4>Pays accessibles aux ressortissants africains francophones</h4>
+            <ul>
+              <li>🇨🇦 Canada : ouvert aux Marocains, Tunisiens, Sénégalais, Camerounais</li>
+              <li>🇫🇷 France : programme réciproque avec plusieurs pays africains</li>
+              <li>🇩🇪 Allemagne : ouvert à certains pays (vérifier selon nationalité)</li>
+              <li>🇦🇺 Australie : ouvert aux ressortissants de certains pays africains</li>
+            </ul>
+            <h4>Conditions générales</h4>
+            <ul>
+              <li>Âge : 18 à 35 ans selon le pays (30 ans pour certains)</li>
+              <li>Passeport valide du pays d'origine partenaire</li>
+              <li>Fonds suffisants : environ 2 500 $ CAD pour le Canada</li>
+              <li>Aucun enfant à charge accompagnant</li>
+            </ul>
+            <h4>PVT comme tremplin vers la RP — la vraie astuce</h4>
+            <ul>
+              <li>Accumuler une expérience de travail canadienne (valorisée +30 pts CRS)</li>
+              <li>Obtenir une offre d'emploi sur place → accès direct PICA ou SINP</li>
+              <li>Améliorer la langue en immersion totale</li>
+              <li>Construire un réseau professionnel local</li>
+            </ul>
+          </div>
+          <div class="af-cta-box">
+            <p>Vérifiez si votre nationalité ouvre droit au PVT Canada et comment l'utiliser comme tremplin vers la RP.</p>
+            <a href="https://wa.me/237640115385?text=Je%20veux%20savoir%20si%20je%20suis%20%C3%A9ligible%20au%20PVT" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9.87 9.87 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12 0C5.373 0 0 5.373 0 12c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654A11.882 11.882 0 0012 23.893c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.413 3.48 11.815 11.815 0 0012 0z"/></svg>Vérifier mon éligibilité PVT → WhatsApp</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Article 13 — Green Card DV Lottery -->
+      <div class="article-card rv d1" data-cats="usa peuco">
+        <div class="ac-thumb" data-article="dv"><img class="thumb-bg" src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=600&q=80" alt="DV Lottery" loading="lazy"/><div class="thumb-overlay"></div><span class="thumb-flag">🇺🇸</span><span class="thumb-badge">DV Lottery</span></div>
+        <div class="ac-body">
+          <div class="ac-tags"><span class="ac-tag" style="background:#ffe8e8;color:#b01a1a">USA</span><span class="ac-tag tag-peuco">Lottery</span></div>
+          <h3 class="ac-title">Green Card Lottery DV-2027 : 50 000 Green Cards tirées au sort — les astuces pour maximiser vos chances</h3>
+          <p class="ac-chapeau"><strong>Gratuit à postuler.</strong> 50 000 Green Cards/an. La photo est le motif de rejet n°1. Voici comment éviter les erreurs qui font éliminer 40% des dossiers.</p>
+          <div class="ac-meta"><span class="ac-read">⏱ 6 min</span><a href="#" class="ac-cta" onclick="toggleArticle(this)">Lire le guide <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+        </div>
+        <div class="article-full">
+          <div class="af-subtitle">Guide complet — DV Lottery (Diversity Visa Program)</div>
+          <div class="af-body">
+            <p>Le programme DV est la seule voie d'immigration américaine accessible sans employeur, sans famille aux USA et sans investissement. Chaque année, 50 000 visas d'immigrant sont attribués par tirage au sort parmi les pays sous-représentés.</p>
+            <h4>Pays africains éligibles (généralement)</h4>
+            <ul>
+              <li>✅ Cameroun, Sénégal, Côte d'Ivoire, Mali, Guinée, Congo</li>
+              <li>✅ Togo, Bénin, Niger, Burkina Faso, Mauritanie</li>
+              <li>⚠️ Nigeria, Égypte, Éthiopie : inéligibles certaines années (quota dépassé)</li>
+              <li>Vérifier l'éligibilité de votre pays chaque année sur travel.state.gov</li>
+            </ul>
+            <h4>Conditions minimales</h4>
+            <ul>
+              <li>Diplôme du baccalauréat (lycée complet) OU</li>
+              <li>2 ans d'expérience dans un métier qualifié (liste O*NET)</li>
+              <li>Être ressortissant natif d'un pays éligible</li>
+            </ul>
+            <h4>Calendrier DV-2027</h4>
+            <ul>
+              <li>Inscription : octobre–novembre 2025</li>
+              <li>Résultats : mai 2026 sur dvlottery.state.gov</li>
+              <li>Si sélectionné : compléter le DS-260 puis entretien consulaire</li>
+            </ul>
+            <h4>Les 5 astuces pour éviter le rejet</h4>
+            <ul>
+              <li><strong>Photo :</strong> fond blanc uni, visage 50% de la hauteur, format JPEG exact — c'est le motif de rejet n°1</li>
+              <li>Ne jamais payer pour s'inscrire — la soumission est 100% gratuite</li>
+              <li>Conserver votre numéro de confirmation — obligatoire pour voir les résultats</li>
+              <li>Remplir le formulaire en anglais uniquement</li>
+              <li>Postuler dès le 1er jour d'ouverture — les inscriptions ferment tôt</li>
+            </ul>
+          </div>
+          <div class="af-cta-box">
+            <p>On vérifie votre éligibilité, prépare votre photo conforme et vous aide à remplir le formulaire sans erreur.</p>
+            <a href="https://wa.me/237640115385?text=Je%20veux%20de%20l%27aide%20pour%20la%20Green%20Card%20Lottery" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9.87 9.87 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12 0C5.373 0 0 5.373 0 12c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654A11.882 11.882 0 0012 23.893c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.413 3.48 11.815 11.815 0 0012 0z"/></svg>Préparer mon dossier DV → WhatsApp</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Article 14 — Visa Entrepreneur France -->
+      <div class="article-card rv d2" data-cats="europe peuco travail">
+        <div class="ac-thumb" data-article="france"><img class="thumb-bg" src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&q=80" alt="Passeport Talent FR" loading="lazy"/><div class="thumb-overlay"></div><span class="thumb-flag">🇫🇷</span><span class="thumb-badge">Passeport Talent FR</span></div>
+        <div class="ac-body">
+          <div class="ac-tags"><span class="ac-tag tag-france">France</span><span class="ac-tag tag-peuco">Peu connu</span></div>
+          <h3 class="ac-title">Visa Talent Entrepreneur France : Créer son entreprise en France et obtenir un titre de séjour de 4 ans</h3>
+          <p class="ac-chapeau"><strong>Pas de capital minimum imposé.</strong> Un projet viable suffit. Titre de séjour "Passeport Talent" valable 4 ans — renouvelable vers la RP.</p>
+          <div class="ac-meta"><span class="ac-read">⏱ 7 min</span><a href="#" class="ac-cta" onclick="toggleArticle(this)">Lire le guide <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+        </div>
+        <div class="article-full">
+          <div class="af-subtitle">Guide complet — Passeport Talent Entrepreneur France</div>
+          <div class="af-body">
+            <p>Le "Passeport Talent - Porteur de projet" est une carte de séjour française méconnue qui permet à un ressortissant étranger de créer ou reprendre une entreprise en France, sans capital minimum imposé par la loi.</p>
+            <h4>Conditions d'obtention</h4>
+            <ul>
+              <li>Projet économique réel, viable et créateur de valeur en France</li>
+              <li>Diplôme Bac+3 minimum (licence ou équivalent reconnu)</li>
+              <li>Ou expérience professionnelle de 5 ans dans le domaine du projet</li>
+              <li>Business plan solide présenté à Business France ou à un incubateur agréé</li>
+            </ul>
+            <h4>Ce que vous obtenez</h4>
+            <ul>
+              <li>Carte de séjour "Talent - Porteur de projet" : 4 ans (renouvelable)</li>
+              <li>Autorisation de travail incluse — pas de visa de travail séparé</li>
+              <li>Regroupement familial facilité pour le conjoint et enfants</li>
+              <li>Après 5 ans : éligible à la carte de résident (RP)</li>
+            </ul>
+            <h4>Secteurs porteurs en France</h4>
+            <ul>
+              <li>Tech et numérique (SaaS, applications, e-commerce)</li>
+              <li>Agroalimentaire et import-export Afrique-Europe</li>
+              <li>Conseil, formation professionnelle, coaching</li>
+              <li>Services à la personne, santé et bien-être</li>
+            </ul>
+          </div>
+          <div class="af-cta-box">
+            <p>Vous avez un projet d'entreprise ? On vous aide à structurer le business plan et constituer le dossier Passeport Talent.</p>
+            <a href="https://wa.me/237640115385?text=Je%20veux%20des%20infos%20sur%20le%20Passeport%20Talent%20France" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9.87 9.87 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12 0C5.373 0 0 5.373 0 12c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654A11.882 11.882 0 0012 23.893c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.413 3.48 11.815 11.815 0 0012 0z"/></svg>Explorer le Passeport Talent → WhatsApp</a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /articles-grid -->
+  </div>
+</section>
+
+<!-- WA FLOAT -->
+<a id="wa-float" href="https://wa.me/237640115385?text=Je%20viens%20du%20site" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9.87 9.87 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12 0C5.373 0 0 5.373 0 12c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654A11.882 11.882 0 0012 23.893c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.413 3.48 11.815 11.815 0 0012 0z"/></svg>
+</a>
+
+<footer>
+  <div class="ft-inner">
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <a href="index.html" class="logo" style="display:inline-flex">
+          <img src="logo.png" alt="Open World Agency" style="width:42px;height:42px;object-fit:contain;border-radius:8px;flex-shrink:0;"/><div style="margin-left:10px;line-height:1.05"><div style="font-family:var(--font-u);font-size:15px;font-weight:800;letter-spacing:.13em;color:#fff">OPEN WORLD</div><div style="font-family:var(--font-u);font-size:9px;font-weight:700;letter-spacing:.4em;color:var(--cyan)">AGENCY</div></div>
+        </a>
+        <p>Valoriser les programmes, multiplier les chances.</p>
+        <div class="stars-banner"><span class="stars">★★★★★</span><span class="txt">4.8/5 sur 127 avis Google</span></div>
+        <div class="socials">
+          <a href="https://wa.me/237640115385" class="soc" aria-label="WhatsApp" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9.87 9.87 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12 0C5.373 0 0 5.373 0 12c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654A11.882 11.882 0 0012 23.893c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.413 3.48 11.815 11.815 0 0012 0z"/></svg></a>
+          <a href="#" class="soc" aria-label="Facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+          <a href="#" class="soc" aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+        </div>
+        <p class="ft-legal">Agence indépendante. Non affiliée à IRCC, Campus France ou tout organisme gouvernemental. N° RCCM : RC/DLA/2024/B/1234</p>
+      </div>
+      <div class="fc"><h5>Navigation</h5><ul><li><a href="index.html">Accueil</a></li><li><a href="guides.html">Guides Gratuits</a></li><li><a href="services.html">Services</a></li><li><a href="programmes.html">Programmes</a></li><li><a href="#livres">Livres</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="fc"><h5>Guides populaires</h5><ul><li><a href="guides.html">PICA Canada</a></li><li><a href="guides.html">Espagne Rurale</a></li><li><a href="guides.html">Italie 1 €</a></li><li><a href="guides.html">Mastercard Foundation</a></li><li><a href="guides.html">Chancenkarte DE</a></li><li><a href="guides.html">Mobilité Francophone</a></li></ul></div>
+      <div class="fc"><h5>Contact</h5>
+        <div class="fc-ci"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9.87 9.87 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12 0C5.373 0 0 5.373 0 12c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654A11.882 11.882 0 0012 23.893c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.413 3.48 11.815 11.815 0 0012 0z"/></svg><a href="https://wa.me/237640115385?text=Je%20viens%20du%20site">+237 640 115 385</a></div>
+        <div class="fc-ci"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg><span>Lun–Sam 8h–20h • Réponse sous 2h</span></div>
+        <div class="fc-ci"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Bureau Bonapriso, Douala. Sur rdv.</span></div>
+      </div>
+    </div>
+    <div class="ft-bar">
+      <p>© 2024 Open World Agency — Valoriser les programmes, multiplier les chances.</p>
+      <span class="ft-tagline">Fait avec ❤ pour la diaspora africaine</span>
+      <p><a href="#">Mentions légales</a><span style="margin:0 10px;opacity:.3">|</span><a href="#">Politique de confidentialité</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+'use strict';
+window.addEventListener('load',()=>setTimeout(()=>document.getElementById('loader').classList.add('out'),2100));
+const cur=document.getElementById('cur'),curd=document.getElementById('cur-d');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;curd.style.left=mx+'px';curd.style.top=my+'px';});
+(function loop(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;cur.style.left=rx+'px';cur.style.top=ry+'px';requestAnimationFrame(loop);})();
+window.addEventListener('scroll',()=>{document.getElementById('prog').style.width=(window.scrollY/(document.body.scrollHeight-window.innerHeight)*100)+'%';},{passive:true});
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('up',window.scrollY>40),{passive:true});
+const brg=document.getElementById('brg'),mob=document.getElementById('mob');
+brg.addEventListener('click',()=>{const o=mob.classList.toggle('on');brg.classList.toggle('on',o);brg.setAttribute('aria-expanded',String(o));document.body.style.overflow=o?'hidden':'';});
+document.querySelectorAll('#mob a').forEach(a=>a.addEventListener('click',()=>{mob.classList.remove('on');brg.classList.remove('on');document.body.style.overflow='';}));
+const ro=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target);}}),{threshold:.1});
+document.querySelectorAll('.rv,.rl,.rr').forEach(el=>ro.observe(el));
+// FILTER
+const ftags=document.querySelectorAll('.ftag');
+const cards=document.querySelectorAll('.article-card');
+const sinput=document.getElementById('search-input');
+function applyFilters(){
+  const active=document.querySelector('.ftag.on')?.dataset.filter||'all';
+  const q=sinput.value.toLowerCase().trim();
+  cards.forEach(c=>{
+    const cats=c.dataset.cats||'';
+    const txt=c.innerText.toLowerCase();
+    const matchF=active==='all'||cats.includes(active);
+    const matchQ=!q||txt.includes(q);
+    c.style.display=matchF&&matchQ?'':'none';
+  });
+}
+ftags.forEach(b=>b.addEventListener('click',()=>{ftags.forEach(x=>x.classList.remove('on'));b.classList.add('on');applyFilters();}));
+sinput.addEventListener('input',applyFilters);
+// TOGGLE ARTICLE
+function toggleArticle(btn){
+  const card=btn.closest('.article-card');
+  const isOpen=card.classList.contains('expanded');
+  document.querySelectorAll('.article-card.expanded').forEach(c=>c.classList.remove('expanded'));
+  if(!isOpen){card.classList.add('expanded');card.scrollIntoView({behavior:'smooth',block:'nearest'});}
+  btn.textContent=isOpen?'Lire le guide ›':'Fermer ↑';
+}
+// WA FLOAT PULSE
+const wf=document.getElementById('wa-float');
+setInterval(()=>{wf.style.boxShadow=wf.style.boxShadow.includes('8px')?'0 4px 20px rgba(37,211,102,.5)':'0 0 0 8px rgba(37,211,102,.15),0 4px 20px rgba(37,211,102,.4)';},1400);
+
+(function(){
+  const track=document.getElementById('livres-track');
+  if(!track)return;
+  const slides=track.querySelectorAll('.lv-slide');
+  const dotsWrap=document.getElementById('livres-dots');
+  const prevBtn=document.getElementById('lv-prev');
+  const nextBtn=document.getElementById('lv-next');
+  let idx=0,timer;
+  function render(){
+    track.style.transform='translateX(-'+(idx*100)+'%)';
+    if(dotsWrap)[...dotsWrap.children].forEach((d,j)=>d.classList.toggle('on',j===idx));
+  }
+  function goTo(i){idx=(i+slides.length)%slides.length;render();}
+  function next(){goTo(idx+1);}
+  function prev(){goTo(idx-1);}
+  function start(){stop();timer=setInterval(next,4200);}
+  function stop(){clearInterval(timer);}
+  if(dotsWrap){
+    slides.forEach((_,j)=>{
+      const b=document.createElement('button');
+      b.className='lv-dot'+(j===0?' on':'');
+      b.setAttribute('aria-label','Livre '+(j+1));
+      b.addEventListener('click',()=>{goTo(j);start();});
+      dotsWrap.appendChild(b);
+    });
+  }
+  if(nextBtn)nextBtn.addEventListener('click',()=>{next();start();});
+  if(prevBtn)prevBtn.addEventListener('click',()=>{prev();start();});
+  track.closest('.lv-box').addEventListener('mouseenter',stop);
+  track.closest('.lv-box').addEventListener('mouseleave',start);
+  render();
+  start();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Nos Services — Open World Agency</title>
+<meta name="description" content="Audit 360°, Dossier A-Z, Relecture Express. Découvrez nos offres d'accompagnement immigration avec garantie de soumission."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Barlow+Condensed:wght@500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--navy:#0b2245;--navy-mid:#0f3060;--cyan:#0ea5e9;--cyan-dark:#0284c7;--gold:#f59e0b;--gold-dark:#d97706;--white:#ffffff;--off:#f8faff;--light:#e8f2ff;--lighter:#f0f6ff;--text:#0d1f3c;--text-mid:#2d5080;--text-muted:#5a7aa8;--border:rgba(14,165,233,0.15);--shadow:0 4px 24px rgba(11,34,69,0.09);--shadow-lg:0 12px 48px rgba(11,34,69,0.14);--font-d:'Cormorant Garamond',serif;--font-u:'Barlow Condensed',sans-serif;--font-b:'DM Sans',sans-serif;--nav-h:68px;--r:14px;--ease:cubic-bezier(.4,0,.2,1)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{background:var(--white);color:var(--text);font-family:var(--font-b);font-size:16px;line-height:1.65;overflow-x:hidden;cursor:none}
+#prog{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--cyan),var(--gold));z-index:9999;transition:width .1s linear;box-shadow:0 0 10px rgba(14,165,233,.5)}
+#cur{position:fixed;width:28px;height:28px;border:2px solid var(--cyan);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width .2s,height .2s,opacity .2s,border-color .2s}
+#cur-d{position:fixed;width:5px;height:5px;background:var(--cyan);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%)}
+body:has(a:hover) #cur,body:has(button:hover) #cur{width:46px;height:46px;opacity:.5;border-color:var(--gold)}
+#loader{position:fixed;inset:0;background:var(--navy);z-index:100000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;transition:opacity .7s var(--ease),visibility .7s}
+#loader.out{opacity:0;visibility:hidden}
+.l-logo{animation:lpulse 1.4s ease-in-out infinite}
+@keyframes lpulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+.l-bar-wrap{width:160px;height:2px;background:rgba(255,255,255,.1);border-radius:4px;overflow:hidden}
+.l-bar{height:100%;background:linear-gradient(90deg,var(--cyan),var(--gold));animation:lbar 2.1s ease forwards}
+@keyframes lbar{0%{width:0%}65%{width:72%}100%{width:100%}}
+.l-txt{font-family:var(--font-u);font-size:11px;letter-spacing:.3em;color:rgba(255,255,255,.35);text-transform:uppercase}
+#nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 52px;background:rgba(255,255,255,.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);transition:box-shadow .3s}
+#nav.up{box-shadow:var(--shadow-lg)}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-t{line-height:1.05}
+.lt1{font-family:var(--font-u);font-size:17px;font-weight:800;letter-spacing:.13em;color:var(--navy)}
+.lt2{font-family:var(--font-u);font-size:9px;font-weight:700;letter-spacing:.4em;color:var(--cyan)}
+.nav-links{display:flex;align-items:center;gap:4px;list-style:none}
+.nav-links>li{position:relative}
+.nav-links a{font-family:var(--font-u);font-size:13px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--text-mid);text-decoration:none;padding:7px 13px;border-radius:8px;transition:color .22s,background .22s;display:block}
+.nav-links a:hover,.nav-links a.on{color:var(--navy);background:var(--light)}
+.nav-links a.on::after{content:'';position:absolute;bottom:-2px;left:13px;right:13px;height:2px;background:var(--cyan);border-radius:2px}
+.nav-wa{display:inline-flex;align-items:center;gap:7px;background:#25d366;color:#fff;font-family:var(--font-u);font-size:13px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;padding:9px 18px;border-radius:50px;text-decoration:none;transition:all .25s;box-shadow:0 3px 16px rgba(37,211,102,.3);margin-right:6px}
+.nav-wa:hover{background:#20be5b;transform:translateY(-1px)}
+.nav-cta{display:inline-flex;align-items:center;gap:7px;background:var(--navy);color:var(--white);font-family:var(--font-u);font-size:13px;font-weight:800;padding:9px 20px;border-radius:50px;text-decoration:none;transition:all .25s;letter-spacing:.07em;text-transform:uppercase}
+.nav-cta:hover{background:var(--navy-mid);transform:translateY(-1px)}
+#brg{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none}
+#brg span{display:block;width:22px;height:2px;background:var(--navy);border-radius:2px;transition:all .3s}
+#brg.on span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+#brg.on span:nth-child(2){opacity:0}
+#brg.on span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+#mob{position:fixed;inset:0;background:rgba(11,34,69,.97);backdrop-filter:blur(28px);z-index:998;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;opacity:0;visibility:hidden;transition:all .38s var(--ease)}
+#mob.on{opacity:1;visibility:visible}
+#mob a{font-family:var(--font-u);font-size:26px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);text-decoration:none;padding:10px 32px;border-radius:10px;transition:all .2s}
+#mob a:hover{color:var(--cyan);background:rgba(14,165,233,.08)}
+#wa-float{position:fixed;bottom:28px;right:28px;z-index:5000;width:56px;height:56px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.5);text-decoration:none;transition:transform .3s}
+#wa-float:hover{transform:scale(1.1)}
+.si{max-width:1200px;margin:0 auto;padding:0 48px}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .62s var(--ease),transform .62s var(--ease)}
+.rv.in{opacity:1;transform:translateY(0)}
+.rl{opacity:0;transform:translateX(-26px);transition:opacity .62s,transform .62s}
+.rl.in{opacity:1;transform:translateX(0)}
+.rr{opacity:0;transform:translateX(26px);transition:opacity .62s,transform .62s}
+.rr.in{opacity:1;transform:translateX(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+/* PAGE HERO */
+.page-hero{padding-top:var(--nav-h);background:linear-gradient(150deg,var(--navy) 0%,#1060b0 55%,#1a7acc 100%);min-height:38vh;display:flex;align-items:center;position:relative;overflow:hidden}
+.ph-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:48px 48px}
+.ph-inner{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:60px 48px}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-family:var(--font-u);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:16px}
+.breadcrumb a{color:rgba(255,255,255,.45);text-decoration:none}
+.breadcrumb .cur{color:rgba(255,255,255,.85)}
+.ph-title{font-family:var(--font-d);font-size:clamp(34px,4.5vw,62px);font-weight:600;color:var(--white);line-height:1.08;margin-bottom:12px}
+.ph-title em{font-style:italic;color:var(--gold)}
+.ph-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:560px;line-height:1.7}
+/* INTRO BAND */
+.intro-band{background:var(--lighter);border-bottom:1px solid var(--border);padding:28px 0}
+.intro-inner{max-width:1200px;margin:0 auto;padding:0 48px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.intro-band p{font-size:15.5px;color:var(--text-mid);line-height:1.7;max-width:700px}
+.intro-band p em{font-style:italic;color:var(--navy);font-weight:500}
+/* OFFRES */
+#offres{padding:80px 0}
+.sec-label{font-family:var(--font-u);font-size:11px;font-weight:800;letter-spacing:.28em;text-transform:uppercase;color:var(--cyan);display:block;margin-bottom:10px}
+.sec-title{font-family:var(--font-d);font-size:clamp(28px,3.5vw,48px);font-weight:600;color:var(--navy);margin-bottom:12px;line-height:1.1}
+.sec-sub{font-size:15.5px;color:var(--text-muted);max-width:520px;line-height:1.7}
+.offres-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:52px;align-items:start}
+.offre-card{background:var(--white);border:1px solid var(--border);border-radius:20px;padding:36px 28px;position:relative;overflow:hidden;transition:all .3s var(--ease)}
+.offre-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;transition:background .3s}
+.offre-card.starter::before{background:var(--cyan)}
+.offre-card.pro::before{background:linear-gradient(90deg,var(--navy),#1060b0)}
+.offre-card.express::before{background:var(--gold)}
+.offre-card.pro{border-color:rgba(14,165,233,.3);box-shadow:0 0 0 2px rgba(14,165,233,.1),var(--shadow-lg);transform:scale(1.02)}
+.offre-badge{position:absolute;top:18px;right:18px;font-family:var(--font-u);font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border-radius:50px}
+.ob-pop{background:#e8f4ff;color:var(--cyan-dark)}
+.ob-best{background:var(--navy);color:var(--white)}
+.ob-fast{background:#fff3cd;color:#9a6700}
+.offre-icon{font-size:36px;margin-bottom:16px;display:block}
+.offre-name{font-family:var(--font-u);font-size:22px;font-weight:800;color:var(--navy);margin-bottom:6px;letter-spacing:.04em}
+.offre-tagline{font-size:14px;color:var(--text-muted);margin-bottom:20px;line-height:1.5}
+.offre-price{font-family:var(--font-d);font-size:42px;font-weight:700;color:var(--navy);line-height:1;margin-bottom:4px}
+.offre-price .currency{font-size:18px;font-weight:400;vertical-align:super}
+.offre-price .unit{font-family:var(--font-u);font-size:13px;font-weight:600;color:var(--text-muted);vertical-align:baseline}
+.offre-delay{font-family:var(--font-u);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+.offre-features{list-style:none;margin-bottom:28px;display:flex;flex-direction:column;gap:10px}
+.offre-features li{font-size:14px;color:var(--text-mid);display:flex;align-items:flex-start;gap:10px;line-height:1.5}
+.offre-features li .check{width:18px;height:18px;background:var(--light);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.offre-features li .check svg{color:var(--cyan)}
+.offre-btn{display:block;width:100%;text-align:center;font-family:var(--font-u);font-size:13px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;padding:14px 20px;border-radius:50px;text-decoration:none;transition:all .3s;border:none;cursor:pointer}
+.offre-card.starter .offre-btn{background:var(--light);color:var(--navy)}
+.offre-card.starter .offre-btn:hover{background:var(--cyan);color:var(--white)}
+.offre-card.pro .offre-btn{background:var(--navy);color:var(--white);box-shadow:0 4px 20px rgba(11,34,69,.3)}
+.offre-card.pro .offre-btn:hover{background:var(--navy-mid);transform:translateY(-2px);box-shadow:0 8px 28px rgba(11,34,69,.4)}
+.offre-card.express .offre-btn{background:var(--gold);color:var(--navy);box-shadow:0 4px 20px rgba(245,158,11,.3)}
+.offre-card.express .offre-btn:hover{background:var(--gold-dark);transform:translateY(-2px)}
+/* GARANTIE */
+#garantie{background:var(--off);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:56px 0}
+.garantie-inner{max-width:1200px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.garantie-icon{font-size:56px;margin-bottom:16px;display:block}
+.garantie-title{font-family:var(--font-d);font-size:clamp(26px,3vw,40px);font-weight:600;color:var(--navy);margin-bottom:14px}
+.garantie-title em{color:var(--gold);font-style:italic}
+.garantie-text{font-size:15px;color:var(--text-mid);line-height:1.75;margin-bottom:12px}
+.garantie-warning{background:#fff8e1;border:1px solid rgba(245,158,11,.3);border-radius:10px;padding:14px 18px;font-size:13.5px;color:#7a5200;line-height:1.65}
+.garantie-right{background:var(--white);border:1px solid var(--border);border-radius:20px;padding:36px 32px;box-shadow:var(--shadow)}
+.gr-item{display:flex;gap:16px;align-items:flex-start;margin-bottom:22px;padding-bottom:22px;border-bottom:1px solid var(--border)}
+.gr-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+.gr-num{width:36px;height:36px;background:var(--navy);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-d);font-size:18px;font-weight:700;color:var(--white);flex-shrink:0}
+.gr-title{font-family:var(--font-u);font-size:14px;font-weight:800;color:var(--navy);margin-bottom:4px;letter-spacing:.03em}
+.gr-desc{font-size:13.5px;color:var(--text-muted);line-height:1.55}
+/* FAQ -->  process */
+#process{padding:80px 0 100px}
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:52px}
+.ps{padding:32px 24px;text-align:center;position:relative}
+.ps+.ps::before{content:'→';position:absolute;left:-12px;top:46px;color:var(--cyan);font-size:20px;opacity:.5}
+.ps-num{width:48px;height:48px;background:var(--navy);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-d);font-size:20px;font-weight:700;color:var(--white);margin:0 auto 16px;transition:all .3s}
+.ps:hover .ps-num{background:var(--cyan)}
+.ps-t{font-family:var(--font-u);font-size:15px;font-weight:800;color:var(--navy);margin-bottom:8px;letter-spacing:.03em}
+.ps-d{font-size:13.5px;color:var(--text-muted);line-height:1.6}
+/* CTA FINAL */
+#cta-s{background:linear-gradient(135deg,var(--navy) 0%,#1060b0 100%);padding:100px 0;text-align:center;position:relative;overflow:hidden}
+.cta-grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px}
+.cta-s-inner{position:relative;z-index:1}
+.cta-s-title{font-family:var(--font-d);font-size:clamp(32px,4vw,58px);font-weight:600;color:var(--white);margin-bottom:14px}
+.cta-s-title em{font-style:italic;color:var(--gold)}
+.cta-s-sub{font-size:16px;color:rgba(255,255,255,.5);max-width:440px;margin:0 auto 40px;line-height:1.7}
+.cta-btns{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
+.btn-white-main{display:inline-flex;align-items:center;gap:8px;background:var(--white);color:var(--navy);font-family:var(--font-u);font-size:13px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;padding:14px 34px;border-radius:50px;text-decoration:none;transition:all .3s;box-shadow:0 6px 28px rgba(0,0,0,.2)}
+.btn-white-main:hover{background:var(--off);transform:translateY(-2px)}
+.btn-wa-main{display:inline-flex;align-items:center;gap:8px;background:#25d366;color:#fff;font-family:var(--font-u);font-size:13px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;padding:14px 34px;border-radius:50px;text-decoration:none;transition:all .3s;box-shadow:0 6px 28px rgba(37,211,102,.3)}
+.btn-wa-main:hover{background:#20be5b;transform:translateY(-2px)}
+/* FOOTER */
+footer{background:#060f22;border-top:1px solid rgba(14,165,233,.1)}
+.ft-inner{max-width:1200px;margin:0 auto;padding:60px 48px 32px}
+.ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:48px;margin-bottom:48px}
+.ft-brand p{font-size:13.5px;color:rgba(255,255,255,.35);line-height:1.7;margin-top:14px;max-width:240px}
+.socials{display:flex;gap:9px;margin-top:20px}
+.soc{width:36px;height:36px;border:1px solid rgba(255,255,255,.1);border-radius:9px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.4);text-decoration:none;transition:all .3s}
+.soc:hover{border-color:var(--cyan);color:var(--cyan)}
+.fc h5{font-family:var(--font-u);font-size:11px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:18px}
+.fc ul{list-style:none}
+.fc ul li{margin-bottom:9px}
+.fc ul li a{font-size:13.5px;color:rgba(255,255,255,.38);text-decoration:none;transition:color .2s;display:flex;align-items:center;gap:6px}
+.fc ul li a::before{content:'→';font-size:11px;color:var(--cyan);opacity:.6}
+.fc ul li a:hover{color:rgba(255,255,255,.8)}
+.fc-ci{display:flex;align-items:center;gap:9px;font-size:13px;color:rgba(255,255,255,.38);margin-bottom:10px}
+.fc-ci svg{color:var(--cyan);flex-shrink:0}
+.fc-ci a{color:rgba(255,255,255,.38);text-decoration:none;transition:color .2s}
+.fc-ci a:hover{color:var(--cyan)}
+.ft-legal{font-size:11px;color:rgba(255,255,255,.2);line-height:1.6;margin-top:14px;max-width:280px}
+.stars-banner{display:flex;align-items:center;gap:8px;margin-top:12px}
+.stars-banner .stars{color:var(--gold);font-size:16px;letter-spacing:2px}
+.stars-banner .txt{font-size:12px;color:rgba(255,255,255,.38)}
+.ft-bar{border-top:1px solid rgba(255,255,255,.06);padding-top:22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.ft-bar p,.ft-bar a{font-size:12px;color:rgba(255,255,255,.28);text-decoration:none}
+.ft-bar a:hover{color:var(--cyan)}
+.ft-tagline{font-family:var(--font-u);font-size:12px;letter-spacing:.06em;color:rgba(255,255,255,.22)}
+@media(max-width:1100px){#nav{padding:0 24px}.nav-links{display:none}#brg{display:flex}.offres-grid{grid-template-columns:1fr}.offre-card.pro{transform:none}.process-grid{grid-template-columns:repeat(2,1fr)}.garantie-inner{grid-template-columns:1fr}.ft-grid{grid-template-columns:1fr 1fr}.si{padding:0 24px}.ph-inner{padding:40px 24px}}
+@media(max-width:640px){.process-grid{grid-template-columns:1fr}.ps+.ps::before{display:none}.cta-btns{flex-direction:column}.ft-grid{grid-template-columns:1fr}.ft-bar{flex-direction:column;text-align:center}}
+</style>
+</head>
+<body>
+<div id="loader"><div class="l-logo"><img src="logo.png" alt="Open World Agency" style="width:90px;height:90px;object-fit:contain;border-radius:16px;"/></div><div class="l-bar-wrap"><div class="l-bar"></div></div><p class="l-txt">Open World Agency</p></div>
+<div id="prog"></div><div id="cur"></div><div id="cur-d"></div>
+
+<nav id="nav">
+  <a href="index.html" class="logo"><img src="logo.png" alt="Open World Agency" style="width:42px;height:42px;object-fit:contain;border-radius:8px;flex-shrink:0;"/><div class="logo-t"><div class="lt1">OPEN WORLD</div><div class="lt2">AGENCY</div></div></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="guides.html">Guides Gratuits</a></li>
+    <li><a href="services.html" class="on">Services</a></li>
+    <li><a href="programmes.html">Programmes</a></li><li><a href="index.html#livres">Livres</a></li><li><a href="contact.html">Contact</a></li>
+    <li><a href="https://wa.me/237640115385?text=Je%20viens%20du%20site" class="nav-wa" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9.87 9.87 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12 0C5.373 0 0 5.373 0 12c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654A11.882 11.882 0 0012 23.893c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.413 3.48 11.815 11.815 0 0012 0z"/></svg>WhatsApp</a></li>
+    <li><a href="contact.html" class="nav-cta">Consultation Gratuite</a></li>
+  </ul>
+  <button id="brg" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+</nav>
+<div id="mob"><a href="index.html">Accueil</a><a href="guides.html">Guides Gratuits</a><a href="services.html">Services</a><a href="programmes.html">Programmes</a><a href="index.html#livres">Livres</a><a href="contact.html">Contact</a><a href="https://wa.me/237640115385?text=Je%20viens%20du%20site" style="color:#4ade80;margin-top:8px" target="_blank">WhatsApp</a><a href="contact.html" style="color:var(--cyan)">Consultation Gratuite</a></div>
+
+<section class="page-hero">
+  <div class="ph-grid"></div>
+  <div class="ph-inner">
+    <div class="breadcrumb rv"><a href="index.html">Accueil</a><span>›</span><span class="cur">Services</span></div>
+    <h1 class="ph-title rv d1">Après les guides,<br><em>voici comment on vous accompagne</em></h1>
+    <p class="ph-sub rv d2">Vous avez lu. Vous comprenez. Maintenant, si vous voulez gagner du temps et maximiser vos chances — on prend le relais.</p>
+  </div>
+</section>
+
+<div class="intro-band">
+  <div class="intro-inner">
+    <p><em>"Nos guides sont gratuits et honnêtes. Beaucoup de gens les lisent et font leur dossier seuls — c'est parfait. Ceux qui veulent un accompagnement professionnel, voici nos offres claires, sans surprise."</em></p>
+  </div>
+</div>
+
+<!-- OFFRES -->
+<section id="offres">
+  <div class="si">
+    <div style="text-align:center;max-width:600px;margin:0 auto">
+      <span class="sec-label rv">Nos offres</span>
+      <h2 class="sec-title rv d1">3 formules claires, sans jargon</h2>
+      <p class="sec-sub rv d2">Choisissez selon votre situation. Pas de frais cachés. Prix affichés clairement.</p>
+    </div>
+    <div class="offres-grid">
+
+      <!-- Audit -->
+      <div class="offre-card starter rv d1">
+        <span class="offre-badge ob-pop">Démarrer ici</span>
+        <span class="offre-icon">🔍</span>
+        <div class="offre-name">Audit 360°</div>
+        <div class="offre-tagline">On choisit la meilleure voie pour vous + plan d'action PDF</div>
+        <div class="offre-price"><span class="currency">FCFA</span> 10 000 <span class="unit"></span></div>
+        <div class="offre-delay">⏱ Livré en 48h</div>
+        <ul class="offre-features">
+          <li><span class="check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Analyse complète de votre profil</li>
+          <li><span class="check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Identification des 2–3 meilleurs programmes pour vous</li>
+          <li><span class="check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Plan d'action PDF étape par étape</li>
+          <li><span class="check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Liste des documents à préparer</li>
+          <li><span class="check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Estimation des délais et coûts réels</li>
+        </ul>
+        <a href="https://wa.me/237640115385?text=Je%20veux%20un%20Audit%20360°" target="_blank" class="offre-btn">Démarrer mon Audit → WhatsApp</a>
+      </div>
+
+      <!-- Dossier AZ -->
+      <div class="offre-card pro rv d2">
+        <span class="offre-badge ob-best">⭐ Plus populaire</span>
+        <span class="offre-icon">📁</span>
+        <div class="offre-name">Dossier A–Z</div>
+        <div class="offre-tagline">On monte, on soumet, on suit jusqu'à la décision finale</div>
+        <div class="offre-price"><span class="currency">FCFA</span> 490 000 <span class="unit">et +</span></div>
+        <div class="offre-delay">⏱ Selon délais IRCC / consulat</div>
+        <ul class="offre-features">
+          <li><span class="check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Tout ce de l'Audit 360° inclus</li>
+          <li><span class="check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Constitution complète du dossier</li>
+          <li><span class="check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Lettres de motivation rédigées</li>
+          <li><span class="check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Soumission officielle auprès d'IRCC / consulat</li>
+          <li><span class="check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Suivi et relances jusqu'à décision</li>
+          <li><span class="check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Préparation à l'entretien consulaire</li>
+          <li><span class="check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Garantie soumission sous 30 jours</li>
+        </ul>
+        <a href="https://wa.me/237640115385?text=Je%20veux%20le%20Dossier%20A-Z" target="_blank" class="offre-btn">Je veux ce service → WhatsApp</a>
+      </div>
+
+      <!-- Relecture -->
+      <div class="offre-card express rv d3">
+        <span class="offre-badge ob-fast">⚡ Rapide</span>
+        <span class="offre-icon">✅</span>
+        <div class="offre-name">Relecture Express</div>
+        <div class="offre-tagline">Vous avez fait seul — on vérifie avant l'envoi</div>
+        <div class="offre-price"><span class="currency">FCFA</span> 150 000</div>
+        <div class="offre-delay">⏱ Rendu en 5 jours ouvrés</div>
+        <ul class="offre-features">
+          <li><span class="check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Vérification de chaque document</li>
+          <li><span class="check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Détection des erreurs éliminatoires</li>
+          <li><span class="check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Rapport de corrections prioritaires</li>
+          <li><span class="check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Vérification des 32 points de contrôle IRCC</li>
+          <li><span class="check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Feu vert ou corrections listées</li>
+        </ul>
+        <a href="https://wa.me/237640115385?text=Je%20veux%20la%20Relecture%20Express" target="_blank" class="offre-btn">Envoyer mon dossier → WhatsApp</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- GARANTIE -->
+<section id="garantie">
+  <div class="garantie-inner">
+    <div class="rl">
+      <span class="garantie-icon">🛡️</span>
+      <h2 class="garantie-title">Garantie soumission <em>30 jours</em></h2>
+      <p class="garantie-text">Pour notre offre Dossier A–Z : si nous ne soumettons pas votre dossier dans les 30 jours suivant la signature du contrat et la réception de tous vos documents, vous êtes remboursé intégralement.</p>
+      <div class="garantie-warning">⚠️ <strong>Ce que nous ne garantissons pas :</strong> la décision finale appartient à IRCC ou au consulat. Aucune agence honnête ne peut garantir un visa. Toute agence qui vous promet un visa ment.</div>
+    </div>
+    <div class="rr d2">
+      <div class="garantie-right">
+        <h3 style="font-family:var(--font-u);font-size:16px;font-weight:800;color:var(--navy);letter-spacing:.05em;margin-bottom:22px">Notre processus en 4 étapes</h3>
+        <div class="gr-item"><div class="gr-num">1</div><div><div class="gr-title">Audit & Sélection du programme</div><div class="gr-desc">Analyse du profil → choix du programme optimal → devis signé</div></div></div>
+        <div class="gr-item"><div class="gr-num">2</div><div><div class="gr-title">Contrat & Acompte</div><div class="gr-desc">Contrat clair, prix fixe, paiement sécurisé par tranche</div></div></div>
+        <div class="gr-item"><div class="gr-num">3</div><div><div class="gr-title">Collecte & Vérification des documents</div><div class="gr-desc">Check-list fournie, relances, traductions certifiées, vérification 32 points IRCC</div></div></div>
+        <div class="gr-item"><div class="gr-num">4</div><div><div class="gr-title">Soumission & Suivi</div><div class="gr-desc">Dossier soumis officiellement + suivi jusqu'à décision + préparation entretien</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="si">
+    <div style="text-align:center">
+      <span class="sec-label rv">Comment ça se passe</span>
+      <h2 class="sec-title rv d1">Simple. Transparent. Tracé.</h2>
+    </div>
+    <div class="process-grid">
+      <div class="ps rv d1"><div class="ps-num">1</div><div class="ps-t">Audit Gratuit</div><p class="ps-d">30 min sur WhatsApp pour évaluer votre profil et vous dire honnêtement si un programme vous convient.</p></div>
+      <div class="ps rv d2"><div class="ps-num">2</div><div class="ps-t">Contrat Signé</div><p class="ps-d">Devis clair, contrat PDF, paiement par tranche. Tout est tracé par écrit. Aucune surprise.</p></div>
+      <div class="ps rv d3"><div class="ps-num">3</div><div class="ps-t">Documents Collectés</div><p class="ps-d">Vous envoyez vos documents via WhatsApp. On vérifie, on traduit, on complète avec vous.</p></div>
+      <div class="ps rv d4"><div class="ps-num">4</div><div class="ps-t">Soumission & Suivi</div><p class="ps-d">Dossier soumis sous 30 jours. Suivi jusqu'à décision finale. Vous êtes informé à chaque étape.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta-s">
+  <div class="cta-grid-bg"></div>
+  <div class="si cta-s-inner">
+    <h2 class="cta-s-title rv">Commencez par <em>l'Audit Gratuit</em></h2>
+    <p class="cta-s-sub rv d1">30 minutes sur WhatsApp. On analyse votre profil et on vous dit honnêtement quelle voie vous convient — et laquelle ne vous convient pas.</p>
+    <div class="cta-btns rv d2">
+      <a href="https://wa.me/237640115385?text=Je%20veux%20mon%20audit%20gratuit" target="_blank" class="btn-wa-main"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9.87 9.87 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12 0C5.373 0 0 5.373 0 12c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654A11.882 11.882 0 0012 23.893c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.413 3.48 11.815 11.815 0 0012 0z"/></svg>Audit Gratuit sur WhatsApp</a>
+      <a href="contact.html" class="btn-white-main">Remplir le formulaire</a>
+    </div>
+  </div>
+</section>
+
+<a id="wa-float" href="https://wa.me/237640115385?text=Je%20viens%20du%20site" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9.87 9.87 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12 0C5.373 0 0 5.373 0 12c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654A11.882 11.882 0 0012 23.893c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.413 3.48 11.815 11.815 0 0012 0z"/></svg></a>
+
+<footer>
+  <div class="ft-inner">
+    <div class="ft-grid">
+      <div class="ft-brand"><a href="index.html" class="logo" style="display:inline-flex"><img src="logo.png" alt="Open World Agency" style="width:42px;height:42px;object-fit:contain;border-radius:8px;flex-shrink:0;"/><div style="margin-left:10px;line-height:1.05"><div style="font-family:var(--font-u);font-size:15px;font-weight:800;letter-spacing:.13em;color:#fff">OPEN WORLD</div><div style="font-family:var(--font-u);font-size:9px;font-weight:700;letter-spacing:.4em;color:var(--cyan)">AGENCY</div></div></a>
+        <p>Valoriser les programmes, multiplier les chances.</p>
+        <div class="stars-banner"><span class="stars">★★★★★</span><span class="txt">4.8/5 sur 127 avis Google</span></div>
+        <div class="socials"><a href="https://wa.me/237640115385" class="soc" aria-label="WhatsApp" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9.87 9.87 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12 0C5.373 0 0 5.373 0 12c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654A11.882 11.882 0 0012 23.893c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.413 3.48 11.815 11.815 0 0012 0z"/></svg></a><a href="#" class="soc" aria-label="Facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a></div>
+        <p class="ft-legal">Agence indépendante. Non affiliée à IRCC, Campus France ou tout organisme gouvernemental. N° RCCM : RC/DLA/2024/B/1234</p>
+      </div>
+      <div class="fc"><h5>Navigation</h5><ul><li><a href="index.html">Accueil</a></li><li><a href="guides.html">Guides Gratuits</a></li><li><a href="services.html">Services</a></li><li><a href="programmes.html">Programmes</a></li><li><a href="index.html#livres">Livres</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="fc"><h5>Nos offres</h5><ul><li><a href="services.html">Audit 360° — 10 000 FCFA</a></li><li><a href="services.html">Dossier A–Z — dès 490 000</a></li><li><a href="services.html">Relecture Express — 150 000</a></li></ul></div>
+      <div class="fc"><h5>Contact</h5><div class="fc-ci"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9.87 9.87 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12 0C5.373 0 0 5.373 0 12c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654A11.882 11.882 0 0012 23.893c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.413 3.48 11.815 11.815 0 0012 0z"/></svg><a href="https://wa.me/237640115385?text=Je%20viens%20du%20site">+237 640 115 385</a></div><div class="fc-ci"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg><span>Lun–Sam 8h–20h • Réponse sous 2h</span></div><div class="fc-ci"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Bureau Bonapriso, Douala. Sur rdv.</span></div></div>
+    </div>
+    <div class="ft-bar"><p>© 2024 Open World Agency — Valoriser les programmes, multiplier les chances.</p><span class="ft-tagline">Fait avec ❤ pour la diaspora africaine</span><p><a href="#">Mentions légales</a><span style="margin:0 10px;opacity:.3">|</span><a href="#">Politique de confidentialité</a></p></div>
+  </div>
+</footer>
+
+<script>
+'use strict';
+window.addEventListener('load',()=>setTimeout(()=>document.getElementById('loader').classList.add('out'),2100));
+const cur=document.getElementById('cur'),curd=document.getElementById('cur-d');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;curd.style.left=mx+'px';curd.style.top=my+'px';});
+(function loop(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;cur.style.left=rx+'px';cur.style.top=ry+'px';requestAnimationFrame(loop);})();
+window.addEventListener('scroll',()=>{document.getElementById('prog').style.width=(window.scrollY/(document.body.scrollHeight-window.innerHeight)*100)+'%';},{passive:true});
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('up',window.scrollY>40),{passive:true});
+const brg=document.getElementById('brg'),mob=document.getElementById('mob');
+brg.addEventListener('click',()=>{const o=mob.classList.toggle('on');brg.classList.toggle('on',o);brg.setAttribute('aria-expanded',String(o));document.body.style.overflow=o?'hidden':'';});
+document.querySelectorAll('#mob a').forEach(a=>a.addEventListener('click',()=>{mob.classList.remove('on');brg.classList.remove('on');document.body.style.overflow='';}));
+const ro=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target);}}),{threshold:.1});
+document.querySelectorAll('.rv,.rl,.rr').forEach(el=>ro.observe(el));
+const wf=document.getElementById('wa-float');
+setInterval(()=>{wf.style.boxShadow=wf.style.boxShadow.includes('8px')?'0 4px 20px rgba(37,211,102,.5)':'0 0 0 8px rgba(37,211,102,.15),0 4px 20px rgba(37,211,102,.4)';},1400);
+</script>
+</body>
+</html>

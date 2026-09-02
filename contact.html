@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Contact — Open World Agency</title>
+<meta name="description" content="Contactez Open World Agency sur WhatsApp ou via notre formulaire. Réponse sous 2h, lundi au samedi 8h–20h."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Barlow+Condensed:wght@500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--navy:#0b2245;--navy-mid:#0f3060;--cyan:#0ea5e9;--cyan-dark:#0284c7;--gold:#f59e0b;--gold-dark:#d97706;--white:#ffffff;--off:#f8faff;--light:#e8f2ff;--lighter:#f0f6ff;--text:#0d1f3c;--text-mid:#2d5080;--text-muted:#5a7aa8;--border:rgba(14,165,233,0.15);--shadow:0 4px 24px rgba(11,34,69,0.09);--shadow-lg:0 12px 48px rgba(11,34,69,0.14);--font-d:'Cormorant Garamond',serif;--font-u:'Barlow Condensed',sans-serif;--font-b:'DM Sans',sans-serif;--nav-h:68px;--r:14px;--ease:cubic-bezier(.4,0,.2,1)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{background:var(--white);color:var(--text);font-family:var(--font-b);font-size:16px;line-height:1.65;overflow-x:hidden;cursor:none}
+#prog{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--cyan),var(--gold));z-index:9999;transition:width .1s linear}
+#cur{position:fixed;width:28px;height:28px;border:2px solid var(--cyan);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width .2s,height .2s,opacity .2s,border-color .2s}
+#cur-d{position:fixed;width:5px;height:5px;background:var(--cyan);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%)}
+body:has(a:hover) #cur,body:has(button:hover) #cur{width:46px;height:46px;opacity:.5;border-color:var(--gold)}
+#loader{position:fixed;inset:0;background:var(--navy);z-index:100000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;transition:opacity .7s var(--ease),visibility .7s}
+#loader.out{opacity:0;visibility:hidden}
+.l-logo{animation:lpulse 1.4s ease-in-out infinite}
+@keyframes lpulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+.l-bar-wrap{width:160px;height:2px;background:rgba(255,255,255,.1);border-radius:4px;overflow:hidden}
+.l-bar{height:100%;background:linear-gradient(90deg,var(--cyan),var(--gold));animation:lbar 2.1s ease forwards}
+@keyframes lbar{0%{width:0%}65%{width:72%}100%{width:100%}}
+.l-txt{font-family:var(--font-u);font-size:11px;letter-spacing:.3em;color:rgba(255,255,255,.35);text-transform:uppercase}
+#nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 52px;background:rgba(255,255,255,.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);transition:box-shadow .3s}
+#nav.up{box-shadow:var(--shadow-lg)}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-t{line-height:1.05}
+.lt1{font-family:var(--font-u);font-size:17px;font-weight:800;letter-spacing:.13em;color:var(--navy)}
+.lt2{font-family:var(--font-u);font-size:9px;font-weight:700;letter-spacing:.4em;color:var(--cyan)}
+.nav-links{display:flex;align-items:center;gap:4px;list-style:none}
+.nav-links>li{position:relative}
+.nav-links a{font-family:var(--font-u);font-size:13px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--text-mid);text-decoration:none;padding:7px 13px;border-radius:8px;transition:color .22s,background .22s;display:block}
+.nav-links a:hover,.nav-links a.on{color:var(--navy);background:var(--light)}
+.nav-links a.on::after{content:'';position:absolute;bottom:-2px;left:13px;right:13px;height:2px;background:var(--cyan);border-radius:2px}
+.nav-wa{display:inline-flex;align-items:center;gap:7px;background:#25d366;color:#fff;font-family:var(--font-u);font-size:13px;font-weight:800;padding:9px 18px;border-radius:50px;text-decoration:none;transition:all .25s;box-shadow:0 3px 16px rgba(37,211,102,.3);margin-right:6px;letter-spacing:.07em;text-transform:uppercase}
+.nav-wa:hover{background:#20be5b;transform:translateY(-1px)}
+.nav-cta{display:inline-flex;align-items:center;gap:7px;background:var(--navy);color:var(--white);font-family:var(--font-u);font-size:13px;font-weight:800;padding:9px 20px;border-radius:50px;text-decoration:none;transition:all .25s;letter-spacing:.07em;text-transform:uppercase}
+.nav-cta:hover{background:var(--navy-mid);transform:translateY(-1px)}
+#brg{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none}
+#brg span{display:block;width:22px;height:2px;background:var(--navy);border-radius:2px;transition:all .3s}
+#brg.on span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+#brg.on span:nth-child(2){opacity:0}
+#brg.on span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+#mob{position:fixed;inset:0;background:rgba(11,34,69,.97);backdrop-filter:blur(28px);z-index:998;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;opacity:0;visibility:hidden;transition:all .38s var(--ease)}
+#mob.on{opacity:1;visibility:visible}
+#mob a{font-family:var(--font-u);font-size:26px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);text-decoration:none;padding:10px 32px;border-radius:10px;transition:all .2s}
+#mob a:hover{color:var(--cyan);background:rgba(14,165,233,.08)}
+#wa-float{position:fixed;bottom:28px;right:28px;z-index:5000;width:56px;height:56px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.5);text-decoration:none;transition:transform .3s}
+#wa-float:hover{transform:scale(1.1)}
+.si{max-width:1200px;margin:0 auto;padding:0 48px}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .62s var(--ease),transform .62s var(--ease)}
+.rv.in{opacity:1;transform:translateY(0)}
+.rl{opacity:0;transform:translateX(-26px);transition:opacity .62s,transform .62s}
+.rl.in{opacity:1;transform:translateX(0)}
+.rr{opacity:0;transform:translateX(26px);transition:opacity .62s,transform .62s}
+.rr.in{opacity:1;transform:translateX(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+.page-hero{padding-top:var(--nav-h);background:linear-gradient(150deg,var(--navy) 0%,#1060b0 55%,#1a7acc 100%);min-height:36vh;display:flex;align-items:center;position:relative;overflow:hidden}
+.ph-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:48px 48px}
+.ph-inner{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:52px 48px}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-family:var(--font-u);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:16px}
+.breadcrumb a{color:rgba(255,255,255,.45);text-decoration:none}
+.breadcrumb .cur{color:rgba(255,255,255,.85)}
+.ph-title{font-family:var(--font-d);font-size:clamp(32px,4.5vw,58px);font-weight:600;color:var(--white);line-height:1.08;margin-bottom:10px}
+.ph-title em{font-style:italic;color:var(--gold)}
+.ph-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:520px;line-height:1.7}
+
+/* WA PRIORITY BAND */
+#wa-band{background:#25d366;padding:22px 0}
+.wa-band-inner{max-width:1200px;margin:0 auto;padding:0 48px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.wa-band-text{display:flex;align-items:center;gap:14px}
+.wa-band-text svg{flex-shrink:0}
+.wa-band-title{font-family:var(--font-u);font-size:18px;font-weight:800;color:var(--white);letter-spacing:.04em}
+.wa-band-sub{font-size:13px;color:rgba(255,255,255,.8)}
+.wa-band-btn{display:inline-flex;align-items:center;gap:8px;background:var(--white);color:#1a8a3c;font-family:var(--font-u);font-size:13px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;padding:12px 24px;border-radius:50px;text-decoration:none;transition:all .25s;white-space:nowrap;box-shadow:0 3px 16px rgba(0,0,0,.15)}
+.wa-band-btn:hover{background:var(--off);transform:translateY(-1px)}
+
+/* CONTACT GRID */
+#contact-main{padding:72px 0 100px}
+.contact-grid{display:grid;grid-template-columns:1fr 420px;gap:56px;align-items:start}
+
+/* FORM */
+.form-card{background:var(--white);border:1px solid var(--border);border-radius:20px;padding:40px 36px;box-shadow:var(--shadow)}
+.form-title{font-family:var(--font-u);font-size:22px;font-weight:800;color:var(--navy);margin-bottom:6px;letter-spacing:.04em}
+.form-sub{font-size:14px;color:var(--text-muted);margin-bottom:28px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.form-group{margin-bottom:16px;display:flex;flex-direction:column;gap:6px}
+.form-group label{font-family:var(--font-u);font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--text-mid)}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:10px;font-family:var(--font-b);font-size:14px;color:var(--text);background:var(--off);outline:none;transition:border-color .2s,box-shadow .2s;appearance:none}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(14,165,233,.1);background:var(--white)}
+.form-group textarea{resize:vertical;min-height:100px}
+.form-group select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235a7aa8' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+.form-submit{width:100%;padding:15px 24px;background:var(--navy);color:var(--white);font-family:var(--font-u);font-size:14px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;border:none;border-radius:50px;cursor:pointer;transition:all .3s;margin-top:8px;display:flex;align-items:center;justify-content:center;gap:10px}
+.form-submit:hover{background:var(--navy-mid);transform:translateY(-2px);box-shadow:0 8px 28px rgba(11,34,69,.3)}
+.form-note{font-size:12px;color:var(--text-muted);text-align:center;margin-top:12px}
+.success-msg{display:none;background:#f0fff4;border:1px solid #86efac;border-radius:10px;padding:16px 20px;text-align:center;color:#14532d;font-size:14px;margin-top:16px;line-height:1.6}
+.success-msg strong{display:block;font-family:var(--font-u);font-size:16px;margin-bottom:4px}
+
+/* RIGHT PANEL */
+.contact-info{display:flex;flex-direction:column;gap:18px}
+.ci-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:22px 20px;transition:all .3s}
+.ci-card:hover{border-color:rgba(14,165,233,.25);box-shadow:var(--shadow)}
+.ci-card.wa-card{background:linear-gradient(135deg,#dcfce7,#f0fff4);border-color:#86efac}
+.ci-icon{font-size:24px;margin-bottom:10px}
+.ci-title{font-family:var(--font-u);font-size:15px;font-weight:800;color:var(--navy);margin-bottom:4px;letter-spacing:.03em}
+.ci-val{font-size:14px;color:var(--text-mid);line-height:1.6}
+.ci-val a{color:var(--cyan-dark);text-decoration:none;font-weight:600}
+.ci-val a:hover{text-decoration:underline}
+.wa-big-btn{display:flex;align-items:center;justify-content:center;gap:10px;background:#25d366;color:var(--white);font-family:var(--font-u);font-size:15px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;padding:16px 20px;border-radius:12px;text-decoration:none;margin-top:14px;transition:all .3s;box-shadow:0 4px 20px rgba(37,211,102,.3)}
+.wa-big-btn:hover{background:#20be5b;transform:translateY(-2px);box-shadow:0 8px 28px rgba(37,211,102,.45)}
+.horaires-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.hg-item{background:var(--lighter);border-radius:8px;padding:10px 12px}
+.hg-day{font-family:var(--font-u);font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted)}
+.hg-time{font-size:13px;color:var(--navy);font-weight:600;margin-top:2px}
+.adresse-map{width:100%;height:140px;border-radius:10px;background:linear-gradient(135deg,var(--light),var(--lighter));margin-top:12px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);font-size:13px;color:var(--text-muted);text-align:center;line-height:1.5}
+
+/* FAQ */
+#faq{padding:72px 0 100px;background:var(--off)}
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px}
+.faq-item{background:var(--white);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;transition:all .3s}
+.faq-item:hover{border-color:rgba(14,165,233,.2)}
+.faq-item.open{border-color:rgba(14,165,233,.35);box-shadow:var(--shadow)}
+.faq-q{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:18px 20px;cursor:pointer;user-select:none}
+.faq-q-text{font-family:var(--font-u);font-size:15px;font-weight:800;color:var(--navy);letter-spacing:.03em;line-height:1.3}
+.faq-chevron{width:28px;height:28px;border-radius:50%;background:var(--lighter);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .3s;color:var(--text-muted)}
+.faq-item.open .faq-chevron{background:var(--cyan);color:var(--white);transform:rotate(180deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s var(--ease)}
+.faq-item.open .faq-a{max-height:300px}
+.faq-a-inner{padding:0 20px 18px;font-size:14px;color:var(--text-mid);line-height:1.7;border-top:1px solid var(--border)}
+
+/* FOOTER */
+footer{background:#060f22;border-top:1px solid rgba(14,165,233,.1)}
+.ft-inner{max-width:1200px;margin:0 auto;padding:60px 48px 32px}
+.ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:48px;margin-bottom:48px}
+.ft-brand p{font-size:13.5px;color:rgba(255,255,255,.35);line-height:1.7;margin-top:14px;max-width:240px}
+.socials{display:flex;gap:9px;margin-top:20px}
+.soc{width:36px;height:36px;border:1px solid rgba(255,255,255,.1);border-radius:9px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.4);text-decoration:none;transition:all .3s}
+.soc:hover{border-color:var(--cyan);color:var(--cyan)}
+.fc h5{font-family:var(--font-u);font-size:11px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:18px}
+.fc ul{list-style:none}
+.fc ul li{margin-bottom:9px}
+.fc ul li a{font-size:13.5px;color:rgba(255,255,255,.38);text-decoration:none;transition:color .2s;display:flex;align-items:center;gap:6px}
+.fc ul li a::before{content:'→';font-size:11px;color:var(--cyan);opacity:.6}
+.fc ul li a:hover{color:rgba(255,255,255,.8)}
+.fc-ci{display:flex;align-items:center;gap:9px;font-size:13px;color:rgba(255,255,255,.38);margin-bottom:10px}
+.fc-ci svg{color:var(--cyan);flex-shrink:0}
+.fc-ci a{color:rgba(255,255,255,.38);text-decoration:none;transition:color .2s}
+.fc-ci a:hover{color:var(--cyan)}
+.ft-legal{font-size:11px;color:rgba(255,255,255,.2);line-height:1.6;margin-top:14px;max-width:280px}
+.stars-banner{display:flex;align-items:center;gap:8px;margin-top:12px}
+.stars-banner .stars{color:var(--gold);font-size:16px;letter-spacing:2px}
+.stars-banner .txt{font-size:12px;color:rgba(255,255,255,.38)}
+.ft-bar{border-top:1px solid rgba(255,255,255,.06);padding-top:22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.ft-bar p,.ft-bar a{font-size:12px;color:rgba(255,255,255,.28);text-decoration:none}
+.ft-bar a:hover{color:var(--cyan)}
+.ft-tagline{font-family:var(--font-u);font-size:12px;letter-spacing:.06em;color:rgba(255,255,255,.22)}
+@media(max-width:1100px){#nav{padding:0 24px}.nav-links{display:none}#brg{display:flex}.contact-grid{grid-template-columns:1fr}.faq-grid{grid-template-columns:1fr}.ft-grid{grid-template-columns:1fr 1fr}.si{padding:0 24px}.ph-inner{padding:40px 24px}.form-row{grid-template-columns:1fr}.wa-band-inner{padding:0 24px}}
+@media(max-width:640px){.ft-grid{grid-template-columns:1fr}.ft-bar{flex-direction:column;text-align:center}.horaires-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div id="loader"><div class="l-logo"><img src="logo.png" alt="Open World Agency" style="width:90px;height:90px;object-fit:contain;border-radius:16px;"/></div><div class="l-bar-wrap"><div class="l-bar"></div></div><p class="l-txt">Open World Agency</p></div>
+<div id="prog"></div><div id="cur"></div><div id="cur-d"></div>
+
+<nav id="nav">
+  <a href="index.html" class="logo"><img src="logo.png" alt="Open World Agency" style="width:42px;height:42px;object-fit:contain;border-radius:8px;flex-shrink:0;"/><div class="logo-t"><div class="lt1">OPEN WORLD</div><div class="lt2">AGENCY</div></div></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="guides.html">Guides Gratuits</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="programmes.html">Programmes</a></li><li><a href="index.html#livres">Livres</a></li><li><a href="contact.html" class="on">Contact</a></li>
+    <li><a href="https://wa.me/237640115385?text=Je%20viens%20du%20site" class="nav-wa" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9.87 9.87 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12 0C5.373 0 0 5.373 0 12c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654A11.882 11.882 0 0012 23.893c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.413 3.48 11.815 11.815 0 0012 0z"/></svg>WhatsApp</a></li>
+    <li><a href="contact.html" class="nav-cta">Consultation Gratuite</a></li>
+  </ul>
+  <button id="brg" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+</nav>
+<div id="mob"><a href="index.html">Accueil</a><a href="guides.html">Guides Gratuits</a><a href="services.html">Services</a><a href="programmes.html">Programmes</a><a href="index.html#livres">Livres</a><a href="contact.html">Contact</a><a href="https://wa.me/237640115385?text=Je%20viens%20du%20site" style="color:#4ade80;margin-top:8px" target="_blank">WhatsApp</a></div>
+
+<section class="page-hero">
+  <div class="ph-grid"></div>
+  <div class="ph-inner">
+    <div class="breadcrumb rv"><a href="index.html">Accueil</a><span>›</span><span class="cur">Contact</span></div>
+    <h1 class="ph-title rv d1">Parlons de <em>votre projet</em></h1>
+    <p class="ph-sub rv d2">Réponse sous 2 heures sur WhatsApp. Lundi au samedi, 8h à 20h. Zéro engagement pour la première prise de contact.</p>
+  </div>
+</section>
+
+<!-- WA PRIORITY -->
+<div id="wa-band">
+  <div class="wa-band-inner">
+    <div class="wa-band-text">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9.87 9.87 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12 0C5.373 0 0 5.373 0 12c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654A11.882 11.882 0 0012 23.893c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.413 3.48 11.815 11.815 0 0012 0z"/></svg>
+      <div>
+        <div class="wa-band-title">La voie la plus rapide : WhatsApp</div>
+        <div class="wa-band-sub">+237 640 115 385 · Réponse sous 2h · Lun–Sam 8h–20h</div>
+      </div>
+    </div>
+    <a href="https://wa.me/237640115385?text=Bonjour%2C%20je%20viens%20du%20site%20Open%20World%20Agency%20et%20je%20voudrais%20discuter%20de%20mon%20projet%20d%27immigration." target="_blank" class="wa-band-btn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9.87 9.87 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12 0C5.373 0 0 5.373 0 12c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654A11.882 11.882 0 0012 23.893c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.413 3.48 11.815 11.815 0 0012 0z"/></svg>
+      Écrire maintenant ↗
+    </a>
+  </div>
+</div>
+
+<!-- CONTACT MAIN -->
+<section id="contact-main">
+  <div class="si">
+    <div class="contact-grid">
+
+      <!-- FORMULAIRE -->
+      <div class="form-card rl">
+        <div class="form-title">Formulaire de contact</div>
+        <div class="form-sub">Si vous préférez le formulaire, on vous répond sur WhatsApp ou par email sous 24h.</div>
+        <form id="contact-form" onsubmit="submitForm(event)">
+          <div class="form-row">
+            <div class="form-group"><label>Prénom *</label><input type="text" name="prenom" placeholder="Votre prénom" required/></div>
+            <div class="form-group"><label>Nom *</label><input type="text" name="nom" placeholder="Votre nom" required/></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>WhatsApp *</label><input type="tel" name="whatsapp" placeholder="+237 6XX XX XX XX" required/></div>
+            <div class="form-group"><label>Email (optionnel)</label><input type="email" name="email" placeholder="votre@email.com"/></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Pays de résidence *</label>
+              <select name="pays_residence" required>
+                <option value="">Sélectionner…</option>
+                <option>Cameroun</option><option>Sénégal</option><option>Côte d'Ivoire</option>
+                <option>Mali</option><option>Guinea</option><option>Togo</option>
+                <option>Bénin</option><option>Niger</option><option>Burkina Faso</option>
+                <option>Congo Brazzaville</option><option>RDC</option><option>Gabon</option>
+                <option>Ghana</option><option>Nigeria</option><option>Autre</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Destination souhaitée *</label>
+              <select name="destination" required>
+                <option value="">Sélectionner…</option>
+                <option>Canada</option><option>France</option><option>Espagne</option>
+                <option>Italie</option><option>Allemagne</option><option>Portugal</option>
+                <option>Belgique</option><option>Suisse</option><option>Royaume-Uni</option>
+                <option>États-Unis</option><option>Pas encore décidé</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Programme d'intérêt</label>
+            <select name="programme">
+              <option value="">Sélectionner ou ne sait pas encore</option>
+              <option>PICA — Canada Atlantique</option>
+              <option>SINP — Saskatchewan</option>
+              <option>Mobilité Francophone Canada</option>
+              <option>Espagne Rurale (subvention)</option>
+              <option>Italie Rurale (maison 1 €)</option>
+              <option>Bourse Mastercard Foundation</option>
+              <option>Chancenkarte — Allemagne</option>
+              <option>Visa Nomade Digital — Portugal</option>
+              <option>Erasmus+</option>
+              <option>Je ne sais pas encore</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Votre message *</label>
+            <textarea name="message" placeholder="Décrivez brièvement votre situation actuelle et votre objectif d'immigration…" required></textarea>
+          </div>
+          <button type="submit" class="form-submit" id="submit-btn">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M14 2L2 8l4 2 6-6-6 8 2 4L14 2z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Envoyer ma demande
+          </button>
+          <p class="form-note">📞 Nous vous contactons sur WhatsApp sous 24h ouvrées</p>
+        </form>
+        <div class="success-msg" id="success-msg">
+          <strong>✅ Message envoyé avec succès !</strong>
+          Nous vous contacterons sur WhatsApp sous 24h ouvrées. En attendant, lisez nos <a href="guides.html" style="color:var(--cyan-dark)">guides gratuits</a>.
+        </div>
+      </div>
+
+      <!-- INFOS DROITE -->
+      <div class="contact-info rr d2">
+
+        <div class="ci-card wa-card">
+          <div class="ci-icon">💬</div>
+          <div class="ci-title">WhatsApp — Action prioritaire</div>
+          <div class="ci-val">La manière la plus rapide d'obtenir une réponse. Tout est tracé par écrit.</div>
+          <a href="https://wa.me/237640115385?text=Bonjour%2C%20je%20viens%20du%20site%20Open%20World%20Agency%20et%20je%20voudrais%20discuter%20de%20mon%20projet%20d%27immigration." target="_blank" class="wa-big-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9.87 9.87 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12 0C5.373 0 0 5.373 0 12c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654A11.882 11.882 0 0012 23.893c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.413 3.48 11.815 11.815 0 0012 0z"/></svg>
+            +237 640 115 385
+          </a>
+        </div>
+
+        <div class="ci-card">
+          <div class="ci-icon">🕐</div>
+          <div class="ci-title">Horaires de disponibilité</div>
+          <div class="horaires-grid">
+            <div class="hg-item"><div class="hg-day">Lun – Ven</div><div class="hg-time">8h00 – 20h00</div></div>
+            <div class="hg-item"><div class="hg-day">Samedi</div><div class="hg-time">9h00 – 15h00</div></div>
+            <div class="hg-item"><div class="hg-day">Dimanche</div><div class="hg-time">Fermé</div></div>
+            <div class="hg-item"><div class="hg-day">Délai réponse</div><div class="hg-time">Sous 2h</div></div>
+          </div>
+        </div>
+
+        <div class="ci-card">
+          <div class="ci-icon">📍</div>
+          <div class="ci-title">Adresse bureau</div>
+          <div class="ci-val">Bureau Bonapriso, Douala, Cameroun.<br><strong>Sur rendez-vous uniquement.</strong><br>La majorité de nos échanges se fait à distance.</div>
+          <div class="adresse-map">📍 Bonapriso, Douala<br><span style="font-size:11px;color:var(--text-muted)">Intégrez votre lien Google Maps ici</span></div>
+        </div>
+
+        <div class="ci-card">
+          <div class="ci-icon">🎁</div>
+          <div class="ci-title">Ressource gratuite à télécharger</div>
+          <div class="ci-val">Recevez la <strong>Check-list 32 points IRCC</strong> sur WhatsApp — les erreurs qui font rejeter 80% des dossiers.</div>
+          <a href="https://wa.me/237640115385?text=Je%20veux%20la%20check-list%2032%20points%20IRCC" target="_blank" style="display:inline-flex;align-items:center;gap:7px;margin-top:12px;font-family:var(--font-u);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan-dark);text-decoration:none">Recevoir le PDF → WhatsApp</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="si">
+    <div style="text-align:center;max-width:580px;margin:0 auto">
+      <span style="font-family:var(--font-u);font-size:11px;font-weight:800;letter-spacing:.28em;text-transform:uppercase;color:var(--cyan);display:block;margin-bottom:10px" class="rv">Questions fréquentes</span>
+      <h2 style="font-family:var(--font-d);font-size:clamp(26px,3.5vw,44px);font-weight:600;color:var(--navy);margin-bottom:12px" class="rv d1">Avant de nous écrire</h2>
+      <p style="font-size:15px;color:var(--text-muted);line-height:1.7" class="rv d2">Les réponses aux questions qu'on reçoit le plus souvent.</p>
+    </div>
+    <div class="faq-grid">
+
+      <div class="faq-item rv d1">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">Combien coûte la première consultation ?</span>
+          <span class="faq-chevron"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">La prise de contact initiale sur WhatsApp est <strong>100% gratuite</strong>. On répond à vos premières questions sans frais. Si vous souhaitez un Audit 360° complet avec plan d'action PDF, c'est 10 000 FCFA, livré en 48h.</div></div>
+      </div>
+
+      <div class="faq-item rv d2">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">Quels documents préparer dès maintenant ?</span>
+          <span class="faq-chevron"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Les essentiels : passeport valide (min. 2 ans), diplômes et relevés de notes, CV à jour en français et anglais, lettres de référence employeur, relevés bancaires 3 mois. La liste complète est dans notre Check-list 32 points IRCC (gratuite sur WhatsApp).</div></div>
+      </div>
+
+      <div class="faq-item rv d1">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">Peut-on postuler depuis n'importe quel pays africain ?</span>
+          <span class="faq-chevron"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Oui pour la majorité des programmes. Certains ont des restrictions selon la nationalité (ex: DV Lottery exclut certains pays). L'Audit 360° vous dira précisément quels programmes vous sont accessibles depuis votre pays de résidence et de nationalité.</div></div>
+      </div>
+
+      <div class="faq-item rv d2">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">Combien de temps prend un dossier PICA ?</span>
+          <span class="faq-chevron"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">De l'offre d'emploi à la résidence permanente : <strong>9 à 14 mois</strong> en moyenne. Nous préparons et soumettons le dossier dans les 30 jours suivant la signature. Le reste dépend des délais IRCC, sur lesquels personne n'a de contrôle.</div></div>
+      </div>
+
+      <div class="faq-item rv d3">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">Proposez-vous des facilités de paiement ?</span>
+          <span class="faq-chevron"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Oui. Pour le Dossier A–Z, le paiement se fait en 3 tranches liées aux étapes : signature du contrat, soumission du dossier, et décision finale. Vous ne payez la tranche suivante que quand l'étape précédente est validée.</div></div>
+      </div>
+
+      <div class="faq-item rv d4">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">Comment se déroule la consultation gratuite ?</span>
+          <span class="faq-chevron"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Tout se passe sur WhatsApp par écrit. Vous nous décrivez votre situation (pays, diplôme, expérience, objectif). On vous répond avec une évaluation honnête et les 2–3 programmes qui correspondent à votre profil. Aucun appel vidéo, aucun rendez-vous : tout est tracé.</div></div>
+      </div>
+
+      <div class="faq-item rv d1">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">Qu'est-ce que la "Garantie Soumission 30 jours" ?</span>
+          <span class="faq-chevron"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Pour notre offre Dossier A–Z : si nous ne soumettons pas votre dossier dans les 30 jours suivant la réception de tous vos documents, vous êtes remboursé intégralement. Nous ne garantissons pas la décision finale — elle appartient à IRCC.</div></div>
+      </div>
+
+      <div class="faq-item rv d2">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">Pourquoi pas d'appel téléphonique ou vidéo ?</span>
+          <span class="faq-chevron"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Tout par écrit = tout est tracé. Vous pouvez relire à tout moment. Pas de malentendus. Pas de "j'avais dit". C'est aussi ce qui nous permet de réduire nos tarifs — moins de temps perdu en appels, plus de temps sur vos dossiers.</div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<a id="wa-float" href="https://wa.me/237640115385?text=Je%20viens%20du%20site" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9.87 9.87 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12 0C5.373 0 0 5.373 0 12c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654A11.882 11.882 0 0012 23.893c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.413 3.48 11.815 11.815 0 0012 0z"/></svg></a>
+
+<footer>
+  <div class="ft-inner">
+    <div class="ft-grid">
+      <div class="ft-brand"><a href="index.html" class="logo" style="display:inline-flex"><img src="logo.png" alt="Open World Agency" style="width:42px;height:42px;object-fit:contain;border-radius:8px;flex-shrink:0;"/><div style="margin-left:10px;line-height:1.05"><div style="font-family:var(--font-u);font-size:15px;font-weight:800;letter-spacing:.13em;color:#fff">OPEN WORLD</div><div style="font-family:var(--font-u);font-size:9px;font-weight:700;letter-spacing:.4em;color:var(--cyan)">AGENCY</div></div></a>
+        <p>Valoriser les programmes, multiplier les chances.</p>
+        <div class="stars-banner"><span class="stars">★★★★★</span><span class="txt">4.8/5 sur 127 avis Google</span></div>
+        <div class="socials"><a href="https://wa.me/237640115385" class="soc" aria-label="WhatsApp" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9.87 9.87 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12 0C5.373 0 0 5.373 0 12c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654A11.882 11.882 0 0012 23.893c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.413 3.48 11.815 11.815 0 0012 0z"/></svg></a><a href="#" class="soc" aria-label="Facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a></div>
+        <p class="ft-legal">Agence indépendante. Non affiliée à IRCC, Campus France ou tout organisme gouvernemental. N° RCCM : RC/DLA/2024/B/1234</p>
+      </div>
+      <div class="fc"><h5>Navigation</h5><ul><li><a href="index.html">Accueil</a></li><li><a href="guides.html">Guides Gratuits</a></li><li><a href="services.html">Services</a></li><li><a href="programmes.html">Programmes</a></li><li><a href="index.html#livres">Livres</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="fc"><h5>Nos services</h5><ul><li><a href="services.html">Audit 360°</a></li><li><a href="services.html">Dossier A–Z</a></li><li><a href="services.html">Relecture Express</a></li><li><a href="guides.html">Check-list IRCC PDF</a></li></ul></div>
+      <div class="fc"><h5>Contact direct</h5><div class="fc-ci"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9.87 9.87 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12 0C5.373 0 0 5.373 0 12c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654A11.882 11.882 0 0012 23.893c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.413 3.48 11.815 11.815 0 0012 0z"/></svg><a href="https://wa.me/237640115385?text=Je%20viens%20du%20site">+237 640 115 385</a></div><div class="fc-ci"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg><span>Lun–Sam 8h–20h · Réponse sous 2h</span></div><div class="fc-ci"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Bureau Bonapriso, Douala. Sur rdv.</span></div></div>
+    </div>
+    <div class="ft-bar"><p>© 2024 Open World Agency — Valoriser les programmes, multiplier les chances.</p><span class="ft-tagline">Fait avec ❤ pour la diaspora africaine</span><p><a href="#">Mentions légales</a><span style="margin:0 10px;opacity:.3">|</span><a href="#">Politique de confidentialité</a></p></div>
+  </div>
+</footer>
+
+<script>
+'use strict';
+window.addEventListener('load',()=>setTimeout(()=>document.getElementById('loader').classList.add('out'),2100));
+const cur=document.getElementById('cur'),curd=document.getElementById('cur-d');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;curd.style.left=mx+'px';curd.style.top=my+'px';});
+(function loop(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;cur.style.left=rx+'px';cur.style.top=ry+'px';requestAnimationFrame(loop);})();
+window.addEventListener('scroll',()=>{document.getElementById('prog').style.width=(window.scrollY/(document.body.scrollHeight-window.innerHeight)*100)+'%';},{passive:true});
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('up',window.scrollY>40),{passive:true});
+const brg=document.getElementById('brg'),mob=document.getElementById('mob');
+brg.addEventListener('click',()=>{const o=mob.classList.toggle('on');brg.classList.toggle('on',o);brg.setAttribute('aria-expanded',String(o));document.body.style.overflow=o?'hidden':'';});
+document.querySelectorAll('#mob a').forEach(a=>a.addEventListener('click',()=>{mob.classList.remove('on');brg.classList.remove('on');document.body.style.overflow='';}));
+const ro=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target);}}),{threshold:.1});
+document.querySelectorAll('.rv,.rl,.rr').forEach(el=>ro.observe(el));
+// FAQ
+function toggleFaq(btn){
+  const item=btn.closest('.faq-item');
+  const isOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
+  if(!isOpen)item.classList.add('open');
+}
+// FORM
+function submitForm(e){
+  e.preventDefault();
+  const btn=document.getElementById('submit-btn');
+  btn.textContent='Envoi en cours…';
+  btn.disabled=true;
+  setTimeout(()=>{
+    document.getElementById('contact-form').style.display='none';
+    document.getElementById('success-msg').style.display='block';
+  },1200);
+}
+// WA Float pulse
+const wf=document.getElementById('wa-float');
+setInterval(()=>{wf.style.boxShadow=wf.style.boxShadow.includes('8px')?'0 4px 20px rgba(37,211,102,.5)':'0 0 0 8px rgba(37,211,102,.15),0 4px 20px rgba(37,211,102,.4)';},1400);
+</script>
+</body>
+</html>

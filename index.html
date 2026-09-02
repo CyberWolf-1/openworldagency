@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Open World Agency — Valoriser les programmes, multiplier les chances</title>
+  <meta name="description" content="Agence d'immigration spécialisée dans les voies méconnues : PICA, SINP, Mastercard Foundation, Visa Allemagne, Espagne, Italie et plus."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Barlow+Condensed:wght@500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+/* ═══════════════════════════════════════
+   VARIABLES
+═══════════════════════════════════════ */
+:root {
+  --navy:        #0b2245;
+  --navy-mid:    #0f3060;
+  --navy-light:  #1a4a8a;
+  --cyan:        #0ea5e9;
+  --cyan-dark:   #0284c7;
+  --gold:        #f59e0b;
+  --gold-dark:   #d97706;
+  --white:       #ffffff;
+  --off:         #f8faff;
+  --light:       #e8f2ff;
+  --lighter:     #f0f6ff;
+  --text:        #0d1f3c;
+  --text-mid:    #2d5080;
+  --text-muted:  #5a7aa8;
+  --border:      rgba(14,165,233,0.15);
+  --shadow:      0 4px 24px rgba(11,34,69,0.09);
+  --shadow-lg:   0 12px 48px rgba(11,34,69,0.14);
+  --font-d:      'Cormorant Garamond', serif;
+  --font-u:      'Barlow Condensed', sans-serif;
+  --font-b:      'DM Sans', sans-serif;
+  --nav-h:       68px;
+  --r:           14px;
+  --ease:        cubic-bezier(.4,0,.2,1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
+body {
+  background: var(--white);
+  color: var(--text);
+  font-family: var(--font-b);
+  font-size: 16px;
+  line-height: 1.65;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ── PROGRESS BAR ── */
+#prog {
+  position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+  background: linear-gradient(90deg, var(--cyan), var(--gold));
+  z-index: 9999; transition: width .1s linear;
+  box-shadow: 0 0 10px rgba(14,165,233,.5);
+}
+
+/* ── CURSOR ── */
+#cur {
+  position: fixed; width: 28px; height: 28px;
+  border: 2px solid var(--cyan); border-radius: 50%;
+  pointer-events: none; z-index: 99999;
+  transform: translate(-50%,-50%);
+  transition: width .2s, height .2s, opacity .2s, border-color .2s;
+}
+#cur-d {
+  position: fixed; width: 5px; height: 5px;
+  background: var(--cyan); border-radius: 50%;
+  pointer-events: none; z-index: 99999;
+  transform: translate(-50%,-50%);
+}
+body:has(a:hover) #cur,
+body:has(button:hover) #cur { width: 46px; height: 46px; opacity: .5; border-color: var(--gold); }
+
+/* ── LOADER ── */
+#loader {
+  position: fixed; inset: 0;
+  background: var(--navy);
+  z-index: 100000;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px;
+  transition: opacity .7s var(--ease), visibility .7s;
+}
+#loader.out { opacity: 0; visibility: hidden; }
+.l-logo { animation: lpulse 1.4s ease-in-out infinite; }
+@keyframes lpulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.06)} }
+.l-bar-wrap { width: 160px; height: 2px; background: rgba(255,255,255,.1); border-radius: 4px; overflow: hidden; }
+.l-bar { height: 100%; background: linear-gradient(90deg,var(--cyan),var(--gold)); animation: lbar 2.1s ease forwards; }
+@keyframes lbar { 0%{width:0%} 65%{width:72%} 100%{width:100%} }
+.l-txt { font-family: var(--font-u); font-size: 11px; letter-spacing: .3em; color: rgba(255,255,255,.35); text-transform: uppercase; }
+
+/* ══════════════════════════════════════
+   NAVIGATION
+══════════════════════════════════════ */
+#nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  height: var(--nav-h); z-index: 1000;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 52px;
+  background: rgba(255,255,255,.95);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  transition: box-shadow .3s;
+}
+#nav.up { box-shadow: var(--shadow-lg); }
+
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.logo-t { line-height: 1.05; }
+.lt1 { font-family: var(--font-u); font-size: 17px; font-weight: 800; letter-spacing: .13em; color: var(--navy); }
+.lt2 { font-family: var(--font-u); font-size: 9px; font-weight: 700; letter-spacing: .4em; color: var(--cyan); }
+
+.nav-links { display: flex; align-items: center; gap: 4px; list-style: none; }
+.nav-links > li { position: relative; }
+.nav-links a {
+  font-family: var(--font-u); font-size: 13px; font-weight: 700;
+  letter-spacing: .07em; text-transform: uppercase;
+  color: var(--text-mid); text-decoration: none;
+  padding: 7px 13px; border-radius: 8px;
+  transition: color .22s, background .22s; display: block;
+}
+.nav-links a:hover, .nav-links a.on { color: var(--navy); background: var(--light); }
+.nav-links a.on::after {
+  content: ''; position: absolute; bottom: -2px; left: 13px; right: 13px;
+  height: 2px; background: var(--cyan); border-radius: 2px;
+}
+
+/* dropdown */
+.nav-dd {
+  position: absolute; top: calc(100%+10px); left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  min-width: 270px; background: var(--white);
+  border: 1px solid var(--border); border-radius: var(--r);
+  padding: 8px; opacity: 0; visibility: hidden;
+  transition: all .22s var(--ease); box-shadow: var(--shadow-lg);
+}
+.nav-links li:hover .nav-dd { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+.nav-dd a { font-size: 13px; padding: 9px 13px; color: var(--text-mid); border-radius: 8px; display: flex; align-items: center; gap: 8px; }
+.nav-dd a:hover { color: var(--navy); background: var(--light); }
+.nav-dd a::after { display: none !important; }
+
+.nav-wa {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: #25d366; color: #fff;
+  font-family: var(--font-u); font-size: 13px; font-weight: 800;
+  letter-spacing: .07em; text-transform: uppercase;
+  padding: 9px 18px; border-radius: 50px; text-decoration: none;
+  transition: all .25s; box-shadow: 0 3px 16px rgba(37,211,102,.3);
+  margin-right: 6px;
+}
+.nav-wa:hover { background: #20be5b; transform: translateY(-1px); box-shadow: 0 6px 24px rgba(37,211,102,.4); }
+.nav-cta {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: var(--navy); color: var(--white);
+  font-family: var(--font-u); font-size: 13px; font-weight: 800;
+  letter-spacing: .07em; text-transform: uppercase;
+  padding: 9px 20px; border-radius: 50px; text-decoration: none;
+  transition: all .25s; box-shadow: 0 3px 16px rgba(11,34,69,.25);
+}
+.nav-cta:hover { background: var(--navy-mid); transform: translateY(-1px); box-shadow: 0 6px 24px rgba(11,34,69,.35); }
+
+#brg { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; background: none; border: none; }
+#brg span { display: block; width: 22px; height: 2px; background: var(--navy); border-radius: 2px; transition: all .3s; }
+#brg.on span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+#brg.on span:nth-child(2) { opacity: 0; }
+#brg.on span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+#mob {
+  position: fixed; inset: 0; background: rgba(11,34,69,.97);
+  backdrop-filter: blur(28px); z-index: 998;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+  opacity: 0; visibility: hidden; transition: all .38s var(--ease);
+}
+#mob.on { opacity: 1; visibility: visible; }
+#mob a {
+  font-family: var(--font-u); font-size: 26px; font-weight: 800;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: rgba(255,255,255,.6); text-decoration: none;
+  padding: 10px 32px; border-radius: 10px; transition: all .2s;
+}
+#mob a:hover { color: var(--cyan); background: rgba(14,165,233,.08); }
+
+/* ══════════════════════════════════════
+   HERO — 2-panel split (inspiré screenshot)
+══════════════════════════════════════ */
+#hero {
+  padding-top: var(--nav-h);
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 55% 45%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* LEFT — gradient blue panel (as in screenshot) */
+.hero-l {
+  background: linear-gradient(150deg, var(--navy) 0%, #1060b0 55%, #1a7acc 100%);
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 80px 64px 80px 72px;
+  position: relative; overflow: hidden;
+}
+.hero-l::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 85% 30%, rgba(255,255,255,.07) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 80% at 10% 80%, rgba(0,0,0,.12) 0%, transparent 50%);
+  pointer-events: none;
+}
+.hero-grid-lines {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* floating plane */
+.hero-plane {
+  position: absolute; top: 22%; right: 8%;
+  font-size: 38px; opacity: .18;
+  animation: plane-fly 8s ease-in-out infinite;
+  transform-origin: center;
+}
+@keyframes plane-fly {
+  0%,100% { transform: translate(0,0) rotate(-8deg); }
+  30%      { transform: translate(14px,-12px) rotate(-5deg); }
+  70%      { transform: translate(-8px, 8px) rotate(-10deg); }
+}
+
+.hero-l-inner { position: relative; z-index: 2; }
+
+/* Tag line */
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 50px; padding: 6px 16px;
+  font-family: var(--font-u); font-size: 12px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: rgba(255,255,255,.85); margin-bottom: 26px; width: fit-content;
+}
+.hero-tag-dot { width: 7px; height: 7px; background: var(--gold); border-radius: 50%; animation: tdot 2s ease infinite; }
+@keyframes tdot { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+.hero-h1 {
+  font-family: var(--font-d);
+  font-size: clamp(38px, 4vw, 62px);
+  font-weight: 600; line-height: 1.08;
+  color: var(--white); margin-bottom: 22px;
+}
+.hero-h1 em { font-style: italic; color: var(--gold-dark); }
+
+.hero-p {
+  font-size: 16.5px; color: rgba(255,255,255,.72);
+  line-height: 1.75; max-width: 480px; margin-bottom: 18px;
+}
+
+.hero-link-gold {
+  font-family: var(--font-u); font-size: 14px; font-weight: 700;
+  letter-spacing: .04em; color: var(--gold); text-decoration: none;
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-bottom: 38px; transition: gap .2s;
+}
+.hero-link-gold:hover { gap: 12px; }
+
+.hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn-white {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--white); color: var(--navy);
+  font-family: var(--font-u); font-size: 13px; font-weight: 800;
+  letter-spacing: .08em; text-transform: uppercase;
+  padding: 13px 26px; border-radius: 50px; text-decoration: none;
+  transition: all .25s; box-shadow: 0 4px 20px rgba(0,0,0,.18);
+}
+.btn-white:hover { background: var(--off); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,.24); }
+.btn-outline-w {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: transparent; color: var(--white);
+  font-family: var(--font-u); font-size: 13px; font-weight: 800;
+  letter-spacing: .08em; text-transform: uppercase;
+  padding: 12px 26px; border-radius: 50px; text-decoration: none;
+  border: 2px solid rgba(255,255,255,.4);
+  transition: all .25s;
+}
+.btn-outline-w:hover { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.8); }
+
+/* trust strip below hero */
+.hero-trust {
+  display: flex; gap: 32px; margin-top: 52px; flex-wrap: wrap;
+}
+.ht-item { display: flex; flex-direction: column; }
+.ht-n {
+  font-family: var(--font-d); font-size: 36px; font-weight: 700;
+  color: var(--white); line-height: 1;
+  opacity: 0; animation: fadeUp .6s var(--ease) forwards 1.4s;
+}
+.ht-l {
+  font-family: var(--font-u); font-size: 11px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: rgba(255,255,255,.45); margin-top: 3px;
+  opacity: 0; animation: fadeUp .6s var(--ease) forwards 1.6s;
+}
+@keyframes fadeUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+.ht-divider { width: 1px; background: rgba(255,255,255,.15); align-self: stretch; }
+
+/* RIGHT — white panel */
+.hero-r {
+  background: var(--off);
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 60px 52px 60px 56px;
+  border-left: 1px solid var(--border);
+  position: relative;
+}
+
+.hero-r-label {
+  font-family: var(--font-u); font-size: 11px; font-weight: 800;
+  letter-spacing: .28em; text-transform: uppercase; color: var(--cyan);
+  margin-bottom: 20px;
+}
+
+/* Mission card (like in screenshot) */
+.mission-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 26px 24px;
+  margin-bottom: 18px; transition: all .3s;
+  position: relative; overflow: hidden;
+}
+.mission-card::before {
+  content: ''; position: absolute; top: 0; left: 0; bottom: 0;
+  width: 3px; background: var(--cyan);
+  transform: scaleY(0); transform-origin: top;
+  transition: transform .35s var(--ease);
+}
+.mission-card:hover::before { transform: scaleY(1); }
+.mission-card:hover { box-shadow: var(--shadow); transform: translateX(3px); }
+.mc-title { font-family: var(--font-u); font-size: 15px; font-weight: 800; color: var(--navy); letter-spacing: .04em; margin-bottom: 8px; }
+.mc-text { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
+
+/* 3 mini service cards (like screenshot bottom row) */
+.hero-services { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-top: 4px; }
+.hs-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 14px;
+  transition: all .3s;
+}
+.hs-card:hover { border-color: rgba(14,165,233,.3); box-shadow: var(--shadow); transform: translateY(-2px); }
+.hs-icon { font-size: 20px; margin-bottom: 8px; }
+.hs-t { font-family: var(--font-u); font-size: 13px; font-weight: 800; color: var(--navy); margin-bottom: 5px; letter-spacing: .02em; }
+.hs-d { font-size: 12px; color: var(--text-muted); line-height: 1.55; }
+
+/* ══════════════════════════════════════
+   SECTION MARKETING "SAVIEZ-VOUS ?"
+══════════════════════════════════════ */
+#saviez {
+  background: var(--navy);
+  padding: 100px 0;
+  position: relative; overflow: hidden;
+}
+.saviez-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 70% at 90% 50%, rgba(14,165,233,.12) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 60% at 5% 30%, rgba(245,158,11,.06) 0%, transparent 50%);
+  pointer-events: none;
+}
+.saviez-grid-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+  background-size: 52px 52px;
+}
+
+.s-inner { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+
+.saviez-head { text-align: center; margin-bottom: 64px; position: relative; z-index: 1; }
+.saviez-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(245,158,11,.12); border: 1px solid rgba(245,158,11,.3);
+  border-radius: 50px; padding: 8px 20px;
+  font-family: var(--font-u); font-size: 12px; font-weight: 800;
+  letter-spacing: .18em; text-transform: uppercase; color: var(--gold);
+  margin-bottom: 22px;
+}
+.saviez-title {
+  font-family: var(--font-d); font-size: clamp(36px,4.5vw,64px);
+  font-weight: 600; color: var(--white); line-height: 1.08; margin-bottom: 16px;
+}
+.saviez-title em { font-style: italic; color: var(--gold); }
+.saviez-sub { font-size: 17px; color: rgba(255,255,255,.5); max-width: 540px; margin: 0 auto; line-height: 1.7; }
+
+/* Fact cards grid */
+.facts-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; position: relative; z-index: 1; }
+.fact-card {
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: var(--r); padding: 32px 26px;
+  position: relative; overflow: hidden;
+  transition: all .35s var(--ease);
+  cursor: default;
+}
+.fact-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--cyan), #0055bb);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .4s var(--ease);
+}
+.fact-card:hover::before { transform: scaleX(1); }
+.fact-card:hover {
+  background: rgba(255,255,255,.09);
+  border-color: rgba(14,165,233,.3);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 56px rgba(0,0,0,.3);
+}
+.fact-flag { font-size: 32px; margin-bottom: 14px; display: block; }
+.fact-badge {
+  display: inline-block; margin-bottom: 14px;
+  font-family: var(--font-u); font-size: 10px; font-weight: 800;
+  letter-spacing: .14em; text-transform: uppercase;
+  padding: 4px 11px; border-radius: 50px;
+}
+.fb-gold { background: rgba(245,158,11,.15); color: var(--gold); border: 1px solid rgba(245,158,11,.3); }
+.fb-cyan { background: rgba(14,165,233,.13); color: var(--cyan); border: 1px solid rgba(14,165,233,.3); }
+.fb-green { background: rgba(34,197,94,.1); color: #4ade80; border: 1px solid rgba(34,197,94,.25); }
+
+.fact-title {
+  font-family: var(--font-u); font-size: 20px; font-weight: 800;
+  color: var(--white); letter-spacing: .03em; margin-bottom: 10px; line-height: 1.2;
+}
+.fact-text { font-size: 14px; color: rgba(255,255,255,.5); line-height: 1.7; margin-bottom: 20px; }
+.fact-highlight {
+  background: rgba(245,158,11,.1); border-left: 3px solid var(--gold);
+  border-radius: 0 6px 6px 0; padding: 10px 14px;
+  font-family: var(--font-u); font-size: 13px; font-weight: 700;
+  color: var(--gold); letter-spacing: .03em; line-height: 1.5;
+}
+.fact-link {
+  display: inline-flex; align-items: center; gap: 6px; margin-top: 16px;
+  font-family: var(--font-u); font-size: 12px; font-weight: 800;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--cyan);
+  text-decoration: none; transition: gap .2s;
+}
+.fact-link:hover { gap: 10px; }
+
+/* bottom row — 3 wide cards */
+.facts-row2 { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 20px; position: relative; z-index: 1; }
+.fact-wide {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: var(--r); padding: 26px 24px;
+  display: flex; gap: 18px; align-items: flex-start;
+  transition: all .3s var(--ease);
+}
+.fact-wide:hover { background: rgba(255,255,255,.08); border-color: rgba(14,165,233,.25); transform: translateY(-3px); }
+.fw-icon { font-size: 28px; flex-shrink: 0; margin-top: 2px; }
+.fw-title { font-family: var(--font-u); font-size: 15px; font-weight: 800; color: var(--white); margin-bottom: 6px; letter-spacing: .03em; }
+.fw-text { font-size: 13.5px; color: rgba(255,255,255,.48); line-height: 1.65; }
+
+/* CTA inside saviez */
+.saviez-cta { text-align: center; margin-top: 56px; position: relative; z-index: 1; }
+.btn-gold {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--gold); color: var(--navy);
+  font-family: var(--font-u); font-size: 14px; font-weight: 900;
+  letter-spacing: .1em; text-transform: uppercase;
+  padding: 16px 40px; border-radius: 50px; text-decoration: none;
+  border: none; cursor: pointer; transition: all .3s;
+  box-shadow: 0 6px 32px rgba(245,158,11,.4);
+}
+.btn-gold:hover { background: var(--gold-dark); transform: translateY(-3px); box-shadow: 0 12px 44px rgba(245,158,11,.55); }
+.saviez-proof { margin-top: 16px; font-family: var(--font-u); font-size: 12px; font-weight: 600; letter-spacing: .06em; color: rgba(255,255,255,.3); }
+.saviez-proof span { margin: 0 12px; }
+
+/* ══════════════════════════════════════
+   PROGRAMMES EN VEDETTE
+══════════════════════════════════════ */
+#programmes {
+  padding: 110px 0;
+  background: var(--off);
+}
+#programmes::before {
+  content:'';display:block;height:1px;
+  background:linear-gradient(90deg,transparent,var(--border),transparent);
+}
+.sec-head { margin-bottom: 52px; }
+.sec-head.c { text-align: center; }
+.sec-label {
+  font-family: var(--font-u); font-size: 11px; font-weight: 800;
+  letter-spacing: .28em; text-transform: uppercase; color: var(--cyan);
+  display: block; margin-bottom: 10px;
+}
+.sec-title {
+  font-family: var(--font-d); font-size: clamp(30px,3.5vw,50px);
+  font-weight: 600; color: var(--navy); line-height: 1.1; margin-bottom: 12px;
+}
+.sec-sub { font-size: 15.5px; color: var(--text-muted); max-width: 520px; line-height: 1.7; }
+.sec-head.c .sec-sub { margin: 0 auto; }
+
+.prog-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+.prog-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 26px 24px;
+  position: relative; overflow: hidden;
+  transition: transform .3s var(--ease), box-shadow .3s, border-color .3s;
+  cursor: pointer;
+}
+.prog-card::after {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--cyan), #0055bb);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .35s var(--ease);
+}
+.prog-card:hover::after { transform: scaleX(1); }
+.prog-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); border-color: rgba(14,165,233,.2); }
+
+.pc-flag { font-size: 28px; margin-bottom: 12px; display: block; }
+.pc-badge {
+  position: absolute; top: 16px; right: 16px;
+  font-family: var(--font-u); font-size: 9px; font-weight: 800;
+  letter-spacing: .12em; text-transform: uppercase;
+  padding: 3px 9px; border-radius: 50px;
+}
+.bpop { background: #fff3cd; color: #9a6700; }
+.bexcl { background: #e8f4ff; color: var(--cyan-dark); }
+.bnew { background: #e8ffee; color: #1a9640; }
+.brural { background: #fff0e8; color: #c05a00; }
+
+.pc-title { font-family: var(--font-u); font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 8px; line-height: 1.25; letter-spacing: .02em; }
+.pc-desc { font-size: 13.5px; color: var(--text-muted); line-height: 1.65; margin-bottom: 18px; }
+.pc-link {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-family: var(--font-u); font-size: 12px; font-weight: 800;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--cyan);
+  text-decoration: none; transition: gap .2s;
+}
+.pc-link:hover { gap: 10px; }
+.pc-meta {
+  display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px;
+  padding-top: 12px; border-top: 1px solid var(--border);
+}
+.pc-tag {
+  font-family: var(--font-u); font-size: 10px; font-weight: 700;
+  letter-spacing: .08em; padding: 3px 9px; border-radius: 50px;
+  background: var(--lighter); color: var(--text-mid);
+}
+
+.prog-view-all { text-align: center; margin-top: 44px; }
+.btn-navy {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--navy); color: var(--white);
+  font-family: var(--font-u); font-size: 13px; font-weight: 800;
+  letter-spacing: .08em; text-transform: uppercase;
+  padding: 13px 28px; border-radius: 50px; text-decoration: none;
+  transition: all .25s; box-shadow: 0 4px 20px rgba(11,34,69,.22);
+}
+.btn-navy:hover { background: var(--navy-mid); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(11,34,69,.32); }
+
+/* ══════════════════════════════════════
+   PROCESS
+══════════════════════════════════════ */
+#process {
+  padding: 100px 0;
+  background: var(--white);
+}
+.process-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; margin-top: 52px; }
+.ps {
+  padding: 36px 28px;
+  text-align: center;
+  position: relative;
+}
+.ps + .ps::before {
+  content: '→'; position: absolute;
+  left: -12px; top: 48px;
+  color: var(--cyan); font-size: 22px; opacity: .5;
+}
+.ps-num {
+  width: 52px; height: 52px;
+  background: var(--navy); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-d); font-size: 22px; font-weight: 700;
+  color: var(--white); margin: 0 auto 18px;
+  transition: all .3s; position: relative;
+}
+.ps-num::after {
+  content: ''; position: absolute; inset: -4px;
+  border: 2px solid var(--cyan); border-radius: 50%;
+  opacity: 0; transition: opacity .3s;
+}
+.ps:hover .ps-num { background: var(--cyan); }
+.ps:hover .ps-num::after { opacity: .4; }
+.ps-t { font-family: var(--font-u); font-size: 15px; font-weight: 800; color: var(--navy); margin-bottom: 8px; letter-spacing: .03em; }
+.ps-d { font-size: 13.5px; color: var(--text-muted); line-height: 1.6; }
+
+/* ══════════════════════════════════════
+   CTA FINAL
+══════════════════════════════════════ */
+#cta {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 50%, #1560b0 100%);
+  padding: 110px 0; text-align: center;
+  position: relative; overflow: hidden;
+}
+.cta-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 80% at 70% 40%, rgba(14,165,233,.15) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 50% at 20% 70%, rgba(245,158,11,.07) 0%, transparent 50%);
+  pointer-events: none;
+}
+.cta-grid {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+  background-size: 48px 48px;
+}
+.cta-inner { position: relative; z-index: 1; }
+.cta-label {
+  font-family: var(--font-u); font-size: 11px; font-weight: 800;
+  letter-spacing: .28em; text-transform: uppercase; color: var(--cyan);
+  margin-bottom: 16px;
+}
+.cta-h2 {
+  font-family: var(--font-d); font-size: clamp(34px,4.5vw,64px);
+  font-weight: 600; color: var(--white); line-height: 1.08; margin-bottom: 16px;
+}
+.cta-h2 em { font-style: italic; color: var(--gold); }
+.cta-p { font-size: 17px; color: rgba(255,255,255,.52); max-width: 460px; margin: 0 auto 44px; line-height: 1.7; }
+.cta-btns { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; }
+.btn-cta-main {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--white); color: var(--navy);
+  font-family: var(--font-u); font-size: 13px; font-weight: 900;
+  letter-spacing: .1em; text-transform: uppercase;
+  padding: 15px 36px; border-radius: 50px; text-decoration: none;
+  transition: all .3s; box-shadow: 0 6px 32px rgba(0,0,0,.25);
+}
+.btn-cta-main:hover { background: var(--off); transform: translateY(-3px); box-shadow: 0 12px 44px rgba(0,0,0,.35); }
+.btn-cta-wa {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: #25d366; color: var(--white);
+  font-family: var(--font-u); font-size: 13px; font-weight: 900;
+  letter-spacing: .1em; text-transform: uppercase;
+  padding: 15px 36px; border-radius: 50px; text-decoration: none;
+  transition: all .3s; box-shadow: 0 6px 32px rgba(37,211,102,.3);
+}
+.btn-cta-wa:hover { background: #20be5b; transform: translateY(-3px); box-shadow: 0 12px 44px rgba(37,211,102,.45); }
+.cta-proof { margin-top: 20px; font-size: 12px; font-family: var(--font-u); letter-spacing: .06em; color: rgba(255,255,255,.3); }
+.cta-proof span { margin: 0 12px; }
+
+/* ══════════════════════════════════════
+   FOOTER
+══════════════════════════════════════ */
+footer {
+  background: #060f22;
+  border-top: 1px solid rgba(14,165,233,.1);
+}
+.ft-inner { max-width: 1200px; margin: 0 auto; padding: 60px 48px 32px; }
+.ft-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 48px; margin-bottom: 48px; }
+.ft-brand p { font-size: 13.5px; color: rgba(255,255,255,.35); line-height: 1.7; margin-top: 14px; max-width: 240px; }
+.socials { display: flex; gap: 9px; margin-top: 20px; }
+.soc { width: 36px; height: 36px; border: 1px solid rgba(255,255,255,.1); border-radius: 9px; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.4); text-decoration: none; transition: all .3s; }
+.soc:hover { border-color: var(--cyan); color: var(--cyan); }
+.fc h5 { font-family: var(--font-u); font-size: 11px; font-weight: 800; letter-spacing: .22em; text-transform: uppercase; color: rgba(255,255,255,.45); margin-bottom: 18px; }
+.fc ul { list-style: none; }
+.fc ul li { margin-bottom: 9px; }
+.fc ul li a { font-size: 13.5px; color: rgba(255,255,255,.38); text-decoration: none; transition: color .2s; display: flex; align-items: center; gap: 6px; }
+.fc ul li a::before { content: '→'; font-size: 11px; color: var(--cyan); opacity: .6; }
+.fc ul li a:hover { color: rgba(255,255,255,.8); }
+.fc-ci { display: flex; align-items: center; gap: 9px; font-size: 13px; color: rgba(255,255,255,.38); margin-bottom: 10px; }
+.fc-ci svg { color: var(--cyan); flex-shrink: 0; }
+.fc-ci a { color: rgba(255,255,255,.38); text-decoration: none; transition: color .2s; }
+.fc-ci a:hover { color: var(--cyan); }
+.ft-bar { border-top: 1px solid rgba(255,255,255,.06); padding-top: 22px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+.ft-bar p,.ft-bar a { font-size: 12px; color: rgba(255,255,255,.28); text-decoration: none; }
+.ft-bar a:hover { color: var(--cyan); }
+.ft-tagline { font-family: var(--font-u); font-size: 12px; letter-spacing: .06em; color: rgba(255,255,255,.22); }
+
+/* ── REVEAL ANIMATIONS ── */
+.rv { opacity: 0; transform: translateY(26px); transition: opacity .62s var(--ease), transform .62s var(--ease); }
+.rv.in { opacity: 1; transform: translateY(0); }
+.rl { opacity: 0; transform: translateX(-26px); transition: opacity .62s var(--ease), transform .62s var(--ease); }
+.rl.in { opacity: 1; transform: translateX(0); }
+.rr { opacity: 0; transform: translateX(26px); transition: opacity .62s var(--ease), transform .62s var(--ease); }
+.rr.in { opacity: 1; transform: translateX(0); }
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}.d5{transition-delay:.5s}.d6{transition-delay:.6s}.d7{transition-delay:.7s}
+
+/* WA FLOAT */
+#wa-float{position:fixed;bottom:28px;right:28px;z-index:5000;width:56px;height:56px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.5);text-decoration:none;transition:transform .3s}
+#wa-float:hover{transform:scale(1.1)}
+/* ── RESPONSIVE ── */
+@media(max-width:1100px){
+  #nav{padding:0 24px;} .nav-links{display:none;} #brg{display:flex;}
+  #hero{grid-template-columns:1fr;}
+  .hero-l{min-height:60vh;}
+  .hero-r{padding:52px 32px;}
+  .hero-services{grid-template-columns:repeat(3,1fr);}
+  .facts-grid{grid-template-columns:repeat(2,1fr);}
+  .facts-row2{grid-template-columns:repeat(2,1fr);}
+  .prog-grid{grid-template-columns:repeat(2,1fr);}
+  .process-grid{grid-template-columns:repeat(2,1fr);}
+  .ft-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:680px){
+  .hero-l{padding:60px 28px;}
+  .hero-r{padding:44px 24px;}
+  .hero-services{grid-template-columns:1fr 1fr;}
+  .facts-grid{grid-template-columns:1fr;}
+  .facts-row2{grid-template-columns:1fr;}
+  .prog-grid{grid-template-columns:1fr;}
+  .process-grid{grid-template-columns:1fr;}
+  .ps+.ps::before{display:none;}
+  .ft-grid{grid-template-columns:1fr;}
+  .s-inner,.sec-inner{padding:0 22px;}
+  .hero-trust{gap:20px;}
+  .cta-btns{flex-direction:column;align-items:stretch;}
+  .btn-cta-main,.btn-cta-wa{justify-content:center;}
+}
+
+.sec-inner { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+  
+/* ══════ LIVRES — SLIDER 1-À-LA-FOIS ══════ */
+#livres{padding:70px 0}
+.lv-head{text-align:center;margin-bottom:30px}
+.lv-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--light);border:1px solid var(--border);border-radius:50px;padding:7px 18px;font-family:var(--font-u);font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan-dark);margin-bottom:18px}
+.lv-title{font-family:var(--font-d);font-size:clamp(28px,3.6vw,40px);font-weight:600;color:var(--navy);line-height:1.15;margin-bottom:10px}
+.lv-title em{font-style:italic;color:var(--cyan-dark)}
+.lv-sub{font-size:14.5px;color:var(--text-muted);max-width:460px;margin:0 auto;line-height:1.7}
+.lv-box{position:relative;border-radius:20px;overflow:hidden;box-shadow:var(--shadow-lg)}
+.lv-slides{display:flex;transition:transform .55s cubic-bezier(.65,0,.35,1)}
+.lv-slide{flex:0 0 100%;width:100%;padding:clamp(28px,5vw,52px);display:grid;grid-template-columns:1fr minmax(220px,250px);gap:40px;align-items:center;position:relative;overflow:hidden}
+.lv-slide::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 85% 20%,rgba(255,255,255,.1) 0%,transparent 55%)}
+.lv-s1{background:linear-gradient(135deg,var(--navy) 0%,#1060b0 100%)}
+.lv-s2{background:linear-gradient(135deg,#1a1035 0%,#6a1f8a 100%)}
+.lv-s3{background:linear-gradient(135deg,#0b3d2e 0%,#12925f 100%)}
+.lv-slide-text{position:relative;z-index:1;display:flex;flex-direction:column}
+.lv-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);border-radius:50px;padding:6px 16px;font-family:var(--font-u);font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#fff;margin-bottom:16px;width:fit-content}
+.lv-slide-title{font-family:var(--font-d);font-size:clamp(24px,3.2vw,36px);font-weight:700;color:#fff;margin-bottom:12px;line-height:1.15}
+.lv-slide-desc{font-size:14.5px;color:rgba(255,255,255,.62);line-height:1.7;max-width:480px}
+.lv-slide-cta{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
+.lv-slide-icon{font-size:46px;filter:drop-shadow(0 6px 16px rgba(0,0,0,.25))}
+.lv-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#25d366;color:#fff;font-family:var(--font-u);font-size:12.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:14px 22px;border-radius:50px;text-decoration:none;white-space:nowrap;transition:all .25s;box-shadow:0 4px 18px rgba(37,211,102,.3)}
+.lv-btn:hover{background:#20be5b;transform:translateY(-2px);box-shadow:0 8px 26px rgba(37,211,102,.4)}
+.lv-btn-note{font-family:var(--font-u);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.lv-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;backdrop-filter:blur(6px)}
+.lv-arrow:hover{background:rgba(255,255,255,.22)}
+.lv-arrow.prev{left:16px}.lv-arrow.next{right:16px}
+.lv-dots{display:flex;justify-content:center;gap:9px;margin-top:22px}
+.lv-dot{width:8px;height:8px;padding:0;border-radius:50%;background:var(--border);border:none;cursor:pointer;transition:all .35s var(--ease)}
+.lv-dot.on{background:var(--cyan);width:26px;border-radius:5px}
+@media(max-width:768px){#livres{padding:50px 0}.lv-slide{grid-template-columns:1fr;text-align:center;padding:32px 24px}.lv-slide-text{align-items:center}.lv-slide-desc{max-width:100%}.lv-arrow{width:32px;height:32px}.lv-arrow.prev{left:8px}.lv-arrow.next{right:8px}}
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="l-logo"><img src="logo.png" alt="Open World Agency" style="width:90px;height:90px;object-fit:contain;border-radius:16px;"/></div>
+  <div class="l-bar-wrap"><div class="l-bar"></div></div>
+  <p class="l-txt">Open World Agency</p>
+</div>
+
+<div id="prog"></div>
+<div id="cur"></div>
+<div id="cur-d"></div>
+
+<!-- ══════ NAVIGATION ══════ -->
+<nav id="nav">
+  <a href="index.html" class="logo">
+    <img src="logo.png" alt="Open World Agency" style="width:42px;height:42px;object-fit:contain;border-radius:8px;flex-shrink:0;"/>
+    <div class="logo-t">
+      <div class="lt1">OPEN WORLD</div>
+      <div class="lt2">AGENCY</div>
+    </div>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="index.html" class="on">Accueil</a></li>
+    <li><a href="guides.html">Guides Gratuits</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="programmes.html">Programmes</a></li><li><a href="index.html#livres">Livres</a></li><li><a href="contact.html">Contact</a></li>
+    <li>
+      <a href="https://wa.me/237640115385" class="nav-wa" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp
+      </a>
+    </li>
+    <li><a href="contact.html" class="nav-cta">Consultation Gratuite</a></li>
+  </ul>
+  <button id="brg" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+</nav>
+
+<div id="mob">
+  <a href="index.html">Accueil</a>
+  <a href="guides.html">Guides Gratuits</a>
+  <a href="services.html">Services</a>
+  
+  
+  <a href="programmes.html">Programmes</a><a href="index.html#livres">Livres</a><a href="contact.html">Contact</a>
+  <a href="https://wa.me/237640115385?text=Je%20viens%20du%20site" style="color:#4ade80;margin-top:8px" target="_blank">WhatsApp</a>
+  <a href="contact.html" style="color:var(--cyan);margin-top:4px">Consultation Gratuite</a>
+</div>
+
+<!-- ══════════════════════════════════════
+     HERO
+══════════════════════════════════════ -->
+<section id="hero">
+
+  <!-- LEFT — Blue gradient (screenshot style) -->
+  <div class="hero-l">
+    <div class="hero-grid-lines"></div>
+    <div class="hero-plane">✈</div>
+    <div class="hero-l-inner">
+
+      <div class="hero-tag">
+        <div class="hero-tag-dot"></div>
+        Agence spécialisée — Voies méconnues
+      </div>
+
+      <h1 class="hero-h1">
+        Valoriser les programmes,<br>
+        <em>multiplier les chances</em>
+      </h1>
+
+      <p class="hero-p">
+        Open World Agency accompagne votre projet d'immigration et met en lumière les voies souvent méconnues. Nous identifions les opportunités adaptées à votre profil, constituons des dossiers solides et assurons un suivi rigoureux jusqu'à l'arrivée.
+      </p>
+
+      <a href="#saviez" class="hero-link-gold">
+        Découvrez des voies d'immigration qui vous étaient inconnues jusqu'ici
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+
+      <div class="hero-btns">
+        <a href="programmes.html" class="btn-white">
+          Voir tous les programmes
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="contact.html" class="btn-outline-w">Consultation Gratuite</a>
+      </div>
+
+      <div class="hero-trust">
+        <div class="ht-item">
+          <span class="ht-n" data-cnt="500" data-sfx="+">0+</span>
+          <span class="ht-l">Clients accompagnés</span>
+        </div>
+        <div class="ht-divider"></div>
+        <div class="ht-item">
+          <span class="ht-n" data-cnt="92" data-sfx="%">0%</span>
+          <span class="ht-l">Taux de succès</span>
+        </div>
+        <div class="ht-divider"></div>
+        <div class="ht-item">
+          <span class="ht-n" data-cnt="15" data-sfx="">0</span>
+          <span class="ht-l">Pays couverts</span>
+        </div>
+        <div class="ht-divider"></div>
+        <div class="ht-item">
+          <span class="ht-n" data-cnt="6" data-sfx=" ans">0</span>
+          <span class="ht-l">D'expertise</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- RIGHT — White info panel -->
+  <div class="hero-r">
+    <p class="hero-r-label">Notre approche</p>
+
+    <!-- Mission card (as in screenshot) -->
+    <div class="mission-card">
+      <div class="mc-title">Notre mission</div>
+      <div class="mc-text">Nous valorisons les programmes d'immigration sous-exploités (programmes régionaux, sectoriels, initiatives locales) et accompagnons chaque candidat du diagnostic initial au suivi post-arrivée. Transparence, proximité et efficacité guident notre action.</div>
+    </div>
+
+    <!-- 3 mini service cards (as in screenshot bottom row) -->
+    <div class="hero-services">
+      <div class="hs-card">
+        <div class="hs-icon">📊</div>
+        <div class="hs-t">Analyse personnalisée</div>
+        <div class="hs-d">Évaluation complète de votre profil et rapport clair avec les voies prioritaires.</div>
+      </div>
+      <div class="hs-card">
+        <div class="hs-icon">🔭</div>
+        <div class="hs-t">Valorisation des programmes</div>
+        <div class="hs-d">Veille active et recherche d'opportunités moins concurrentielles adaptées à votre profil.</div>
+      </div>
+      <div class="hs-card">
+        <div class="hs-icon">📋</div>
+        <div class="hs-t">Suivi administratif</div>
+        <div class="hs-d">Constitution du dossier, traduction certifiée, préparation aux entretiens et relances.</div>
+      </div>
+    </div>
+
+    <!-- Bonus reassurance -->
+    <div style="margin-top:20px;padding:16px 18px;background:var(--lighter);border-radius:10px;border:1px solid var(--border);display:flex;align-items:center;gap:12px">
+      <span style="font-size:22px">🎓</span>
+      <div>
+        <div style="font-family:var(--font-u);font-size:13px;font-weight:800;color:var(--navy);letter-spacing:.03em">Bourses entièrement financées disponibles</div>
+        <div style="font-size:12px;color:var(--text-muted);margin-top:2px">Mastercard Foundation, Erasmus+, et bien d'autres — <a href="#saviez" style="color:var(--cyan);text-decoration:none;font-weight:600">découvrir →</a></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SECTION MARKETING "SAVIEZ-VOUS ?"
+══════════════════════════════════════ -->
+<section id="saviez">
+  <div class="saviez-bg"></div>
+  <div class="saviez-grid-bg"></div>
+  <div class="s-inner">
+
+    <div class="saviez-head">
+      <div class="saviez-eyebrow rv">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 0l1.5 4.5H13L9 7l1.5 4.5L7 9 3.5 11.5 5 7 1 4.5h4.5z"/></svg>
+        Ce que vous ignorez peut tout changer
+      </div>
+      <h2 class="saviez-title rv d1">Saviez-vous que…</h2>
+      <p class="saviez-sub rv d2">Des centaines d'opportunités migratoires méconnues existent aujourd'hui. L'Espagne vous paie pour vous installer. L'Italie offre des maisons à 1€. Des bourses couvrent tout. Voici ce que peu de gens savent.</p>
+    </div>
+
+    <!-- 3 BIG fact cards -->
+    <div class="facts-grid">
+
+      <!-- Espagne -->
+      <div class="fact-card rv d1">
+        <span class="fact-flag">🇪🇸</span>
+        <span class="fact-badge fb-gold">🔥 Méconnu</span>
+        <h3 class="fact-title">Des villages espagnols vous paient pour vous installer</h3>
+        <p class="fact-text">Plusieurs régions d'Espagne (Aragon, Castille, Estrémadure) offrent des subventions allant jusqu'à <strong style="color:rgba(255,255,255,.8)">30 000 €</strong> pour attirer des habitants dans leurs villages en voie de dépeuplement. Certaines communes offrent aussi des terrains gratuits.</p>
+        <div class="fact-highlight">💰 Jusqu'à 30 000 € de subvention + terrain + aide à l'installation</div>
+        <a href="programmes.html#espagne" class="fact-link">En savoir plus →</a>
+      </div>
+
+      <!-- Italie -->
+      <div class="fact-card rv d2">
+        <span class="fact-flag">🇮🇹</span>
+        <span class="fact-badge fb-gold">🔥 Méconnu</span>
+        <h3 class="fact-title">L'Italie offre des maisons à 1 € et des salaires pour s'installer</h3>
+        <p class="fact-text">La Sicile, la Sardaigne, la Calabre et des dizaines de villages italiens cèdent des maisons à partir de <strong style="color:rgba(255,255,255,.8)">1 euro symbolique</strong>. Certaines communes versent jusqu'à <strong style="color:rgba(255,255,255,.8)">30 000 €</strong> sur 3 ans aux nouveaux habitants qui s'engagent à rester.</p>
+        <div class="fact-highlight">🏠 Maisons à 1 € + 30 000 € sur 3 ans pour travailler et vivre en Italie</div>
+        <a href="programmes.html#italie" class="fact-link">En savoir plus →</a>
+      </div>
+
+      <!-- Bourses fully funded -->
+      <div class="fact-card rv d3">
+        <span class="fact-flag">🎓</span>
+        <span class="fact-badge fb-green">✅ Accessible</span>
+        <h3 class="fact-title">Il existe des bourses qui financent absolument tout</h3>
+        <p class="fact-text">La bourse Mastercard Foundation, Erasmus+ et d'autres programmes financent intégralement votre Master en Europe ou en Amérique du Nord : <strong style="color:rgba(255,255,255,.8)">frais de scolarité, vol, logement, assurance, allocation mensuelle</strong> — tout compris, sans remboursement.</p>
+        <div class="fact-highlight">🎁 100% financé : frais + vol + logement + allocation — zéro dette</div>
+        <a href="programmes.html#mastercard" class="fact-link">En savoir plus →</a>
+      </div>
+
+    </div>
+
+    <!-- 3 secondary wide cards -->
+    <div class="facts-row2">
+
+      <div class="fact-wide rv d2">
+        <div class="fw-icon">🇩🇪</div>
+        <div>
+          <div class="fw-title">L'Allemagne vous donne 6 mois pour trouver un emploi sur place</div>
+          <div class="fw-text">La Chancenkarte (visa opportunité) vous permet de vivre légalement en Allemagne pendant 6 mois pour chercher un emploi. Pas besoin d'offre préalable. Une fois employé, votre titre de séjour est automatiquement converti.</div>
+        </div>
+      </div>
+
+      <div class="fact-wide rv d3">
+        <div class="fw-icon">🇨🇦</div>
+        <div>
+          <div class="fw-title">Le Canada cherche activement des immigrants pour ses régions rurales</div>
+          <div class="fw-text">Via le PICA et le RNIP, des provinces canadiennes peu peuplées offrent une résidence permanente directe avec beaucoup moins de concurrence que les voies nationales. Des communautés vous recommandent personnellement.</div>
+        </div>
+      </div>
+
+      <div class="fact-wide rv d4">
+        <div class="fw-icon">🇵🇹</div>
+        <div>
+          <div class="fw-title">Vivre au Portugal légalement en télétravail, puis devenir citoyen UE</div>
+          <div class="fw-text">Le visa D8 permet aux freelances et salariés à distance de s'installer à Lisbonne légalement. Après 5 ans, vous obtenez la résidence permanente et la citoyenneté portugaise — passeport d'accès à toute l'Union Européenne.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="saviez-cta">
+      <a href="contact.html" class="btn-gold rv">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="4" width="12" height="10" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M5 3v2.5M11 3v2.5M2 7h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        Découvrir quelle opportunité me correspond
+      </a>
+      <p class="saviez-proof rv d1"><span>Consultation gratuite</span>•<span>Réponse sous 24h</span>•<span>Sans engagement</span></p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     PROGRAMMES EN VEDETTE
+══════════════════════════════════════ -->
+<section id="programmes">
+  <div class="sec-inner">
+    <div class="sec-head c">
+      <span class="sec-label rv">Programmes sélectionnés</span>
+      <h2 class="sec-title rv d1">Des Portes Que Peu Connaissent</h2>
+      <p class="sec-sub rv d2">Chaque programme ci-dessous a été sélectionné pour son accessibilité, son taux de succès et sa faible concurrence.</p>
+    </div>
+
+    <div class="prog-grid">
+
+      <article class="prog-card rv d1">
+        <span class="pc-flag">🇪🇸</span>
+        <span class="pc-badge brural">Rural Espagne</span>
+        <h3 class="pc-title">Repeuplement Rural — Espagne</h3>
+        <p class="pc-desc">Des régions espagnoles versent des subventions jusqu'à 30 000 € + terrain + aide à l'installation pour attirer des familles dans leurs villages. Une voie légale vers la résidence espagnole méconnue.</p>
+        <a href="programmes.html#espagne" class="pc-link">Découvrir <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="pc-meta">
+          <span class="pc-tag">Résidence espagnole</span>
+          <span class="pc-tag">Jusqu'à 30 000 €</span>
+          <span class="pc-tag">Faible concurrence</span>
+        </div>
+      </article>
+
+      <article class="prog-card rv d2">
+        <span class="pc-flag">🇮🇹</span>
+        <span class="pc-badge brural">Rural Italie</span>
+        <h3 class="pc-title">Repeuplement Rural — Italie</h3>
+        <p class="pc-desc">L'Italie cède des maisons à 1 € symbolique dans des dizaines de villages et verse jusqu'à 30 000 € sur 3 ans aux nouveaux arrivants. Sicile, Sardaigne, Calabre — la dolce vita accessible à tous.</p>
+        <a href="programmes.html#italie" class="pc-link">Découvrir <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="pc-meta">
+          <span class="pc-tag">Maisons à 1 €</span>
+          <span class="pc-tag">30 000 € sur 3 ans</span>
+          <span class="pc-tag">Résidence UE</span>
+        </div>
+      </article>
+
+      <article class="prog-card rv d3">
+        <span class="pc-flag">🇨🇦</span>
+        <span class="pc-badge bpop">Populaire</span>
+        <h3 class="pc-title">PICA — Canada Atlantique</h3>
+        <p class="pc-desc">La voie rapide vers la résidence permanente canadienne via les provinces atlantiques — moins compétitive que l'Express Entry et tout aussi puissante.</p>
+        <a href="programmes.html#pica" class="pc-link">Découvrir <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="pc-meta">
+          <span class="pc-tag">Résidence permanente</span>
+          <span class="pc-tag">6–12 mois</span>
+          <span class="pc-tag">94% succès</span>
+        </div>
+      </article>
+
+      <article class="prog-card rv d2">
+        <span class="pc-flag">🎓</span>
+        <span class="pc-badge bnew">Fully Funded</span>
+        <h3 class="pc-title">Bourse Mastercard Foundation</h3>
+        <p class="pc-desc">Master complet entièrement financé : frais de scolarité, vol aller-retour, logement, assurance, allocation mensuelle. Zéro dette pour les talents africains méritants.</p>
+        <a href="programmes.html#mastercard" class="pc-link">Découvrir <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="pc-meta">
+          <span class="pc-tag">100% financé</span>
+          <span class="pc-tag">20+ universités</span>
+          <span class="pc-tag">Candidature gratuite</span>
+        </div>
+      </article>
+
+      <article class="prog-card rv d3">
+        <span class="pc-flag">🇩🇪</span>
+        <span class="pc-badge bexcl">Exclusif</span>
+        <h3 class="pc-title">Visa Chancenkarte — Allemagne</h3>
+        <p class="pc-desc">Vivez légalement en Allemagne pendant 6 mois pour chercher du travail. Pas d'offre préalable nécessaire. Système de points accessible, débouchant sur la résidence permanente.</p>
+        <a href="programmes.html#allemagne" class="pc-link">Découvrir <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="pc-meta">
+          <span class="pc-tag">Lancé en 2024</span>
+          <span class="pc-tag">6 mois sur place</span>
+          <span class="pc-tag">RP en 4 ans</span>
+        </div>
+      </article>
+
+      <article class="prog-card rv d4">
+        <span class="pc-flag">🇵🇹</span>
+        <span class="pc-badge bpop">Populaire</span>
+        <h3 class="pc-title">Visa Nomade Digital — Portugal</h3>
+        <p class="pc-desc">Travaillez à distance depuis Lisbonne légalement. Accès à toute la zone Schengen. Résidence permanente après 5 ans et citoyenneté portugaise — passeport UE en main.</p>
+        <a href="programmes.html#portugal" class="pc-link">Découvrir <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="pc-meta">
+          <span class="pc-tag">Télétravail légal</span>
+          <span class="pc-tag">Accès Schengen</span>
+          <span class="pc-tag">Passeport UE</span>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="prog-view-all rv">
+      <a href="programmes.html" class="btn-navy">Voir tous les 10 programmes →</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     LIVRES — SLIDER 1-À-LA-FOIS
+══════════════════════════════════════ -->
+<section id="livres">
+  <div class="si">
+    <div class="lv-head">
+      <span class="lv-eyebrow rv">Collection Open World Agency</span>
+      <h2 class="lv-title rv d1">Nos <em>3 Livres</em> Essentiels</h2>
+      <p class="lv-sub rv d2">Des guides complets envoyés directement sur WhatsApp.</p>
+    </div>
+
+    <div class="lv-box rv d3">
+      <button class="lv-arrow prev" id="lv-prev" aria-label="Livre précédent"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button class="lv-arrow next" id="lv-next" aria-label="Livre suivant"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="lv-slides" id="livres-track">
+      <div class="lv-slide lv-s1">
+        <div class="lv-slide-text">
+          <span class="lv-badge">Livre 1 / 3</span>
+          <h3 class="lv-slide-title">Immigrer même sans diplôme</h3>
+          <p class="lv-slide-desc">Les programmes accessibles sans qualification universitaire et les métiers en pénurie qui recrutent à l'international.</p>
+        </div>
+        <div class="lv-slide-cta">
+          <span class="lv-slide-icon">📘</span>
+          <a href="https://wa.me/237640115385?text=Bonjour%2C%20je%20veux%20le%20livre%20%C2%AB%20Immigrer%20m%C3%AAme%20sans%20dipl%C3%B4me%20%C2%BB." target="_blank" class="lv-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9.87 9.87 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12 0C5.373 0 0 5.373 0 12c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654A11.882 11.882 0 0012 23.893c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.413 3.48 11.815 11.815 0 0012 0z"/></svg> Je veux ce livre</a>
+          <span class="lv-btn-note">Envoi instantané sur WhatsApp</span>
+        </div>
+      </div>
+      <div class="lv-slide lv-s2">
+        <div class="lv-slide-text">
+          <span class="lv-badge">Livre 2 / 3</span>
+          <h3 class="lv-slide-title">Étudier à l'étranger même sans argent</h3>
+          <p class="lv-slide-desc">Les bourses entièrement financées, les universités qui couvrent 100% des frais, et comment monter un dossier solide.</p>
+        </div>
+        <div class="lv-slide-cta">
+          <span class="lv-slide-icon">📗</span>
+          <a href="https://wa.me/237640115385?text=Bonjour%2C%20je%20veux%20le%20livre%20%C2%AB%20%C3%89tudier%20%C3%A0%20l%27%C3%A9tranger%20m%C3%AAme%20sans%20argent%20%C2%BB." target="_blank" class="lv-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9.87 9.87 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12 0C5.373 0 0 5.373 0 12c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654A11.882 11.882 0 0012 23.893c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.413 3.48 11.815 11.815 0 0012 0z"/></svg> Je veux ce livre</a>
+          <span class="lv-btn-note">Envoi instantané sur WhatsApp</span>
+        </div>
+      </div>
+      <div class="lv-slide lv-s3">
+        <div class="lv-slide-text">
+          <span class="lv-badge">Livre 3 / 3</span>
+          <h3 class="lv-slide-title">Les voies cachées de l'immigration</h3>
+          <p class="lv-slide-desc">Repeuplement rural, formations payées, mobilités méconnues — les programmes que très peu d'agences vous révèlent.</p>
+        </div>
+        <div class="lv-slide-cta">
+          <span class="lv-slide-icon">📕</span>
+          <a href="https://wa.me/237640115385?text=Bonjour%2C%20je%20veux%20le%20livre%20%C2%AB%20Les%20voies%20cach%C3%A9es%20de%20l%27immigration%20%C2%BB." target="_blank" class="lv-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9.87 9.87 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12 0C5.373 0 0 5.373 0 12c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654A11.882 11.882 0 0012 23.893c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.413 3.48 11.815 11.815 0 0012 0z"/></svg> Je veux ce livre</a>
+          <span class="lv-btn-note">Envoi instantané sur WhatsApp</span>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <div class="lv-dots" id="livres-dots"></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     PROCESS
+══════════════════════════════════════ -->
+<section id="process">
+  <div class="sec-inner">
+    <div class="sec-head c">
+      <span class="sec-label rv">Comment ça marche</span>
+      <h2 class="sec-title rv d1">De la Consultation à l'Arrivée</h2>
+      <p class="sec-sub rv d2">Un processus clair, transparent et entièrement guidé par nos experts.</p>
+    </div>
+    <div class="process-grid">
+      <div class="ps rv d1">
+        <div class="ps-num">1</div>
+        <div class="ps-t">Consultation Gratuite</div>
+        <p class="ps-d">Analyse de votre profil, de votre situation et identification des programmes les plus adaptés à vos objectifs.</p>
+      </div>
+      <div class="ps rv d2">
+        <div class="ps-num">2</div>
+        <div class="ps-t">Stratégie sur Mesure</div>
+        <p class="ps-d">Élaboration d'un plan d'action personnalisé avec feuille de route claire, délais réalistes et coûts estimés.</p>
+      </div>
+      <div class="ps rv d3">
+        <div class="ps-num">3</div>
+        <div class="ps-t">Constitution du Dossier</div>
+        <p class="ps-d">Préparation rigoureuse de tous les documents. Traduction certifiée, lettres de motivation et vérification complète.</p>
+      </div>
+      <div class="ps rv d4">
+        <div class="ps-num">4</div>
+        <div class="ps-t">Suivi Jusqu'à l'Arrivée</div>
+        <p class="ps-d">Soumission, relances, entretiens, obtention du visa et accompagnement jusqu'à votre installation à destination.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     CTA FINAL
+══════════════════════════════════════ -->
+<section id="cta">
+  <div class="cta-bg"></div>
+  <div class="cta-grid"></div>
+  <div class="sec-inner cta-inner">
+    <p class="cta-label rv">Prêt à commencer ?</p>
+    <h2 class="cta-h2 rv d1">Votre Prochain Chapitre<br><em>Commence Aujourd'hui</em></h2>
+    <p class="cta-p rv d2">Consultation initiale gratuite, sans engagement. En 30 minutes, nos experts identifient le programme qui correspond à votre profil et maximise vos chances.</p>
+    <div class="cta-btns rv d3">
+      <a href="contact.html" class="btn-cta-main">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="4" width="12" height="10" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M5 3v2.5M11 3v2.5M2 7h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        Réserver ma consultation
+      </a>
+      <a href="https://wa.me/237640115385" class="btn-cta-wa" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9.87 9.87 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413C19.87 14.556 19.672 14.482 19.374 14.333M12 0C5.373 0 0 5.373 0 12c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654A11.882 11.882 0 0012 23.893c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.413 3.48 11.815 11.815 0 0012 0z"/></svg>
+        Écrire sur WhatsApp
+      </a>
+    </div>
+    <p class="cta-proof rv d4"><span>Sans engagement</span>•<span>Réponse sous 24h</span>•<span>100% confidentiel</span></p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     FOOTER (comme screenshot)
+══════════════════════════════════════ -->
+<footer>
+  <div class="ft-inner">
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <a href="index.html" class="logo" style="display:inline-flex">
+          <img src="logo.png" alt="Open World Agency" style="width:42px;height:42px;object-fit:contain;border-radius:8px;flex-shrink:0;"/><div style="margin-left:10px;line-height:1.05"><div style="font-family:var(--font-u);font-size:15px;font-weight:800;letter-spacing:.13em;color:#fff">OPEN WORLD</div><div style="font-family:var(--font-u);font-size:9px;font-weight:700;letter-spacing:.4em;color:var(--cyan)">AGENCY</div></div>
+        </a>
+        <p>Valoriser les programmes, multiplier les chances.</p>
+        <div style="display:flex;align-items:center;gap:8px;margin-top:12px"><span style="color:var(--gold);font-size:16px;letter-spacing:2px">★★★★★</span><span style="font-size:12px;color:rgba(255,255,255,.38)">4.8/5 sur 127 avis Google</span></div>
+        <div class="socials">
+          <a href="https://wa.me/237640115385" class="soc" aria-label="WhatsApp" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9.87 9.87 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413C19.87 14.556 19.672 14.482 19.374 14.333M12 0C5.373 0 0 5.373 0 12c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654A11.882 11.882 0 0012 23.893c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.413 3.48 11.815 11.815 0 0012 0z"/></svg></a>
+          <a href="#" class="soc" aria-label="Facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+          <a href="#" class="soc" aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+          <a href="#" class="soc" aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452z"/></svg></a>
+        </div>
+        <p style="font-size:11px;color:rgba(255,255,255,.2);line-height:1.6;margin-top:14px;max-width:280px">Agence indépendante. Non affiliée à IRCC, Campus France ou tout organisme gouvernemental. N° RCCM : RC/DLA/2024/B/1234</p>
+      </div>
+      <div class="fc">
+        <h5>Navigation</h5>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="guides.html">Guides Gratuits</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="programmes.html">Programmes</a></li>
+          <li><a href="index.html#livres">Livres</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="fc">
+        <h5>Opportunités populaires</h5>
+        <ul>
+          <li><a href="programmes.html#pica">PICA — Canada</a></li>
+          <li><a href="programmes.html#espagne">Espagne Rurale</a></li>
+          <li><a href="programmes.html#mastercard">Mastercard Foundation</a></li>
+          <li><a href="programmes.html#ausbildung">Ausbildung Allemagne</a></li>
+          <li><a href="programmes.html#chancenkarte">Chancenkarte DE</a></li>
+          <li><a href="programmes.html#bourses">Bourses Fully Funded</a></li>
+        </ul>
+      </div>
+      <div class="fc">
+        <h5>Contact</h5>
+        <div class="fc-ci">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9.87 9.87 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413C19.87 14.556 19.672 14.482 19.374 14.333M12 0C5.373 0 0 5.373 0 12c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654A11.882 11.882 0 0012 23.893c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.413 3.48 11.815 11.815 0 0012 0z"/></svg>
+          <a href="https://wa.me/237640115385">+237 640 115 385</a>
+        </div>
+        <div class="fc-ci">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <a href="mailto:contact@openworldagency.com">contact@openworldagency.com</a>
+        </div>
+        <div class="fc-ci">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+          <span>Lun–Ven 8h–20h | Sam 9h–15h</span>
+        </div>
+      </div>
+    </div>
+    <div class="ft-bar">
+      <p>© 2024 Open World Agency — Valoriser les programmes, multiplier les chances.</p>
+      <span class="ft-tagline">Fait avec ❤ pour la diaspora africaine</span>
+      <p><a href="#">Confidentialité</a><span style="margin:0 10px;opacity:.3">|</span><a href="#">CGU</a></p>
+    </div>
+  </div>
+</footer>
+
+<a id="wa-float" href="https://wa.me/237640115385?text=Je%20viens%20du%20site" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9.87 9.87 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12 0C5.373 0 0 5.373 0 12c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654A11.882 11.882 0 0012 23.893c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.413 3.48 11.815 11.815 0 0012 0z"/></svg></a>
+<script>
+'use strict';
+/* LOADER */
+window.addEventListener('load', () => setTimeout(() => document.getElementById('loader').classList.add('out'), 2100));
+
+/* CURSOR */
+const cur = document.getElementById('cur'), curd = document.getElementById('cur-d');
+let mx = 0, my = 0, rx = 0, ry = 0;
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; curd.style.left = mx+'px'; curd.style.top = my+'px'; });
+(function loop() { rx += (mx-rx)*.1; ry += (my-ry)*.1; cur.style.left = rx+'px'; cur.style.top = ry+'px'; requestAnimationFrame(loop); })();
+
+/* SCROLL PROGRESS */
+window.addEventListener('scroll', () => {
+  document.getElementById('prog').style.width = (window.scrollY/(document.body.scrollHeight-window.innerHeight)*100)+'%';
+}, {passive:true});
+
+/* NAVBAR */
+window.addEventListener('scroll', () => document.getElementById('nav').classList.toggle('up', window.scrollY > 40), {passive:true});
+
+/* HAMBURGER */
+const brg = document.getElementById('brg'), mob = document.getElementById('mob');
+brg.addEventListener('click', () => {
+  const o = mob.classList.toggle('on');
+  brg.classList.toggle('on', o);
+  brg.setAttribute('aria-expanded', String(o));
+  document.body.style.overflow = o ? 'hidden' : '';
+});
+document.querySelectorAll('#mob a').forEach(a => a.addEventListener('click', () => {
+  mob.classList.remove('on'); brg.classList.remove('on');
+  brg.setAttribute('aria-expanded','false'); document.body.style.overflow = '';
+}));
+
+/* INTERSECTION OBSERVER — reveal */
+const ro = new IntersectionObserver(entries => entries.forEach(e => {
+  if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); }
+}), {threshold: .1});
+document.querySelectorAll('.rv,.rl,.rr').forEach(el => ro.observe(el));
+
+/* COUNTERS */
+function animCount(el) {
+  const t = parseInt(el.dataset.cnt), sfx = el.dataset.sfx || '';
+  let v = 0;
+  const step = Math.ceil(t/55);
+  const timer = setInterval(() => { v += step; if(v >= t){v=t; clearInterval(timer);} el.textContent = v + sfx; }, 20);
+}
+const co = new IntersectionObserver(entries => entries.forEach(e => {
+  if (e.isIntersecting) { animCount(e.target); co.unobserve(e.target); }
+}), {threshold: .5});
+document.querySelectorAll('[data-cnt]').forEach(el => co.observe(el));
+/* WA FLOAT PULSE */
+const wf=document.getElementById('wa-float');
+if(wf){setInterval(()=>{wf.style.boxShadow=wf.style.boxShadow.includes('8px')?'0 4px 20px rgba(37,211,102,.5)':'0 0 0 8px rgba(37,211,102,.15),0 4px 20px rgba(37,211,102,.4)';},1400);}
+
+(function(){
+  const track=document.getElementById('livres-track');
+  if(!track)return;
+  const slides=track.querySelectorAll('.lv-slide');
+  const dotsWrap=document.getElementById('livres-dots');
+  const prevBtn=document.getElementById('lv-prev');
+  const nextBtn=document.getElementById('lv-next');
+  let idx=0,timer;
+  function render(){
+    track.style.transform='translateX(-'+(idx*100)+'%)';
+    if(dotsWrap)[...dotsWrap.children].forEach((d,j)=>d.classList.toggle('on',j===idx));
+  }
+  function goTo(i){idx=(i+slides.length)%slides.length;render();}
+  function next(){goTo(idx+1);}
+  function prev(){goTo(idx-1);}
+  function start(){stop();timer=setInterval(next,4200);}
+  function stop(){clearInterval(timer);}
+  if(dotsWrap){
+    slides.forEach((_,j)=>{
+      const b=document.createElement('button');
+      b.className='lv-dot'+(j===0?' on':'');
+      b.setAttribute('aria-label','Livre '+(j+1));
+      b.addEventListener('click',()=>{goTo(j);start();});
+      dotsWrap.appendChild(b);
+    });
+  }
+  if(nextBtn)nextBtn.addEventListener('click',()=>{next();start();});
+  if(prevBtn)prevBtn.addEventListener('click',()=>{prev();start();});
+  track.closest('.lv-box').addEventListener('mouseenter',stop);
+  track.closest('.lv-box').addEventListener('mouseleave',start);
+  render();
+  start();
+})();
+</script>
+</body>
+</html>
